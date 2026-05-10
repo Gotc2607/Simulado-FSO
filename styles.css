@@ -25,6 +25,25 @@ body {
   background: radial-gradient(circle at 20% 0%, var(--bg-2) 0%, var(--bg-1) 35%, #f1f4fa 100%);
 }
 
+.quiz-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 -2px 12px rgba(17, 39, 63, 0.08);
+}
+
+.quiz-footer .btn {
+  min-width: 160px;
+}
+
 .bg-grid {
   position: fixed;
   inset: 0;
@@ -39,7 +58,7 @@ body {
   z-index: 1;
   max-width: 960px;
   margin: 0 auto;
-  padding: 42px 18px 70px;
+  padding: 42px 18px 120px;
 }
 
 .hero {
@@ -254,6 +273,11 @@ h1 {
   box-shadow: 0 6px 16px rgba(183,28,28,0.06);
 }
 
+.review-item.unanswered {
+  border-left: 6px solid var(--primary);
+  box-shadow: 0 6px 16px rgba(6,102,208,0.08);
+}
+
 .review-item h3 {
   margin: 0 0 6px;
   font-size: 1rem;
@@ -273,6 +297,10 @@ h1 {
 
 .status.wrong {
   color: var(--bad);
+}
+
+.status.unanswered {
+  color: var(--primary);
 }
 
 @keyframes fade-up {

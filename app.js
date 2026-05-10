@@ -150,11 +150,9 @@ function renderFeedback(question) {
 
 function updateNavigation() {
   const isFirst = state.current === 0;
-  const isLast = state.current === state.questions.length - 1;
 
   els.prevBtn.disabled = isFirst;
-  els.nextBtn.hidden = isLast;
-  els.finishBtn.hidden = !isLast;
+  els.nextBtn.hidden = state.current === state.questions.length - 1;
 }
 
 function calculateScore() {
@@ -192,29 +190,32 @@ function renderReview() {
   els.reviewList.innerHTML = "";
 
   state.questions.forEach((question) => {
-    let answer = state.answers[question.id];
-    if (!answer || answer === "") answer = "(não respondida)";
+    const rawAnswer = state.answers[question.id];
+    const hasAnswer = rawAnswer !== undefined && rawAnswer !== null && rawAnswer !== "";
 
-    // se a resposta for uma letra, mapeia para o texto da opção
-    let displayAnswer = answer;
-    if (typeof answer === "string" && answer.length === 1 && /[a-z]/i.test(answer) && Array.isArray(question.opcoes)) {
-      const idx = answer.toLowerCase().charCodeAt(0) - 97;
-      if (question.opcoes[idx] !== undefined) {
-        displayAnswer = question.opcoes[idx];
+    let displayAnswer = "(não respondida)";
+    if (hasAnswer) {
+      displayAnswer = rawAnswer;
+      if (typeof rawAnswer === "string" && rawAnswer.length === 1 && /[a-z]/i.test(rawAnswer) && Array.isArray(question.opcoes)) {
+        const idx = rawAnswer.toLowerCase().charCodeAt(0) - 97;
+        if (question.opcoes[idx] !== undefined) {
+          displayAnswer = question.opcoes[idx];
+        }
       }
     }
 
-    const isCorrect = normalizeAnswer(answer) === normalizeAnswer(question.gabarito);
+    const isCorrect = hasAnswer && normalizeAnswer(rawAnswer) === normalizeAnswer(question.gabarito);
+    const reviewState = !hasAnswer ? "unanswered" : isCorrect ? "correct" : "wrong";
 
     const item = document.createElement("article");
-    item.className = `review-item ${isCorrect ? "correct" : "wrong"}`;
+    item.className = `review-item ${reviewState}`;
     item.innerHTML = `
       <h3>${question.id}. ${escapeHtml(question.tema)}</h3>
       <p><strong>Pergunta:</strong> ${escapeHtml(question.pergunta)}</p>
       <p><strong>Sua resposta:</strong> ${escapeHtml(String(displayAnswer))}</p>
       <p><strong>Gabarito:</strong> ${escapeHtml(question.gabarito)}</p>
-      <p class="status ${isCorrect ? "correct" : "wrong"}">${
-      isCorrect ? "Correta" : "Incorreta"
+      <p class="status ${reviewState}">${
+      reviewState === "correct" ? "Correta" : reviewState === "wrong" ? "Incorreta" : "Não respondida"
     }</p>
       <p><strong>Explicação:</strong> ${escapeHtml(question.explicacao || "Sem explicação.")}</p>
     `;
