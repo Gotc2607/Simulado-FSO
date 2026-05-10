@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulado de Sistemas Operacionais</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <main class="app">
+      <header class="hero">
+        <p class="kicker">Fundamentos de Sistemas Operacionais</p>
+        <h1>Simulado Interativo</h1>
+        <p class="subtitle">
+          Responda as questões, confira sua pontuação e revise o gabarito com explicações.
+        </p>
+      </header>
+
+      <section class="panel" id="quiz-panel">
+        <div class="panel-top">
+          <div class="progress-wrap">
+            <p id="progress-label">Carregando questões...</p>
+            <div class="progress-bar" aria-hidden="true">
+              <span id="progress-fill"></span>
+            </div>
+          </div>
+          <div class="pill" id="theme-pill">Tema</div>
+        </div>
+
+        <article class="question-card" id="question-card" hidden>
+          <h2 id="question-title"></h2>
+          <p id="question-text"></p>
+          <div id="options" class="options" role="radiogroup" aria-label="Alternativas"></div>
+        </article>
+
+        <div id="feedback" class="feedback" hidden></div>
+
+        <footer class="actions">
+          <button id="prev-btn" type="button" class="btn ghost">Anterior</button>
+          <button id="next-btn" type="button" class="btn primary">Próxima</button>
+          <button id="finish-btn" type="button" class="btn accent" hidden>Finalizar</button>
+        </footer>
+      </section>
+
+      <section id="result-panel" class="panel" hidden>
+        <h2>Resultado Final</h2>
+        <p id="score-line" class="score-line"></p>
+        <p id="percent-line"></p>
+        <div class="result-actions">
+          <button id="review-btn" class="btn ghost" type="button">Ver revisão</button>
+          <button id="restart-btn" class="btn primary" type="button">Refazer simulado</button>
+        </div>
+      </section>
+
+      <section id="review-panel" class="panel" hidden>
+        <h2>Revisão do Gabarito</h2>
+        <div id="review-list" class="review-list"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

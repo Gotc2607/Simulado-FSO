@@ -1,0 +1,450 @@
+[
+  {
+    "id": 1,
+    "tema": "Deadlocks e Recursos",
+    "pergunta": "Em um sistema computacional multiprocessado, onde o sistema operacional realiza escalonamento de tarefas do tipo preemptivo, três processos (P1, P2 e P3) compartilham recursos (R1, R2 e R3). Os processos P1 e P2 concorrem entre si ao acesso do recurso R1, enquanto P2 e P3 concorrem entre si ao acesso dos recursos R2 e R3. Os recursos R1 e R3 são preemptíveis, ou seja, podem sofrer preempção; R2 é um recurso não preemptível. Todos os três processos usam o mesmo mecanismo de exclusão mútua para garantir acesso exclusivo em suas seções críticas. Com base nesse cenário, é correto afirmar que:",
+    "opcoes": [
+      "a. É possível ocorrer deadlock entre P2 e P3.",
+      "b. Não é possível ocorrer deadlock entre os três processos.",
+      "c. É possível ocorrer deadlock com uma espera circular entre P1, P2 e P3.",
+      "d. É possível ocorrer deadlock entre P1 e P3.",
+      "e. É possível ocorrer deadlock entre P1 e P2."
+    ],
+    "gabarito": "b",
+    "explicacao": "Para ocorrer deadlock, a condicao de nao-preempcao deve ser atendida para todos os recursos envolvidos no ciclo. Como R1 e R3 sao preemptiveis, o SO pode interromper a posse, quebrando o impasse."
+  },
+  {
+    "id": 2,
+    "tema": "Threads (Pthreads)",
+    "pergunta": "Analise o código a seguir:\n\n#include <stdio.h>\n#include <pthread.h>\n\nvoid *thread (void *ptr)\n{\n  printf(\"ola!\\n\");\n}\n\nint main()\n{\n  int i; pthread_t tid[10];\n  for ( i = 0; i < 10; i++)\n    pthread_create(&tid[i], NULL, &thread, NULL);\n  getchar();\n  return 0;\n}\n\nAo executar esse programa, o processo criado possuirá quantos fluxos de execução (threads) no instante em que sair da chamada getchar. Assuma que foi passado tempo suficiente para executar com sucesso todas as chamadas de sistema realizadas.",
+    "opcoes": [
+      "Resposta numérica (ex: 11)"
+    ],
+    "gabarito": "11",
+    "explicacao": "O programa cria 10 threads filhas atraves do loop. Somando-se a thread principal (main thread) que está executando o getchar, o total e 11."
+  },
+  {
+    "id": 3,
+    "tema": "Sincronização e Exclusão Mútua",
+    "pergunta": "Analise as seguintes afirmativas:\nI. Condições de corrida podem ocorrer se múltiplas threads fazem leituras de um dado compartilhado, mesmo que nenhuma realize escritas.\nII. O uso de mutex para a exclusão mútua em seções críticas garante que não haja condição de corrida, porém pode ocasionar deadlocks se não for corretamente empregado.\nIII. Monitores são baseados em um tipo abstrato de dados e um controle de acesso aos dados. Apenas funções do monitor acessam os dados e apenas uma thread ou processo pode executar funções de um monitor por vez.\nIV. Semáforos têm duas operações, up() e down(), sendo que apenas a operação down() pode bloquear um processo ou thread.\n\nA análise permite concluir que:",
+    "opcoes": [
+      "a. apenas as afirmativas I, II e III são verdadeiras.",
+      "b. nenhuma das afirmativas é verdadeira.",
+      "c. apenas as afirmativas II e IV são verdadeiras.",
+      "d. apenas as afirmativas I, III e IV são verdadeiras.",
+      "e. apenas as afirmativas II, III e IV são verdadeiras."
+    ],
+    "gabarito": "e",
+    "explicacao": "A afirmativa I e falsa porque leituras concorrentes nao geram condicao de corrida (apenas escritas). As outras (II, III e IV) descrevem corretamente os mecanismos de sincronizacao."
+  },
+  {
+    "id": 4,
+    "tema": "Processos vs Threads",
+    "pergunta": "Embora ambos tenham seu escalonamento feito pelo gerenciamento de processos, threads e processos são estruturalmente distintos. Qual é a principal diferença entre eles?",
+    "opcoes": [
+      "a. Processos apenas podem ocorrer em sistemas de grande porte.",
+      "b. Threads possuem contexto simplificado.",
+      "c. Threads apenas podem ocorrer em processadores multicore.",
+      "d. Processos executam mais rapidamente.",
+      "e. Apenas threads podem ser executados em paralelo."
+    ],
+    "gabarito": "b",
+    "explicacao": "Threads sao processos 'leves' porque compartilham o espaco de enderecamento e recursos do processo pai, exigindo menos dados (contexto simplificado) para a troca de contexto."
+  },
+  {
+    "id": 5,
+    "tema": "Condição de Corrida",
+    "pergunta": "Analise a execução a seguir considerando que todos os arquivos de cabeçalho necessários estão inclusos no tempo de compilação e que o programa executa ininterruptamente do início até o seu término.\n\nint lbm = 0;\nvoid *func(void *i)\n{\n  lbm = lbm + 1;\n  return NULL;\n}\n\nint main (void)\n{\n  int i; pthread_t t[10];\n  for (i = 0; i < 10; i++)\n    pthread_create(&t[i], NULL, func, NULL);\n  for (i = 0; i < 10; i++)\n    pthread_join(t[i], NULL);\n  printf(\"%d\", lbm);\n  return 0;\n}\n\nAssinale a alternativa que melhor representa o resultado da execução do programa acima.",
+    "opcoes": [
+      "a. lbm = 1",
+      "b. lbm <= 10",
+      "c. lbm = 10",
+      "d. lbm <= 9",
+      "e. lbm >= 10",
+      "f. lbm = 9",
+      "g. lbm >= 9"
+    ],
+    "gabarito": "b",
+    "explicacao": "Como nao ha mutex protegendo a variavel 'lbm', ocorre uma condicao de corrida. O valor final pode ser 10, mas tambem pode ser menor caso threads sobreponham o incremento umas das outras."
+  },
+  {
+    "id": 6,
+    "tema": "Condições de Deadlock",
+    "pergunta": "Um impasse (deadlock) pode ser definido como a condição em que todo processo, em um conjunto de processos, aguarda por um evento que somente outro processo desse conjunto poderá fazer acontecer. De acordo com Coffman et al. (1971), as condições para que ocorra um impasse (de recurso) são encadeamento circular de dois ou mais processos, exclusão mútua, posse e espera de recursos, (... )\nComplete com a sentença correta:",
+    "opcoes": [
+      "a. Combinação de preempção e não preempção de recursos; ao menos três destas condições presentes ao mesmo tempo.",
+      "b. Não preempção de recursos; ao menos três destas condições presentes ao mesmo tempo.",
+      "c. Preempção de recursos; todas estas condições presentes ao mesmo tempo.",
+      "d. Combinação de preempção e não preempção de recursos; todas estas condições presentes ao mesmo tempo.",
+      "e. Não preempção de recursos; todas estas condições presentes ao mesmo tempo.",
+      "f. Preempção de recursos; ao menos três destas condições presentes ao mesmo tempo."
+    ],
+    "gabarito": "e",
+    "explicacao": "As quatro condicoes de Coffman sao: Exclusao Mutua, Posse e Espera, Nao-Preempcao e Espera Circular. Todas devem ocorrer simultaneamente para o deadlock existir."
+  },
+  {
+    "id": 7,
+    "tema": "Semáforos e Spin Locks",
+    "pergunta": "O aumento dos requisitos de paralelismo nas aplicações modernas exige mecanismos de bloqueio (locking) e sincronização cada vez mais eficientes. Nesse contexto, dois mecanismos muito usados são semáforos e spin locks. Sobre esses dois mecanismos, assinale a alternativa correta.",
+    "opcoes": [
+      "a. Semáforos e spin locks são adequados, respectivamente, para cenários de muita contenção e espera de curta duração para entrar na região crítica.",
+      "b. Semáforos são adequados para cenários de espera de curta duração para entrar na região crítica.",
+      "c. Spin locks são adequados para cenários de muita contenção entre os processos concorrentes.",
+      "d. Spin locks e semáforos são adequados para cenários de muita contenção e espera de curta duração para entrar na região crítica.",
+      "e. Semáforos e spin locks são adequados, respectivamente, para cenários de baixa contenção e espera de longa duração para entrar na região crítica."
+    ],
+    "gabarito": "a",
+    "explicacao": "Spin locks usam espera ocupada (gastam CPU), sendo bons apenas para esperas curtissimas. Semaphoros colocam a thread para dormir, sendo melhores para alta contencao/espera longa."
+  },
+  {
+    "id": 8,
+    "tema": "Chamada fork() e Variáveis",
+    "pergunta": "O programa (em linguagem C) abaixo executa em um sistema operacional da família UNIX. Considere que todas as rotinas invocadas no programa executam sem erro. Assinale a alternativa que indica o resultado impresso na tela pelo programa.\n\nint i = 0;\nint main(void){\n  if (fork() > 0)\n    i++;\n  else\n    i++;\n  i++;\n  printf(\"%d\\n\", i);\n  return 0;\n}",
+    "opcoes": [
+      "a. 34",
+      "b. 22",
+      "c. 33",
+      "d. 32",
+      "e. 12",
+      "f. 21",
+      "g. Indeterminado",
+      "h. 43",
+      "i. 11",
+      "j. 23",
+      "k. 44"
+    ],
+    "gabarito": "b",
+    "explicacao": "O fork() cria um processo filho. No pai (retorno > 0), i++ (1) e i++ (2). No filho (retorno 0), cai no else: i++ (1) e i++ (2). Ambos imprimem 2."
+  },
+  {
+    "id": 9,
+    "tema": "Criação de Processos em Loop",
+    "pergunta": "Considere o código abaixo:\n\nint main()\n{\n  for (int i = 0; i < 6; i++)\n  {\n    if (fork() >= 0)\n      continue;\n    else\n      break;\n  }\n  return 0;\n}\n\nQual o número total de processos criados com a execução do programa? Considere que todas as operações executadas serão realizadas com sucesso.",
+    "opcoes": [
+      "a. 17",
+      "b. 7",
+      "c. 8",
+      "d. 33",
+      "e. 16",
+      "f. 64",
+      "g. 32",
+      "h. 6"
+    ],
+    "gabarito": "f",
+    "explicacao": "Em um loop de fork() ininterrupto, o numero de processos dobra a cada iteracao. Como sao 6 iteracoes, o total e 2^6 = 64 processos."
+  },
+  {
+    "id": 10,
+    "tema": "Hierarquia Processos/Threads",
+    "pergunta": "Considere o programa abaixo escrito em linguagem C. No instante da execução do loop infinito, existirá uma hierarquia composta de quantos processos e threads, respectivamente?\n\n#include <unistd.h>\nint main()\n{\n  for (int i = 0; i < 3; i++)\n    fork();\n  while(1);\n  return 0;\n}",
+    "opcoes": [
+      "a. 8 e 1",
+      "b. 8 e 8",
+      "c. 4 e 0",
+      "d. 7 e 1",
+      "e. 7 e 7",
+      "f. 3 e 0",
+      "g. 1 e 0",
+      "h. 7 e 0",
+      "i. 1 e 1",
+      "j. 8 e 0",
+      "k. 4 e 4",
+      "l. 3 e 1",
+      "m. 3 e 3",
+      "n. 4 e 1"
+    ],
+    "gabarito": "b",
+    "explicacao": "O loop de 3 iteracoes cria 2^3 = 8 processos. Como todo processo possui pelo menos 1 thread (main thread), temos 8 threads no total do sistema."
+  },
+  {
+    "id": 11,
+    "tema": "Mecanismos de Controle de Execução",
+    "pergunta": "Nos sistemas operacionais multitarefa, o mecanismo responsável por controlar a execução simultânea de programas denomina-se serviço de:",
+    "opcoes": [
+      "a. processos.",
+      "b. usuários.",
+      "c. arquivos.",
+      "d. redes."
+    ],
+    "gabarito": "a",
+    "explicacao": "O mecanismo de processos é o responsável por controlar a execução simultânea de programas em sistemas operacionais multitarefa."
+  },
+  {
+    "id": 12,
+    "tema": "Tipos de Núcleo do Sistema Operacional",
+    "pergunta": "Assinale a alternativa que apresenta corretamente um tipo de núcleo de sistema operacional no qual a menor quantidade de código possível e a menor quantidade de tempo de processamento possível são realizadas em modo privilegiado (kernel mode).",
+    "opcoes": [
+      "a. Exokernel",
+      "b. Monolítico",
+      "c. Microkernel",
+      "d. Macrokernel",
+      "e. Monolítico em camadas"
+    ],
+    "gabarito": "c",
+    "explicacao": "O Microkernel minimiza o código no modo privilegiado, movendo a maioria dos serviços para o modo usuário, resultando em melhor modularidade e segurança."
+  },
+  {
+    "id": 13,
+    "tema": "Paralelismo em Nível de Threads",
+    "pergunta": "Paralelismo em nível de threads ocorre quando:",
+    "opcoes": [
+      "a. Um único núcleo executa todas as tarefas.",
+      "b. Vários núcleos executam threads simultaneamente.",
+      "c. Apenas um processo é executado.",
+      "d. O clock do processador é reduzido.",
+      "e. O sistema utiliza apenas cache."
+    ],
+    "gabarito": "b",
+    "explicacao": "Paralelismo em nível de threads ocorre quando múltiplos núcleos do processador executam threads diferentes simultaneamente."
+  },
+  {
+    "id": 14,
+    "tema": "Estados de Processos e E/S",
+    "pergunta": "O sistema operacional S está executando um processo P. Em determinado momento, P tenta realizar uma operação de entrada/saída (E/S). Estando o dispositivo de E/S solicitado por P indisponível no momento, S coloca P em estado de espera. Para evitar que o processador fique ocioso durante essa espera, S, sendo um sistema operacional moderno, emprega um mecanismo específico que viabiliza o uso da CPU por outro processo ao mesmo tempo em que P aguarda a conclusão da operação de E/S. Nesse cenário, o sistema operacional S emprega, especificamente, o mecanismo de:",
+    "opcoes": [
+      "a. troca de contexto;",
+      "b. alocação de memória virtual;",
+      "c. escalonamento por prioridade;",
+      "d. multiprocessamento simétrico;",
+      "e. gerenciamento de interrupções."
+    ],
+    "gabarito": "a",
+    "explicacao": "A troca de contexto (context switch) permite que o sistema operacional suspenda o processo que aguarda E/S e carregue outro processo pronto para execução. Dessa forma, a CPU não fica ociosa enquanto o processo P permanece bloqueado esperando a conclusão da operação de entrada/saída. O gerenciamento de interrupções está relacionado à sinalização dos eventos de E/S, mas o mecanismo que viabiliza a troca efetiva entre processos é a troca de contexto."
+  },
+  {
+    "id": 15,
+    "tema": "Threads em Linguagens de Programação",
+    "pergunta": "Nos sistemas operacionais modernos, o uso de threads permite dividir a execução de programas em fluxos independentes, favorecendo responsabilidade e melhor aproveitamento de recursos do processador. Considerando as características e modelos de uso de threads em sistemas operacionais e linguagens de programação, assinale a alternativa correta.",
+    "opcoes": [
+      "a. A compilação de programas em Java dispensa a utilização de threads, caso o código seja especificado somente com o método main().",
+      "b. A fim de superar dificuldades operacionais tais como correção dos programas, a técnica de threading implícito transfere a criação de threads nativa dos compiladores para os desenvolvedores de aplicações.",
+      "c. O padrão POSIX (IEEE 1003.1c) define Pthreads como uma implementação paralela do comportamento dos threads, a fim de otimizar desempenho em sistemas multicore.",
+      "d. Threads oferecem dois níveis de suporte: usuário e kernel. Threads do nível usuário são gerenciados com o suporte do kernel e do sistema operacional, implementando, assim, o paralelismo de código.",
+      "e. Uma possível técnica de criação de threads em programas escritos na linguagem Java define uma classe que implementa a interface Runnable."
+    ],
+    "gabarito": "e",
+    "explicacao": "A alternativa correta descreve o padrão de implementação de threads em Java através da interface Runnable, uma prática comum nessa linguagem."
+  },
+  {
+    "id": 16,
+    "tema": "Computação Paralela e Concorrente",
+    "pergunta": "A computação paralela e concorrente permite o melhor aproveitamento de processadores multi-core. Analise as afirmativas a seguir sobre threads, processos e condições de corrida.\nI. Uma condição de corrida (race condition) ocorre quando o resultado final de uma operação depende da ordem imprevisível de execução de múltiplas threads sobre um recurso compartilhado.\nII. Threads criadas dentro de um mesmo processo compartilham o mesmo espaço de endereçamento e recursos, como arquivos abertos, o que facilita a comunicação, mas exige sincronização.\nIII. O paralelismo é a conselho de gerenciar múltiplas tarefas que podem ou não ser executadas no mesmo tempo, enquanto a concorrência exige obrigatoriamente hardware com múltiplos núcleos.\nIV. O uso de Mutex (Mutual Exclusion) garante apenas uma thread por vez possa acessar uma seção crítica do código, prevenindo inconsistências de dados.\n\nEstão corretas:",
+    "opcoes": [
+      "a. I e II e IV.",
+      "b. I, II, III e IV.",
+      "c. I, II e III.",
+      "d. I e III.",
+      "e. II e IV."
+    ],
+    "gabarito": "a",
+    "explicacao": "As afirmativas I, II e IV estão corretas. A afirmativa III está incorreta pois concorrência não exige necessariamente múltiplos núcleos (pode ser time-sharing)."
+  },
+  {
+    "id": 17,
+    "tema": "Estados de Processos",
+    "pergunta": "No escalonamento de processos de um sistema operacional, o estado em que um processo se encontra quando possui todos os recursos necessários para sua execução, aguardando exclusivamente a atribuição do processador pelo escalonador, é denominado:",
+    "opcoes": [
+      "a. Pronto (Ready).",
+      "b. Execução (Running).",
+      "c. Bloqueado (Blocked).",
+      "d. Suspenso (Suspended).",
+      "e. Encerrado (Terminated)."
+    ],
+    "gabarito": "a",
+    "explicacao": "O estado Pronto é quando o processo tem todos os recursos menos a CPU, aguardando o escalonador atribuir o processador."
+  },
+  {
+    "id": 18,
+    "tema": "Arquitetura do Kernel",
+    "pergunta": "No âmbito da arquitetura dos sistemas operacionais, o termo 'kernel' refere-se a:",
+    "opcoes": [
+      "a. Ao núcleo do sistema operacional encarregado de gerenciar o hardware, a memória e aos processos, servindo como ponte entre os softwares e os componentes de hardware.",
+      "b. À interface de interação direta com o usuário, também conhecida como Shell ou GUI, responsável por apresentar ícones, janelas e menus que facilitam a execução de tarefas em nível de aplicativo.",
+      "c. Ao conjunto de aplicativos e ferramentas utilitárias onde o usuário instala no computador, funcionando de maneira isolada das funções básicas de controle de recursos.",
+      "d. Ao código de inicialização primário (BIOS/UEFI) gravado em circuitos de memória ROM, cuja função restringe-se ao reconhecimento dos componentes de hardware durante o processo de boot.",
+      "e. À camada de segurança lógica que atua com um antivírus ou firewall residente, monitorando o tráfego de dados e o sistema de arquivos para prevenir invasões externas."
+    ],
+    "gabarito": "a",
+    "explicacao": "O kernel é o núcleo do sistema operacional responsável por gerenciar hardware, memória, processos e servir como interface entre software e hardware."
+  },
+  {
+    "id": 19,
+    "tema": "Estrutura de Processos",
+    "pergunta": "Os processos são importantes no contexto dos Sistemas Operacionais, promovendo a correta execução dos aplicativos para os usuários. Para isto, os processos armazenam seus componentes na memória principal do computador. Com base no enunciado, são componentes de um processo presentes na memória do computador:",
+    "opcoes": [
+      "a. Pilha de Dados e Endereço Virtual.",
+      "b. Pilha de Processo e Heap.",
+      "c. Seção de Texto e Seção de Memória.",
+      "d. Seção de Texto e Pilha de Dados."
+    ],
+    "gabarito": "b",
+    "explicacao": "Os principais segmentos de memória de um processo são: seção de texto (código executável), seção de dados, heap e pilha (stack). Entre as alternativas apresentadas, a que melhor representa componentes reais de um processo é 'Pilha de Processo e Heap'. A pilha armazena quadros de ativação, variáveis locais e endereço de retorno, enquanto o heap é usado para alocação dinâmica de memória."
+  },
+  {
+    "id": 20,
+    "tema": "Escalonamento de Processos",
+    "pergunta": "Um sistema operacional moderno é responsável por gerenciar de forma eficiente os recursos do computador, entre eles o processador, por meio de mecanismos de escalonamento de processos. Considerando os conceitos de processo, thread e escalonamento, analise as afirmativas a seguir:\nI. Um processo corresponde a um programa em execução, possuindo espaço de endereçamento próprio, enquanto as threads de um mesmo processo compartilham esse espaço de memória.\nII. Em um sistema com escalonamento preemptivo, o sistema operacional pode interromper a execução de um processo para alocar a CPU a outro processo de maior prioridade ou por fim de faturação de tempo.\nIII. No escalonamento de Round Robin, cada processo recebe uma fatura fina de tempo de CPU, denominada quantum.\nIV. O escalonador de processos atua exclusivamente sobre os processos que estão no estado de execução (running), desta forma evita a ininção de processos na fila de espera.\nEstá CORRETO o que se afirma em:",
+    "opcoes": [
+      "a. Apenas I e II.",
+      "b. Apenas I, II e III.",
+      "c. Apenas I, II e IV.",
+      "d. Apenas II e IV.",
+      "e. I, II, III e IV."
+    ],
+    "gabarito": "b",
+    "explicacao": "As afirmativas I, II e III estão corretas. A IV está incorreta pois o escalonador atua sobre processos na fila de pronto, não apenas em execução."
+  },
+  {
+    "id": 21,
+    "tema": "Deadlocks",
+    "pergunta": "Sobre deadlocks em sistemas operacionais, analise as assertivas a seguir:\nI. Para que ocorra um deadlock, quatro condições devem estar presentes simultaneamente no sistema: exclusão mútua, retenção e espera, inexistência de preempção e espera circular.\nII. A prevenção de deadlocks assegura que pelo menos uma das quatro condições necessárias não possa ocorrer, restringindo como as solicitações de recursos podem ser feitas. Seus efeitos colaterais incluem baixa utilização dos dispositivos e redução do throughput (taxa de processamento).\nIII. Um estado inseguro implica necessariamente que o sistema está em deadlock no momento em que é identificado.\nIV. A maioria dos sistemas operacionais modernos, incluindo Linux e Windows, adota como política geral não implementar mecanismos abrangentes de prevenção, evasão ou detecção de deadlocks, transferindo a responsabilidade de lidar com o problema para os desenvolvedores de aplicações.\nQuais estão corretas?",
+    "opcoes": [
+      "a. Apenas I e III.",
+      "b. Apenas II e IV.",
+      "c. Apenas I, II e III.",
+      "d. Apenas I, II e IV.",
+      "e. Apenas II, III e IV."
+    ],
+    "gabarito": "d",
+    "explicacao": "As afirmativas I, II e IV estão corretas. A III está incorreta pois um estado inseguro não implica necessariamente que há deadlock, apenas que pode haver."
+  },
+  {
+    "id": 22,
+    "tema": "Condições de Deadlock",
+    "pergunta": "Um sistema entra em deadlock quando quatro condições ocorrem simultaneamente. Qual das alternativas abaixo apresenta uma dessas condições?",
+    "opcoes": [
+      "a. Ausência de exclusão mútua.",
+      "b. Espera circular entre processos.",
+      "c. Execução sequencial de processos.",
+      "d. Preempção obrigatória de recursos.",
+      "e. Compartilhamento irrestrito de recursos."
+    ],
+    "gabarito": "b",
+    "explicacao": "Espera circular é uma das quatro condições de Coffman para ocorrência de deadlock. As outras são: exclusão mútua, posse e espera, e não-preempção."
+  },
+  {
+    "id": 23,
+    "tema": "Processos vs Threads em Consumo de Recursos",
+    "pergunta": "Considere um Técnico que está mirando um serviço interno de arquivos de um grão para um servidor dedicado e, nesse sentido, analisa o consumo de recursos pelos processos e threads dos sistemas internos. Diante do exposto, é CORRETO afirmar que:",
+    "opcoes": [
+      "a. Processos e threads são equivalentes, diferenciando-se apenas pelo nome adotado pelo S.O.",
+      "b. Threads são executadas exclusivamente em modo kernel e por isso sempre consomem mais memória.",
+      "c. Processos compartilham o mesmo espaço de endereçamento, enquanto threads possuem espaço próprio.",
+      "d. Um processo possui seu espaço de endereçamento próprio e threads do mesmo processo compartilham deste espaço."
+    ],
+    "gabarito": "d",
+    "explicacao": "Threads de um mesmo processo compartilham o espaço de endereçamento do processo, enquanto processos diferentes têm espaços de endereçamento isolados."
+  },
+  {
+    "id": 24,
+    "tema": "Arquitetura Windows e Linux",
+    "pergunta": "Um técnico de sistemas de um centro de processamento de dados do governo federal gerencia um ambiente heterogêneo com servidores Windows e Linux. Ele precisa compreender as diferenças na arquitetura e no gerenciamento de recursos de ambos os sistemas operacionais para otimizar o desempenho e garantir a segurança das aplicações críticas que neles rodam.\nAssocie os conceitos e mecanismos dos sistemas operacionais da Coluna A com suas respectivas descrições e implementações na Coluna B:\n\nColuna A:\n1. Criação de Processos no Linux.\n2. Gerenciamento de Memória Virtual no Windows.\n3. Arquitetura do Kernel do Linux.\n4. Sistema de Permissões de Arquivo no Windows.\n\nColuna B:\n(_) Utiliza um arquivo no disco, explicitamente o pagefile.sys, para estender a memória RAM, armazenando páginas de memória menos utilizadas para liberar espaço na memória principal para processos mais dinâmicos.\n(_) Baseado em um modelo de Listas de Controle de Acesso (ACLs) no sistema de arquivos NTFS, permitindo a definição de permissões granulares (leitura, escrita, execução, etc.).\n(_) Geralmente implementada através da chamada de sistema (fork()), que cria um novo processo (filho) com uma cópia quase idêntica do processo que o chamou (pai), incluindo seu espaço de endereçamento de memória.\n(_) Caracterizado pelo design monolítico, onde os principais serviços do sistema, como gerenciamento de processos, de memória e de dispositivos, rodam em um único espaço de endereçamento privilegiado (kernel space) para maior performance.\n\nA sequência CORRETA de preenchimento dos parênteses, de cima para baixo, é:",
+    "opcoes": [
+      "a. 4, 2, 3, 1.",
+      "b. 2, 4, 1, 3.",
+      "c. 3, 1, 2, 4.",
+      "d. 2, 1, 4, 3.",
+      "e. 1, 3, 4, 2."
+    ],
+    "gabarito": "b",
+    "explicacao": "A sequência correta é: 2 (pagefile.sys), 4 (ACLs), 1 (fork()), 3 (kernel monolítico)."
+  },
+  {
+    "id": 25,
+    "tema": "Deadlocks - Prevenção e Detecção",
+    "pergunta": "Sobre deadlocks em sistemas operacionais, analise as assertivas a seguir:\nI. Para que ocorra um deadlock, quatro condições devem estar presentes simultaneamente no sistema: exclusão mútua, retenção e espera, inexistência de preempção e espera circular.\nII. A prevenção de deadlocks assegura que pelo menos uma das quatro condições necessárias não possa ocorrer, restringindo como as solicitações de recursos podem ser feitas. Seus efeitos colaterais incluem baixa utilização dos dispositivos e redução do throughput (taxa de processamento).\nIII. Um estado inseguro implica necessariamente que o sistema está em deadlock no momento em que é identificado.\nIV. A maioria dos sistemas operacionais modernos, incluindo Linux e Windows, adota como política geral não implementar mecanismos abrangentes de prevenção, evasão ou detecção de deadlocks, transferindo a responsabilidade de lidar com o problema para os desenvolvedores de aplicações.\nQuais estão corretas?",
+    "opcoes": [
+      "a. Apenas I e III.",
+      "b. Apenas II e IV.",
+      "c. Apenas I, II e III.",
+      "d. Apenas I, II e IV.",
+      "e. Apenas II, III e IV."
+    ],
+    "gabarito": "d",
+    "explicacao": "As afirmativas I, II e IV estão corretas. A III está incorreta pois um estado inseguro não implica necessariamente que há deadlock, apenas que pode haver."
+  },
+  {
+    "id": 26,
+    "tema": "Sincronização e Exclusão Mútua Avançada",
+    "pergunta": "Em sistemas operacionais modernos, o suporte à concorrência exige mecanismos adequados de sincronização, exclusão mútua e coordenação entre processos. Considere um sistema operacional que utiliza semáforos para controlar o acesso a regiões críticas compartilhadas entre processos concorrentes.\nAnalise as assertivas a seguir e assinale a alternativa que apresenta somente as proposições CORRETAS:\n\nI. Um semáforo binário pode assumir apenas os valores 0 e 1 e pode ser utilizado para garantir exclusão mútua em regiões críticas.\nII. A operação wait (ou P) sobre um semáforo decrementa seu valor e, se o resultado for negativo, o processo fica bloqueado até que o semáforo volte a assumir valor não negativo.\nIII. A utilização inadequada de semáforos pode levar a situações de deadlock (impasse), mesmo que cada região crítica esteja corretamente protegida por exclusão mútua.\nIV. O uso de semáforos elimina completamente a possibilidade de inanição (starvation), desde que o sistema operacional seja preemptivo.",
+    "opcoes": [
+      "a. I e II.",
+      "b. I, II e III.",
+      "c. II, III e IV.",
+      "d. I, III e IV.",
+      "e. Apenas IV."
+    ],
+    "gabarito": "b",
+    "explicacao": "As afirmativas I, II e III estão corretas. Semáforos binários podem assumir apenas 0 e 1 e são usados para exclusão mútua. A operação wait (P) decrementa o semáforo e bloqueia o processo quando o valor fica negativo. O uso incorreto de semáforos pode gerar deadlock, mesmo com regiões críticas protegidas. A afirmativa IV é falsa, porque preempção do sistema operacional não elimina, por si só, a possibilidade de starvation."
+  },
+  {
+    "id": 27,
+    "tema": "Threads",
+    "pergunta": "Sobre os princípios de sistemas operacionais modernos, um fluxo de execução dentro de um processo, que compartilha os mesmos recursos desse processo e que permite que várias tarefas sejam realizadas ao mesmo tempo, é conhecido como:",
+    "opcoes": [
+      "a. Cache.",
+      "b. Schedule.",
+      "c. Kernel.",
+      "d. Stack.",
+      "e. Thread."
+    ],
+    "gabarito": "e",
+    "explicacao": "Thread é um fluxo de execução dentro de um processo que compartilha recursos com outras threads do mesmo processo, permitindo múltiplas tarefas simultâneas."
+  },
+  {
+    "id": 28,
+    "tema": "Deadlocks",
+    "pergunta": "A situação em que dois ou mais processos ficam permanentemente bloqueados, esperando por recursos que nunca serão liberados, caracteriza:",
+    "opcoes": [
+      "a. Deadlock",
+      "b. Escalonamento preemptivo",
+      "c. Fragmentação de memória",
+      "d. Starvation",
+      "e. Swap"
+    ],
+    "gabarito": "a",
+    "explicacao": "Deadlock é a situação onde múltiplos processos ficam permanentemente bloqueados esperando por recursos que serão liberados apenas por outros processos também bloqueados."
+  },
+  {
+    "id": 29,
+    "tema": "Escalonamento Preemptivo Moderno",
+    "pergunta": "Processos e escalonamento no Sistema Operacional (SO) exigem decisões entre latência, justiça e throughput em máquinas multicore. Marque a alternativa que caracteriza um escalonador preemptivo moderno operando com multiprogramação intensa e cargas mistas interativas e em lote.",
+    "opcoes": [
+      "a. Emparilhar filas por prioridade fixa com quantum extenso e troca por envelhecimento lento, concentrando ciclos nos jobs de maior peso computacional.",
+      "b. Executar fila única por ordem de chegada com quantum curto invariável, rodando tarefas interativas e em lote sob o mesmo tempo de falia.",
+      "c. Distribuir tarefas por núcleos com afinidade rígida e quantum amplo, favorecendo locality de cache e alongando intervalos entre preempções.",
+      "d. Adotar classes distintas para I/O-bound e CPU-bound com fatias iguais, tratando fairness por contagem de preempções e penalidade uniforme por bloqueio.",
+      "e. Operar por fata proporcional ao peso com árvore balanceada de tempo virtual, afinidade transparente, balanceamento periódico e proteção ao desempenho interativo."
+    ],
+    "gabarito": "e",
+    "explicacao": "Um escalonador preemptivo moderno usa tempo virtual proporcional ao peso, árvore balanceada (CFS - Completely Fair Scheduler), afinidade transparente e proteção ao desempenho interativo."
+  },
+  {
+    "id": 30,
+    "tema": "Conceitos Fundamentais de SO",
+    "pergunta": "Este conceito fundamental em sistemas operacionais refere-se à capacidade do sistema de executar múltiplas tarefas ou processos concorrentemente. O sistema gerencia o tempo do processador entre os vários processos, criando a ilusão de que todos estão sendo executados simultaneamente, o que melhora a eficiência e a responsabilidade do computador. Marque a alternativa CORRETA que corresponde ao conceito descrito.",
+    "opcoes": [
+      "a. Memória Virtual.",
+      "b. Spooling.",
+      "c. Multiprocessamento.",
+      "d. Multitarefa.",
+      "e. Monotarefa."
+    ],
+    "gabarito": "d",
+    "explicacao": "Multitarefa é a capacidade do sistema operacional de executar múltiplos processos concorrentemente, criando a ilusão de simultaneidade através do gerenciamento do tempo do processador."
+  },
+  {
+    "id": 31,
+    "tema": "Arquitetura do Kernel",
+    "pergunta": "No que diz respeito à arquitetura do sistema operacional, o __________ é composto por um único processo que executa as funções principais em uma memória segura. Examine e assinale qual das opções preenche melhor a lacuna do texto acima:",
+    "opcoes": [
+      "a. microkernel",
+      "b. núcleo monolítico",
+      "c. micronúcleo",
+      "d. sistema distribuído",
+      "e. monitor de máquinas virtuais"
+    ],
+    "gabarito": "b",
+    "explicacao": "O núcleo monolítico é composto por um único processo que executa todas as funções principais do sistema operacional em uma memória segura e com privilégios de kernel."
+  }
+]
