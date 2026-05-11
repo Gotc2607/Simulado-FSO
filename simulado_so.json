@@ -446,5 +446,130 @@
     ],
     "gabarito": "b",
     "explicacao": "O núcleo monolítico é composto por um único processo que executa todas as funções principais do sistema operacional em uma memória segura e com privilégios de kernel."
+  },
+  {
+    "id": 32,
+    "tema": "Algoritmo de Peterson",
+    "pergunta": "Considere o algoritmo de Peterson, visto em sala:\n\n/* argumento e' id do processo */    turn = 0;\nvoid enter_region(int id)\n{\n    int other;                     interested[0] = false;\n                                   interested[1] = false;\n    other = 1 - id;                /* o outro processo */\n    interested[id] = true;         /* mostra que esta interessado */\n    turn = id;                     /* mostra que a vez e' minha */\n    while (turn == id && interested[other] == true)\n        ;\n}\n\nvoid leave_region(int id)\n{\n    interested[id] = false;\n}\n\nImagine que existam 2 threads executando com ids 0 e 1. Essas threads executam o metodo enter_region, depois executam o codigo da regiao critica e posteriormente executam o codigo leave_region.\n\nNeste escalonamento, qual thread entra na regiao critica primeiro e quais os valores de turn, interested[0] e interested[1] no momento em que a thread entra na regiao critica pela primeira vez?",
+    "opcoes": [
+      "a. Thread 1; turn = 1; interested[0] = false; interested[1] = true.",
+      "b. Thread 0; turn = 0; interested[0] = true; interested[1] = false.",
+      "c. Thread 1; turn = 0; interested[0] = true; interested[1] = false.",
+      "d. Thread 0; turn = 1; interested[0] = false; interested[1] = true.",
+      "e. Ambas entram ao mesmo tempo; turn = 0; interested[0] = true; interested[1] = true."
+    ],
+    "gabarito": "a",
+    "explicacao": "A thread 0 executa apenas a primeira instrucao e sofre troca de contexto. Em seguida, a thread 1 executa ate entrar na regiao critica, pois interested[0] ainda esta falso. Nesse instante, turn = 1, interested[0] = false e interested[1] = true."
+  },
+  {
+    "id": 33,
+    "tema": "Tratamento de Deadlock",
+    "pergunta": "Em um sistema operacional, existem diversas situacoes que poderiam acarretar deadlock. Algumas estrategias podem ser utilizadas no seu tratamento, a exemplo daquela conhecida como 'Algoritmo do Avestruz', que:",
+    "opcoes": [
+      "a. reinicia o sistema se o travamento ultrapassar um tempo predefinido.",
+      "b. detecta a possibilidade de sua ocorrencia e evita que ele ocorra.",
+      "c. ignora a sua existencia.",
+      "d. detecta o deadlock e recupera o sistema.",
+      "e. elimina os processos causadores do deadlock, sem afetar os demais."
+    ],
+    "gabarito": "c",
+    "explicacao": "O algoritmo do avestruz consiste em ignorar o problema de deadlock, assumindo que ele e raro ou que o custo de tratá-lo pode ser maior do que tolerar sua eventual ocorrencia."
+  },
+  {
+    "id": 34,
+    "tema": "Processos e Threads",
+    "pergunta": "Analise as seguintes afirmativas relacionadas ao gerenciamento de processos:\n\nI. O bloco de controle de processos (BCP - Process Control Block) e utilizado para armazenar informacoes sobre processos, e essas informacoes sao utilizadas na troca de contexto de processos.\nII. Um processo pode ser criado por uma chamada de sistema fork(), nesse caso, o processo gerado (conhecido como 'filho') e uma copia exata do processo original, com os mesmos valores de variaveis em memoria, diferenciando-se apenas no identificador do processo.\nIII. Um processo pode estar nos seguintes estados: pronto, aguardando execucao, em execucao e bloqueado.\nIV. Threads apresentam menor custo de criacao quando comparadas aos processos, pois compartilham alguns elementos do processo, como espaco de enderecamento.\nV. Na espera ocupada, o processo e transferido para estado bloqueado ate que sua fatia de tempo termine e entao ele retorna para fila de prontos.\n\nA analise permite concluir que:",
+    "opcoes": [
+      "a. F, V, V, F, F.",
+      "b. V, V, F, V, F.",
+      "c. V, F, F, V, V.",
+      "d. F, F, V, V, F.",
+      "e. V, V, F, F, V."
+    ],
+    "gabarito": "b",
+    "explicacao": "As afirmativas I, II e IV sao verdadeiras. A III e falsa porque 'pronto' e 'aguardando execucao' sao equivalentes no contexto classico de estados de processo. A V e falsa porque espera ocupada (busy waiting) nao transfere o processo para bloqueado; ele continua consumindo CPU aguardando a condicao."
+  },
+  {
+    "id": 35,
+    "tema": "Classificação dos Sistemas Operacionais",
+    "pergunta": "Sobre a classificacao dos sistemas operacionais em relacao ao seu projeto e ao gerenciamento de processos, assinale A (Arquitetura) e P (Processos) nos sistemas apresentados a seguir:\n\n( ) Sistema em camadas.\n( ) Multiprogramacao.\n( ) Micronucleo.\n( ) Multitarefa.\n( ) Monitor de maquinas virtuais.\n\nA sequencia esta correta em:",
+    "opcoes": [
+      "a. A, A, P, A, P.",
+      "b. P, P, A, P, A.",
+      "c. A, P, A, P, A.",
+      "d. P, A, P, P, A."
+    ],
+    "gabarito": "c",
+    "explicacao": "Sistema em camadas, micronucleo e monitor de maquinas virtuais sao classificacoes ligadas a arquitetura (A). Multiprogramacao e multitarefa sao classificacoes ligadas a processos (P)."
+  },
+  {
+    "id": 36,
+    "tema": "Processos e Sinais",
+    "pergunta": "Considere o código abaixo:\n\n#include <signal.h>\n#include <stdio.h>\n#include <unistd.h>\n#include <sys/wait.h>\n\nint contador = 0;\nvoid handler(int signal_number)\n{\n    contador++;\n}\n\nint main()\n{\n    struct sigaction sa = {};\n    sa.sa_handler = &handler;\n    sigaction(SIGUSR1, &sa, NULL);\n    pid_t pid = fork();\n    if (pid > 0)\n    {\n        printf(\"Valor final: %d\\n\", contador);\n        wait(NULL);\n    }\n    else\n        kill(getppid(), SIGUSR1);\n    return 0;\n}\n\nQual alternativa melhor representa a saída desse algoritmo?",
+    "opcoes": [
+      "a. O algoritmo sempre imprime a saída \"Valor final: 0\".",
+      "b. O algoritmo sempre imprime a saída \"Valor final: 2\".",
+      "c. O algoritmo não imprime nada, pois o processo pai é finalizado pelo processo filho pela função kill.",
+      "d. O algoritmo sempre imprime a saída \"Valor final: 1\".",
+      "e. O algoritmo imprime a saída \"Valor final: 1\" ou \"Valor final: 0\"."
+    ],
+    "gabarito": "e",
+    "explicacao": "O processo filho envia SIGUSR1 ao pai, e o handler incrementa a variável contador apenas no processo pai. Como pai e filho executam concorrentemente após o fork, a impressao pode ocorrer antes ou depois do sinal ser tratado, permitindo os valores 0 ou 1."
+  },
+  {
+    "id": 37,
+    "tema": "Conceitos de Sistema Operacional",
+    "pergunta": "A difusão dos primeiros computadores pessoais marcou um salto na tecnologia e ajudou a consolidar os Sistemas Operacionais como peça central da computação. Assinale a alternativa correta sobre o que são Sistemas Operacionais (SO).",
+    "opcoes": [
+      "a. Um programa ou conjunto de programas cuja função é criar código executável a partir de código fonte, priorizando a troca de dados do computador e o usuário.",
+      "b. Sistemas para controle e gerenciamento de recursos, que existem exclusivamente em computadores pessoais.",
+      "c. São uma interface entre o hardware e o usuário, mediando o uso dos recursos do computador.",
+      "d. Software cujo o sistema, ou partes dele, executa em modo privilegiado.",
+      "e. São dispositivos conectados à placa-mãe que têm como função gerenciar os recursos de hardware."
+    ],
+    "gabarito": "c",
+    "explicacao": "Sistemas Operacionais atuam como interface entre hardware, programas e usuário, além de gerenciar recursos como CPU, memória e dispositivos de entrada e saída."
+  },
+  {
+    "id": 38,
+    "tema": "Arquitetura de Núcleos",
+    "pergunta": "De acordo com a classificação dos diferentes tipos de núcleos dos sistemas operacionais, associe o tipo de núcleo com a descrição correta:\n\n1. Sistema Operacional minimalista que possui apenas a função de isolar o hardware em uma função de multiplexação segura do hardware.\n2. O sistema operacional é executado como um único programa em modo núcleo.\n3. O sistema operacional aumenta a confiabilidade reduzindo as funções em pequenos módulos, onde falhas em um módulo não afetam todo o sistema operacional.\n4. O sistema operacional é criado em uma hierarquia de camadas onde cada uma provê serviço à camada imediatamente superior.\n\nA sequência correta é:",
+    "opcoes": [
+      "a. Exokernel, núcleo monolítico, microkernel, sistema em camadas.",
+      "b. Núcleo monolítico, exokernel, sistema em camadas, microkernel.",
+      "c. Exokernel, microkernel, núcleo monolítico, sistema em camadas.",
+      "d. Microkernel, núcleo monolítico, exokernel, sistema em camadas.",
+      "e. Exokernel, núcleo monolítico, sistema em camadas, microkernel."
+    ],
+    "gabarito": "a",
+    "explicacao": "A descrição 1 corresponde ao exokernel, a 2 ao núcleo monolítico, a 3 ao microkernel e a 4 ao sistema em camadas."
+  },
+  {
+    "id": 39,
+    "tema": "Escalonamento Round Robin",
+    "pergunta": "No projeto de sistemas operacionais são utilizados escalonadores que empregam algoritmos que decidem sobre preemptibilidade, prioridades, tempos de execução e outras características de processos. No escalonamento usando o algoritmo Round-Robin,",
+    "opcoes": [
+      "a. o processo que tem o prazo de execução mais curto é favorecido, medindo a diferença entre o tempo que um processo requer para finalizar e o tempo restante até atingir o seu prazo final.",
+      "b. o escalonador ajusta dinamicamente o comportamento do processo, de tal forma que o próximo processo a obter o processador seja aquele que chegar à frente da fila de nível mais alto, que não estiver vazia, na rede de filas.",
+      "c. a prioridade de cada processo é uma função não apenas do seu tempo de serviço, mas também do tempo que passou esperando pelo serviço.",
+      "d. processos são despachados na ordem FIFO (First-in-First-Out), mas recebem uma quantidade limitada de tempo de processador denominada quantum.",
+      "e. o escalonador seleciona o processo à espera com o menor tempo de execução estimado até a conclusão, reduzindo o tempo médio de espera, mas aumentando a variância dos tempos de resposta."
+    ],
+    "gabarito": "d",
+    "explicacao": "No Round Robin, os processos são atendidos em ordem FIFO e cada um recebe uma fatia fixa de tempo de CPU, chamada quantum."
+  },
+  {
+    "id": 40,
+    "tema": "Semáforos, Mutex e Monitores",
+    "pergunta": "Analise as seguintes afirmativas.\n\nI. Semáforos têm duas operações, up() e down(), sendo que apenas a operação down() pode bloquear um processo ou thread.\nII. O uso de mutex para a exclusão mútua em seções críticas garante que não haja condição de corrida, porém pode ocasionar deadlocks se não for corretamente empregado.\nIII. Monitores são baseados em um tipo abstrato de dados e um controle de acesso aos dados. Apenas funções do monitor acessam os dados e apenas uma thread ou processo pode executar funções de um monitor por vez.\nIV. Condições de corrida podem ocorrer se múltiplas threads fazem leituras de um dado compartilhado, mesmo que nenhuma realize escritas.\n\nA análise permite concluir que:",
+    "opcoes": [
+      "a. apenas as afirmativas I, II e III são verdadeiras.",
+      "b. apenas as afirmativas I, III e IV são verdadeiras.",
+      "c. apenas as afirmativas II, III e IV são verdadeiras.",
+      "d. nenhuma das afirmativas é verdadeira.",
+      "e. apenas as afirmativas II e IV são verdadeiras."
+    ],
+    "gabarito": "a",
+    "explicacao": "As afirmativas I, II e III estão corretas. A IV é falsa porque leituras concorrentes, por si só, não caracterizam condição de corrida."
   }
 ]
