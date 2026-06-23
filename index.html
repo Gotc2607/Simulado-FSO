@@ -23,7 +23,15 @@
         </p>
       </header>
 
-      <section class="panel" id="quiz-panel">
+      <section class="panel" id="home-panel">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Escolha qual simulado deseja iniciar:</h2>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <button id="start-sim1-btn" class="btn primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Simulado 1 (Principal)</button>
+          <button id="start-sim2-btn" class="btn primary" style="font-size: 1.1rem; padding: 1rem 2rem; background: var(--accent);">Simulado 2 (Novas Questões)</button>
+        </div>
+      </section>
+
+      <section class="panel" id="quiz-panel" hidden>
         <div class="panel-top">
           <div class="progress-wrap">
             <p id="progress-label">Carregando questões...</p>
