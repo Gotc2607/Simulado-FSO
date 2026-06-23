@@ -1,0 +1,322 @@
+[
+  {
+    "id": 41,
+    "tema": "Memória Virtual e Paginação",
+    "pergunta": "Em um computador com suporte à memória virtual e paginação, quando ocorre um page fault, o sistema operacional, às vezes, precisa escolher uma página da memória principal (page frame) para dar lugar à página virtual que será carregada do disco como resultado do page fault. Dependendo do tipo de conteúdo presente na página selecionada para substituição, esse conteúdo precisa ser salvo no disco (page out) antes da substituição. Assinale a alternativa que indica uma região de memória típica de um processo, cujo conteúdo não exige salvamento prévio em casos de troca de páginas (page replacement).",
+    "opcoes": [
+      "a. Dados inicializados (ex.: DATA)",
+      "b. Dados não inicializados (ex.: BSS)",
+      "c. Código (ex.: TEXT)",
+      "d. Dados alocados dinamicamente (ex.: HEAP)",
+      "e. Pilha (ex.: STACK)"
+    ],
+    "gabarito": "c",
+    "explicacao": "O segmento de código (TEXT) é apenas de leitura, portanto não é modificado. Durante a substituição de página, não é necessário fazer 'page out' (salvar no disco), pois a cópia do disco já é idêntica à da memória."
+  },
+  {
+    "id": 42,
+    "tema": "Gerenciamento de Memória - Page Faults em Matrizes",
+    "pergunta": "Em um computador com tamanho de quadro de memória de 1024 bytes, o sistema operacional aloca 1 página de memória virtual para armazenar a matriz M do código da Figura 1 (linguagem C). A execução desse código resultará em quantas faltas de páginas (page faults)?\n\nchar M[512][1024];\n\nfor (int j = 0; j < 1024; j++)\n{\n  for (int i = 0; i < 512; i++)\n  {\n    M[i][j] = func(i, j);\n  }\n}\n\nSuponha que nenhuma página está alocada inicialmente e que func é uma função que sempre retorna um int positivo.",
+    "opcoes": [
+      "a. Zero",
+      "b. 512 x 512 (256K)",
+      "c. 1024",
+      "d. 512 x 1024 (512k)",
+      "e. 512"
+    ],
+    "gabarito": "d",
+    "explicacao": "A matriz aloca 512 linhas de 1024 bytes. Em C, matrizes são armazenadas linha por linha. O loop externo itera nas colunas (j) e o interno nas linhas (i). A cada acesso, o algoritmo pula para uma linha diferente, que está em uma página diferente (pois cada linha tem 1024 bytes = exatos 1 página). Como ele varre por coluna, e supondo a limitação na memória citada, toda interação gera um page fault. O total de acessos aos elementos da matriz é 512 * 1024 = 512k page faults."
+  },
+  {
+    "id": 43,
+    "tema": "Sistemas de Arquivos",
+    "pergunta": "Considere um cenário de um sistema operacional que implementa um sistema de arquivos com método de alocação de espaço em disco baseado na alocação encadeada, a exemplo do popular sistema de arquivos FAT (file allocation table). Em um disco rígido com tamanho de setor igual a 512 bytes, criou-se uma partição e a formatou com esse sistema de arquivos usando 2048 bytes para o tamanho de blocos (clusters). Durante a escrita de dados em diferentes arquivos nessa partição, foi criado o arquivo ARQ.DAT que, após ter todos os seus dados armazenados, totalizou 1024 bytes de tamanho. Nesse cenário, o arquivo ARQ.DAT",
+    "opcoes": [
+      "a. pode ter seu conteúdo fragmentado no disco, pois já existiam outros arquivos no disco durante a sua criação e gravação, e o sistema de arquivos em uso permite a fragmentação.",
+      "b. possui tamanho que não permite que seu conteúdo esteja fragmentado no disco.",
+      "c. não possui seu conteúdo fragmentado no disco, pois o sistema de arquivos em uso não permite a fragmentação.",
+      "d. pode ter seu conteúdo fragmentado no disco, pois seus dados foram armazenados concomitantemente com o armazenamento de dados de outros arquivos, e o sistema de arquivos em uso permite a fragmentação.",
+      "e. pode ter seu conteúdo fragmentado no disco, pois seus dados ocupam, no mínimo, dois setores e o sistema de arquivos em uso permite a fragmentação."
+    ],
+    "gabarito": "b",
+    "explicacao": "O arquivo tem tamanho de 1024 bytes e o cluster (bloco de alocação lógico do sistema de arquivos) é de 2048 bytes. Sendo assim, o arquivo inteiro cabe dentro de um único cluster. Como um arquivo não pode ser dividido em menos de um cluster de alocação, ele jamais sofrerá fragmentação física ao longo do disco, não importando as condições dos demais arquivos."
+  },
+  {
+    "id": 44,
+    "tema": "Sistemas de Arquivos - Primitivas",
+    "pergunta": "Um sistema de arquivos é uma parte do sistema operacional que organiza os dados armazenados no disco de forma lógica. A organização dos dados é feita através de arquivos, unidade básica de dados vista pelo usuário, e através de diretórios, que servem para classificar os arquivos. São primitivas do sistema operacional que permitem ao usuário manipular arquivos e diretórios:",
+    "opcoes": [
+      "a. abort, kill e exit.",
+      "b. down e up.",
+      "c. open, close, create e delete.",
+      "d. fork, exec, wait e signal.",
+      "e. send, receive, sleep e wakeup."
+    ],
+    "gabarito": "c",
+    "explicacao": "As primitivas listadas na alternativa 'c' (open, close, create e delete) são as chamadas de sistema (syscalls) diretamente associadas à manipulação de arquivos e diretórios. As outras opções representam manipulação de processos, sinais, semáforos ou comunicação interprocessos."
+  },
+  {
+    "id": 45,
+    "tema": "Gerenciamento de Memória - Fragmentação",
+    "pergunta": "Em relação ao gerenciamento de memória em sistemas operacionais, assinale a afirmativa correta.",
+    "opcoes": [
+      "a. Em um sistema operacional trabalhando com alocação contígua de memória, quando há memória suficiente para o atendimento de um pedido de alocação, mas esta memória não é contígua, diz-se que ocorreu o problema de fragmentação interna.",
+      "b. Em um sistema operacional trabalhando com alocação contígua de memória, quando a memória alocada por um processo não é completamente utilizada diz-se que ocorreu fragmentação externa.",
+      "c. A paginação é um esquema de alocação contígua de memória.",
+      "d. Em paginação, uma forma de minimizar o problema da fragmentação interna é definir um tamanho de página pequeno."
+    ],
+    "gabarito": "d",
+    "explicacao": "Na paginação, a memória é dividida em blocos de tamanho fixo. Como o espaço necessário por um processo raramente é múltiplo exato do tamanho da página, a última página pode sobrar com espaço vazio (isso é a fragmentação interna). Se o tamanho da página for menor, esse desperdício na última página também será reduzido."
+  },
+  {
+    "id": 46,
+    "tema": "Memória Virtual",
+    "pergunta": "Quando um processo do sistema operacional tem mais espaço de endereçamento do que o computador tem de memória principal e o processo deseja utilizá-lo inteiramente, isso:",
+    "opcoes": [
+      "a. evidencia erro de planejamento, obrigando o administrador a adquirir mais recursos de memória.",
+      "b. pode ser resolvido pelo uso de memória virtual.",
+      "c. não tem como ocorrer, pois todos os processos que são alocados em um computador já são estabelecidos dentro dos recursos computacionais existentes.",
+      "d. incorrerá em erro no espaço de endereçamento, todavia, o ciclo de processamento se completará solicitando intervenção externa.",
+      "e. incorrerá em erro no espaço de endereçamento, travando a máquina."
+    ],
+    "gabarito": "b",
+    "explicacao": "A principal vantagem e motivação da memória virtual é permitir a execução de programas que exigem mais memória do que a memória física (RAM) existente na máquina, criando a ilusão para o processo de que há memória suficiente ao utilizar o disco para swap."
+  },
+  {
+    "id": 47,
+    "tema": "Armazenamento Secundário - RAID",
+    "pergunta": "Analise as seguintes afirmações relacionadas ao Redundant Array of Inexpensive Drives (RAID)\n\nI. Em um RAID 1, as faixas dos volumes são duplicadas em um mesmo disco rígido. Se um deles se tornar indisponível, devido à falha do sistema operacional, pode-se usar o outro espelho para obter acesso aos dados.\nII. No RAID 5 as informações de paridade são gravadas e distribuídas dentro dos próprios discos envolvidos, isto é, não existe a necessidade de um disco rígido extra para este fim.\nIII. O RAID 0, além de distribuir informações de paridade entre seus discos, usa um disco extra para armazenamento em redundância dessas informações de paridade.\nIV. O RAID 4 funciona com três ou mais discos iguais. Um dos discos guarda a paridade da informação contida nos demais discos. Se algum dos discos falhar, a paridade pode ser utilizada para recuperar o seu conteúdo.\n\nIndique a opção que contenha todas as afirmações verdadeiras.",
+    "opcoes": [
+      "a. I e III",
+      "b. III e IV",
+      "c. I e II",
+      "d. II e IV",
+      "e. II e III"
+    ],
+    "gabarito": "d",
+    "explicacao": "I é falsa pois o espelhamento do RAID 1 ocorre em discos distintos (e não no mesmo disco). III é falsa porque RAID 0 faz apenas o striping de dados, sem qualquer redundância ou paridade. As afirmações II e IV descrevem corretamente o comportamento do RAID 5 (paridade distribuída) e RAID 4 (paridade dedicada em um único disco)."
+  },
+  {
+    "id": 48,
+    "tema": "Gerenciamento de Memória - Endereçamento",
+    "pergunta": "Considere que o programa abaixo, escrito em Linguagem C, execute em um computador com suporte à memória virtual e segmentação paginada, tal como em sistemas baseados em Intel x86-64.\n\n#include <stdio.h>\nint main()\n{\n    int w;\n    printf(\"%p\", &w);\n    return 0;\n}\n\nEscolha uma opção:",
+    "opcoes": [
+      "a. Endereço da variável w no espaço de endereçamento físico do processo.",
+      "b. Endereço da variável w no working set do processo.",
+      "c. Resultado do processamento realizado pela MMU (Memory Management Unit).",
+      "d. Endereço físico representando o segmento, a página e o offset onde se localiza a variável w.",
+      "e. Endereço virtual associado ao endereço físico onde se localiza a variável w."
+    ],
+    "gabarito": "e",
+    "explicacao": "Em sistemas operacionais modernos com suporte a memória virtual, como os baseados em arquitetura x86-64, os processos de usuário não têm acesso direto aos endereços físicos. Os ponteiros e endereços de variáveis impressos (como '&w') referem-se sempre a endereços virtuais (ou lógicos), que a MMU traduzirá para endereços físicos em tempo de execução."
+  },
+  {
+    "id": 49,
+    "tema": "Paginação - Cálculo de Bits",
+    "pergunta": "Em um computador, o endereço virtual é de 16 bits e as páginas têm tamanho de 2Kb de endereços. O WSL (Working Set List) de um processo qualquer é de quatro páginas, sendo que, inicialmente, nenhuma página está na memória principal. Um programa faz referência a endereços virtuais situados nas páginas 0, 7, 2, 5, 8, 9, 2 e 4. Quantos bits do endereçamento virtual destinam-se, respectivamente, ao número da página e ao deslocamento?",
+    "opcoes": [
+      "a. 8 bits e 8 bits.",
+      "b. 7 bits e 9 bits.",
+      "c. 6 bits e 10 bits.",
+      "d. 5 bits e 11 bits.",
+      "e. 9 bits e 7 bits."
+    ],
+    "gabarito": "d",
+    "explicacao": "O tamanho da página é 2KB, o que equivale a 2048 bytes (2^11). Portanto, são necessários 11 bits para o deslocamento (offset) dentro da página. Como o endereço virtual possui um total de 16 bits, restam 5 bits (16 - 11) para o identificador do número da página virtual."
+  },
+  {
+    "id": 50,
+    "tema": "Substituição de Páginas (LRU)",
+    "pergunta": "Um processo referencia 5 páginas identificadas por p1, p2, p3, p4 e p5, na seguinte ordem:\np1, p2, p3, p1, p4, p2, p5, p1, p2, p1\nConsiderando-se que o algoritmo de substituição de página seja LRU e que a memória principal encontra-se inicialmente vazia, qual é o número de page faults causados nesse sistema que permite 3 quadros em memória principal?",
+    "opcoes": [
+      "a. 7",
+      "b. 10",
+      "c. 6",
+      "d. 9",
+      "e. 8"
+    ],
+    "gabarito": "a",
+    "explicacao": "Rastreando o LRU em 3 quadros: \n1. p1 (falta) [p1]\n2. p2 (falta) [p1, p2]\n3. p3 (falta) [p1, p2, p3]\n4. p1 (acerto) [p2, p3, p1] -> p1 se torna a mais recente.\n5. p4 (falta) [p3, p1, p4] -> substitui p2, a menos recente.\n6. p2 (falta) [p1, p4, p2] -> substitui p3.\n7. p5 (falta) [p4, p2, p5] -> substitui p1.\n8. p1 (falta) [p2, p5, p1] -> substitui p4.\n9. p2 (acerto) [p5, p1, p2].\n10. p1 (acerto) [p5, p2, p1]. \nTotal de faltas de página = 7."
+  },
+  {
+    "id": 51,
+    "tema": "Memória Virtual - Thrashing",
+    "pergunta": "O fenômeno de thrashing de um sistema pode ser caracterizado por:",
+    "opcoes": [
+      "a. Uso de algoritmos de paginação que causem a anomalia de Belady.",
+      "b. Excesso de processos executando no sistema.",
+      "c. Execução excessiva de coleta de lixo (garbage collection) na memória.",
+      "d. Impossibilidade de uso de memória virtual.",
+      "e. Falhas eventuais no atendimento ao princípio da localidade na memória."
+    ],
+    "gabarito": "e",
+    "explicacao": "O thrashing ocorre quando o sistema gasta mais tempo resolvendo faltas de página do que executando instruções úteis. Isso deriva fundamentalmente da incapacidade da memória física de manter o 'working set' completo dos processos ativos, ou seja, falha-se em atender adequadamente à localidade de referência em memória."
+  },
+  {
+    "id": 52,
+    "tema": "Arquivos Mapeados em Memória",
+    "pergunta": "Ao processar um arquivo mapeado em memória, a leitura de dados do arquivo em disco para a memória principal ocorre como resultado de uma:",
+    "opcoes": [
+      "a. Interrupção do disco (IRQ).",
+      "b. Ligação simbólica (symbolic liking).",
+      "c. Chamada de sistema (system call).",
+      "d. Falta de página (page fault).",
+      "e. Chamada de função (library call)."
+    ],
+    "gabarito": "d",
+    "explicacao": "Quando um arquivo é mapeado em memória, o sistema não carrega os dados inteiros de uma vez. O acesso a um endereço do mapeamento que ainda não está carregado na RAM gera uma 'falta de página' (page fault). O sistema operacional captura essa falha e então traz o bloco correspondente do disco para a memória principal de forma transparente."
+  },
+  {
+    "id": 53,
+    "tema": "Sistemas de Arquivos - Diretórios",
+    "pergunta": "Arquivos são organizados em dados ou registros, que são mapeados para o armazenamento em blocos no disco. Arquivos podem ser organizados em estruturas de diretórios.\nSobre diretórios, assinale a alternativa correta.",
+    "opcoes": [
+      "a. Um diretório linear é aquele que contém todos os arquivos de um sistema e é ideal para sistemas de grande capacidade de armazenamento e multiusuários.",
+      "b. Um diretório contém ponteiros para seus arquivos. A forma mais simples e eficiente de organizar os arquivos de um sistema é colocá-los em um único diretório.",
+      "c. Um diretório informa quais arquivos estão no disco (ou unidade de armazenamento) e pode ser entendido como um conjunto de referências a arquivos.",
+      "d. Um diretório organizado em forma de árvore contém vários arquivos, os quais possuem caminhos absolutos, ou seja, caminhos relativos à raiz do sistema.",
+      "e. Um diretório formado por vários diretórios pode ser organizado em forma de árvore, em que cada diretório possui um subdiretório raiz."
+    ],
+    "gabarito": "c",
+    "explicacao": "A principal função de um diretório em um sistema de arquivos é atuar como uma tabela ou catálogo que mapeia referências inteligíveis para humanos (nomes de arquivos) aos locais reais de armazenamento e metadados no disco."
+  },
+  {
+    "id": 54,
+    "tema": "Estrutura de Arquivos",
+    "pergunta": "Arquivos são um mecanismo de abstração que permite a manipulação de dados de maneira persistente, concorrente e em grandes quantidades. Sobre o assunto, considere as afirmativas a seguir.\nI. Em arquivos restritos a acesso sequencial, a operação rewind é irrelevante e, quando presente, apenas equivale a uma operação seek apontando para o início do arquivo.\nII. Uma maneira comum de estruturar arquivos é a sequência de bytes não estruturada. Nesse modelo, um arquivo não é organizado em registros e campos, e quaisquer significados aos seus dados devem ser feitos pelos programas de usuário. Sua vantagem é permitir a máxima flexibilidade.\nIII. Todo sistema operacional armazena um certo conjunto de informações junto a cada arquivo, conhecidas como atributos ou metadados. Dentre as informações armazenadas pelos metadados de um arquivo em um sistema, podem estar: identificador do arquivo; hora da criação; último acesso; última mudança; visibilidade; tipo de arquivo.\nIV. Alguns sistemas suportam arquivos estruturados em árvores. Nesse tipo de arquivo, cada registro possui uma chave. A árvore é organizada no campo de chaves do arquivo para possibilitar uma busca rápida pelos registros.\nAssinale a alternativa correta.",
+    "opcoes": [
+      "a. Somente as afirmativas I e IV são corretas.",
+      "b. Somente as afirmativas III e IV são corretas.",
+      "c. Somente as afirmativas I, II e III são corretas.",
+      "d. Somente as afirmativas I e II são corretas.",
+      "e. Somente as afirmativas II, III e IV são corretas."
+    ],
+    "gabarito": "e",
+    "explicacao": "A afirmativa I está incorreta porque a operação 'rewind' é justamente a forma essencial de retroceder ao início em sistemas estritamente sequenciais (que muitas vezes não suportam o 'seek' arbitrário). As afirmativas II (arquivos como stream de bytes), III (metadados do SO) e IV (arquivos indexados em árvore) são representações corretas e factuais de diferentes implementações de arquivos."
+  },
+  {
+    "id": 55,
+    "tema": "Sistemas de Arquivos - Fragmentação Interna",
+    "pergunta": "Uma partição de disco rígido é formatada com um sistema de arquivos que utiliza alocação encadeada baseada em tabela de alocação de arquivos (FAT). Após a formatação, a partição possui setores de 512 bytes e tamanho de bloco (cluster) de 2048 bytes. Ao criar um arquivo nessa partição, gravar 1 byte e fechá-lo, qual espaço esse arquivo ocupa na área de dados da partição?",
+    "opcoes": [
+      "a. 1 byte",
+      "b. 2 bytes",
+      "c. 1 setor",
+      "d. 2048 bytes",
+      "e. 512 bytes"
+    ],
+    "gabarito": "d",
+    "explicacao": "No sistema de arquivos FAT (e em muitos outros), o espaço no disco é alocado em blocos inteiros, denominados clusters. Neste caso, o cluster é de 2048 bytes. O SO não consegue alocar um espaço menor do que 1 cluster, de modo que mesmo um arquivo de 1 byte ocupará fisicamente 2048 bytes da área de dados, gerando 2047 bytes de fragmentação interna."
+  },
+  {
+    "id": 56,
+    "tema": "Memória Virtual - Swapping",
+    "pergunta": "Sistemas operacionais que utilizam o método de memória virtual usualmente reservam um espaço em memória secundária (ex. disco) denominado de “área de troca”, espaço este utilizado para realizar:",
+    "opcoes": [
+      "a. Framing",
+      "b. Swapping",
+      "c. Caching",
+      "d. Paging",
+      "e. Pinning"
+    ],
+    "gabarito": "b",
+    "explicacao": "O espaço de memória secundária destinado a abrigar dados da RAM (quando esta enche) é denominado de partição ou arquivo de swap (área de troca). A transferência de conteúdo entre a RAM e este espaço se dá através da técnica denominada Swapping (e sua subdivisão, Paging out/in)."
+  },
+  {
+    "id": 57,
+    "tema": "Entrada e Saída (E/S)",
+    "pergunta": "No sistema operacional, o gerenciamento de E/S é implementado em várias camadas. \nUm dispositivo de E/S notifica que realizou uma operação se comunicando diretamente com a camada de ________________________, usualmente via APIC, a qual informa a camada de ________________________ sobre o resultado da operação. Quando o sistema operacional precisa programar o dispositivo de E/S para realizar uma operação, a camada de ________________________ se comunica diretamente com o dispositivo.",
+    "opcoes": [
+      "a. tratadores de interrupção – controladores de dispositivo – controladores de dispositivo",
+      "b. controladores de dispositivo – chamada de sistemas – tratadores de interrupção",
+      "c. controladores de dispositivo – software independente de dispositivo – chamada de sistemas",
+      "d. software independente de dispositivo – tratadores de interrupção – controladores de dispositivo",
+      "e. tratadores de interrupção – controladores de dispositivo – chamada de sistemas"
+    ],
+    "gabarito": "a",
+    "explicacao": "O hardware se comunica com a CPU informando a conclusão de operações de I/O por meio de IRQs (via APIC), o que engatilha os Tratadores de Interrupção. Estes repassam a notificação lógica para os Controladores de Dispositivos (Device Drivers). Para enviar novas ordens, os mesmos Controladores de Dispositivos leem/escrevem nos registradores da controladora de hardware do dispositivo."
+  },
+  {
+    "id": 58,
+    "tema": "Sistemas de Arquivos - Alocação Contígua",
+    "pergunta": "O Sistema Operacional possui uma estrutura de dados que armazena informações que possibilitam ao sistema de arquivos gerenciar as áreas ou blocos livres. A alocação contígua consiste em armazenar um arquivo em blocos sequencialmente dispostos, permitindo ao sistema localizar um arquivo através do endereço do primeiro bloco e da sua extensão em blocos. A alocação em um novo segmento livre consiste em técnicas para escolha, onde a técnica Best-fit:",
+    "opcoes": [
+      "a. Seleciona o menor segmento livre disponível com o tamanho suficiente para armazenar o arquivo e é necessária a busca em toda a lista, caso esta não esteja ordenada por tamanho.",
+      "b. Seleciona o último segmento livre com o tamanho suficiente para alocar o arquivo e a busca é feita sequencialmente, interrompendo ao achar um segmento livre do tamanho adequado.",
+      "c. Seleciona o maior segmento livre disponível com o tamanho suficiente para armazenar o arquivo e é necessária a busca em toda a lista, caso esta não esteja ordenada por tamanho.",
+      "d. Seleciona o primeiro segmento livre com o tamanho suficiente para alocar o arquivo e a busca é feita sequencialmente, interrompendo ao achar um segmento livre do tamanho adequado."
+    ],
+    "gabarito": "a",
+    "explicacao": "A técnica de alocação Best-fit (Melhor Ajuste) procura o menor bloco de espaço livre que seja grande o suficiente para acomodar o arquivo, buscando minimizar o espaço desperdiçado (fragmentação externa). Isso exige percorrer toda a lista de blocos livres, a menos que a lista já esteja ordenada por tamanho."
+  },
+  {
+    "id": 59,
+    "tema": "Sistemas de Arquivos - Escrita e Fragmentação",
+    "pergunta": "Uma partição de disco rígido é formatada com um sistema de arquivos com base em alocação encadeada, usando tabela de alocação. A formatação da partição considerou um tamanho de bloco (cluster) de 4096 bytes. Um programa executado nesse computador cria um arquivo nessa partição e grava os dados do arquivo de acordo com o trecho de código abaixo. Como resultado, o arquivo criado contém ____ bytes e ocupa ____ bytes na área de dados do sistema de arquivos\n\nchar dado;\n(...)\nfor (int i = 0; i < 1024; i++)\n    write(fd, &dado, 1);\nclose(fd);\n(...)",
+    "opcoes": [
+      "a. 4096 - 4096",
+      "b. 1024 - 1024",
+      "c. 1024 - 4096",
+      "d. 1025 - 4096",
+      "e. 1025 - 1025"
+    ],
+    "gabarito": "c",
+    "explicacao": "O loop for executa 1024 iterações, gravando 1 byte em cada uma. Portanto, o tamanho lógico do arquivo (seu conteúdo real) é de 1024 bytes. O sistema de arquivos usa clusters de 4096 bytes, e a alocação mínima na área de dados é de 1 cluster inteiro, mesmo que o arquivo seja menor. Assim, o arquivo ocupará fisicamente 4096 bytes no disco, gerando fragmentação interna."
+  },
+  {
+    "id": 60,
+    "tema": "Gerenciamento de Memória - Endereçamento",
+    "pergunta": "Apesar de a alocação de memória em blocos implicar em um mecanismo mais complexo para a conversão entre endereços virtuais e endereços físicos, é a partir do seu conceito que o gerenciamento de memória evoluiu para o que se tem hoje, com o uso de memória cache e memória virtual.\nCom base nessas informações, considere as afirmativas a seguir.\n\nI. O endereçamento é facilitado por hardware especializado.\nII. O uso de páginas de tamanho igual a potência de 2 permite um melhor gerenciamento.\nIII. O uso de memória cache elimina a necessidade de endereçamento, pois trata as informações como linhas de cache.\nIV. Endereços virtuais não são necessários em sistemas monoprogramados.\n\nEscolha uma opção:",
+    "opcoes": [
+      "a. Somente as afirmativas III e IV são corretas.",
+      "b. Somente as afirmativas I e II são corretas.",
+      "c. Somente as afirmativas II, III e IV são corretas.",
+      "d. Somente as afirmativas I, II e III são corretas.",
+      "e. Somente as afirmativas I e IV são corretas."
+    ],
+    "gabarito": "b",
+    "explicacao": "A afirmativa I é correta, pois a MMU (Memory Management Unit) é o hardware que facilita essa tradução rápida de endereços. A afirmativa II é correta, pois usar potências de 2 facilita extrair os bits de página e offset com operações binárias simples. A III é falsa porque a cache exige mapeamento e endereçamento para saber de onde a linha veio e para onde vai. A IV é falsa, pois mesmo em sistemas monoprogramados mais modernos, a abstração do endereço virtual é útil."
+  },
+  {
+    "id": 61,
+    "tema": "Entrada e Saída (E/S) - Métodos Fundamentais",
+    "pergunta": "No sistema operacional, existem três métodos fundamentais de realizar entrada e saída (E/S).\nO método mais simples é chamado de E/S ____________, em que se tem a CPU realizando todo o trabalho.\nNa E/S ____________, a CPU não fica tão dedicada à rotina de E/S como no método anterior, podendo realizar outras atividades enquanto a operação de E/S está em andamento.\nJá a E/S ____________ tem o menor consumo de CPU dentre os três métodos, porém, em geral, tem o melhor de performance geral e menor desempenho de velocidade de cópia de dados.",
+    "opcoes": [
+      "a. usando interrupção - usando DMA - programada",
+      "b. programada - usando interrupção - usando DMA",
+      "c. usando DMA - programada - usando interrupção",
+      "d. programada - usando DMA - usando interrupção",
+      "e. usando interrupção - programada - usando DMA"
+    ],
+    "gabarito": "b",
+    "explicacao": "O primeiro método é a 'E/S programada' (onde a CPU faz polling ativo). O segundo é 'E/S por interrupção' (a CPU delega e aguarda o sinal por byte/bloco pequeno). O terceiro é 'usando DMA' (Acesso Direto à Memória, onde o controlador DMA cuida de grandes blocos sem o auxílio da CPU, economizando ciclos de processamento)."
+  },
+  {
+    "id": 62,
+    "tema": "Sistemas de Arquivos - FAT32 e Ocupação de Disco",
+    "pergunta": "Um VSNT (Veículo Submarino Não Tripulado) é usado para monitoramento de plataformas de petróleo marítimas. O VSNT tira uma foto a cada 1 minuto. O tamanho de cada arquivo de foto é padronizado em 5 kB. As fotos são armazenadas em uma partição do disco rígido do VSNT, a qual é formatada com sistema de arquivos FAT32 e tamanho de bloco (cluster) de 4 kB. O tempo de missão do VSNT é de uma hora. Após o término de cada missão, as fotos são copiadas do VSNT para um computador, que utiliza uma partição FAT32 formatada com clusters de 8 kB. Com base nesse cenário, o espaço necessário no computador para armazenar todos os arquivos do VSNT em uma missão é de:",
+    "opcoes": [
+      "a. 360 kB.",
+      "b. 240 kB.",
+      "c. 480 kB.",
+      "d. 300 kB.",
+      "e. 600 kB."
+    ],
+    "gabarito": "c",
+    "explicacao": "Uma missão dura 1 hora (60 minutos) gerando 1 foto por minuto, totalizando 60 fotos (arquivos). Cada foto tem tamanho lógico de 5 kB. No disco destino (computador), o cluster é de 8 kB. Como o SO não aloca frações de cluster, um arquivo de 5 kB vai ocupar 1 cluster inteiro de 8 kB fisicamente. Como são 60 arquivos ocupando 8 kB cada, 60 x 8 = 480 kB de espaço ocupado no disco."
+  },
+  {
+    "id": 63,
+    "tema": "Entrada e Saída - Device Drivers Reentrantes",
+    "pergunta": "Um dispositivo de E/S pode acionar o seu software controlador (device driver) para realizar uma tarefa enquanto este esteja realizando o tratamento de outra tarefa do dispositivo. Por exemplo, enquanto o device driver da placa de rede processa um pacote que acabou de chegar, ele é interrompido para tratar a chegada de um novo pacote. Essa característica de um device driver é denominada código:",
+    "opcoes": [
+      "a. Recursivo",
+      "b. Reentrante",
+      "c. Elástico",
+      "d. Assimétrico",
+      "e. Assíncrono"
+    ],
+    "gabarito": "b",
+    "explicacao": "Código reentrante é aquele que pode ser interrompido (preempted) de forma segura durante sua execução e chamado (re-entrado) novamente por outra tarefa ou interrupção. Isso é essencial no design de device drivers e componentes do núcleo do Sistema Operacional para tratar múltiplas interrupções de hardware concorrentes."
+  }
+]

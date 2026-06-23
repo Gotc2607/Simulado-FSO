@@ -24,7 +24,12 @@ const els = {
   percentLine: document.getElementById("percent-line"),
   reviewBtn: document.getElementById("review-btn"),
   restartBtn: document.getElementById("restart-btn"),
-  reviewList: document.getElementById("review-list")
+  reviewList: document.getElementById("review-list"),
+  homePanel: document.getElementById("home-panel"),
+  startSim1Btn: document.getElementById("start-sim1-btn"),
+  startSim2Btn: document.getElementById("start-sim2-btn"),
+  homeBtn: document.getElementById("home-btn"),
+  quizFooter: document.getElementById("quiz-footer")
 };
 
 function shuffleArray(array) {
@@ -37,8 +42,8 @@ function shuffleArray(array) {
   return shuffled;
 }
 
-async function loadQuestions() {
-  const response = await fetch("./simulado_so.json");
+async function loadQuestions(file) {
+  const response = await fetch(`./${file}`);
   if (!response.ok) {
     throw new Error("Falha ao carregar o arquivo de questões.");
   }
@@ -233,7 +238,9 @@ function restartQuiz() {
 
   els.resultPanel.hidden = true;
   els.reviewPanel.hidden = true;
+  els.homePanel.hidden = true;
   els.quizPanel.hidden = false;
+  els.quizFooter.hidden = false;
 
   // embaralha as questões novamente
   state.questions = shuffleArray(state.questions);
@@ -275,13 +282,39 @@ els.finishBtn.addEventListener("click", showResult);
 els.reviewBtn.addEventListener("click", renderReview);
 els.restartBtn.addEventListener("click", restartQuiz);
 
-loadQuestions().catch((error) => {
-  els.progressLabel.textContent = "Erro ao carregar questões";
-  els.themePill.textContent = "Verifique o JSON";
-  els.questionCard.hidden = false;
-  els.questionTitle.textContent = "Não foi possível iniciar o simulado";
-  els.questionText.textContent = `${error.message} Execute em um servidor local para evitar bloqueio de CORS.`;
-  els.options.innerHTML = "";
-  els.feedback.hidden = true;
-  els.actions?.setAttribute?.("hidden", "hidden");
-});
+let currentSimuladoFile = "";
+
+function startSimulado(file) {
+  currentSimuladoFile = file;
+  state.current = 0;
+  state.answers = {};
+  state.finished = false;
+  els.homePanel.hidden = true;
+  els.resultPanel.hidden = true;
+  els.reviewPanel.hidden = true;
+  els.quizPanel.hidden = false;
+  if (els.quizFooter) els.quizFooter.hidden = false;
+  els.progressLabel.textContent = "Carregando questões...";
+  
+  loadQuestions(file).catch((error) => {
+    els.progressLabel.textContent = "Erro ao carregar questões";
+    els.themePill.textContent = "Verifique o JSON";
+    els.questionCard.hidden = false;
+    els.questionTitle.textContent = "Não foi possível iniciar o simulado";
+    els.questionText.textContent = `${error.message}`;
+    els.options.innerHTML = "";
+    els.feedback.hidden = true;
+  });
+}
+
+function goHome() {
+  els.resultPanel.hidden = true;
+  els.reviewPanel.hidden = true;
+  els.quizPanel.hidden = true;
+  if (els.quizFooter) els.quizFooter.hidden = true;
+  els.homePanel.hidden = false;
+}
+
+if (els.startSim1Btn) els.startSim1Btn.addEventListener("click", () => startSimulado("simulado_so.json"));
+if (els.startSim2Btn) els.startSim2Btn.addEventListener("click", () => startSimulado("simulado_so_2.json"));
+if (els.homeBtn) els.homeBtn.addEventListener("click", goHome);
