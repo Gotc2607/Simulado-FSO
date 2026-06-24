@@ -53,8 +53,17 @@ async function loadQuestions(file) {
     throw new Error("O arquivo de questões está vazio ou inválido.");
   }
 
-  // embaralha a ordem das questões
-  state.questions = shuffleArray(data);
+  const fixed = data.filter(q => q.fixa === true);
+  const others = data.filter(q => q.fixa !== true);
+
+  if (fixed.length > 0) {
+    const selectedOthers = shuffleArray(others).slice(0, 12);
+    state.questions = shuffleArray([...fixed, ...selectedOthers]);
+  } else {
+    // embaralha a ordem das questões
+    state.questions = shuffleArray(data);
+  }
+
   renderQuestion();
 }
 

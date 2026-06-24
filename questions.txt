@@ -1,0 +1,202 @@
+[
+  {
+    "id": 41,
+    "pergunta": "Em um computador com suporte à memória virtual e p"
+  },
+  {
+    "id": 42,
+    "pergunta": "Em um computador com tamanho de quadro de memória "
+  },
+  {
+    "id": 43,
+    "pergunta": "Considere um cenário de um sistema operacional que"
+  },
+  {
+    "id": 44,
+    "pergunta": "Um sistema de arquivos é uma parte do sistema oper"
+  },
+  {
+    "id": 45,
+    "pergunta": "Em relação ao gerenciamento de memória em sistemas"
+  },
+  {
+    "id": 46,
+    "pergunta": "Quando um processo do sistema operacional tem mais"
+  },
+  {
+    "id": 47,
+    "pergunta": "Analise as seguintes afirmações relacionadas ao Re"
+  },
+  {
+    "id": 48,
+    "pergunta": "Considere que o programa abaixo, escrito em Lingua"
+  },
+  {
+    "id": 49,
+    "pergunta": "Em um computador, o endereço virtual é de 16 bits "
+  },
+  {
+    "id": 50,
+    "pergunta": "Um processo referencia 5 páginas identificadas por"
+  },
+  {
+    "id": 51,
+    "pergunta": "O fenômeno de thrashing de um sistema pode ser car"
+  },
+  {
+    "id": 52,
+    "pergunta": "Ao processar um arquivo mapeado em memória, a leit"
+  },
+  {
+    "id": 53,
+    "pergunta": "Arquivos são organizados em dados ou registros, qu"
+  },
+  {
+    "id": 54,
+    "pergunta": "Arquivos são um mecanismo de abstração que permite"
+  },
+  {
+    "id": 55,
+    "pergunta": "Uma partição de disco rígido é formatada com um si"
+  },
+  {
+    "id": 56,
+    "pergunta": "Sistemas operacionais que utilizam o método de mem"
+  },
+  {
+    "id": 57,
+    "pergunta": "No sistema operacional, o gerenciamento de E/S é i"
+  },
+  {
+    "id": 58,
+    "pergunta": "O Sistema Operacional possui uma estrutura de dado"
+  },
+  {
+    "id": 59,
+    "pergunta": "Uma partição de disco rígido é formatada com um si"
+  },
+  {
+    "id": 60,
+    "pergunta": "Apesar de a alocação de memória em blocos implicar"
+  },
+  {
+    "id": 61,
+    "pergunta": "No sistema operacional, existem três métodos funda"
+  },
+  {
+    "id": 62,
+    "pergunta": "Um VSNT (Veículo Submarino Não Tripulado) é usado "
+  },
+  {
+    "id": 63,
+    "pergunta": "Um dispositivo de E/S pode acionar o seu software "
+  },
+  {
+    "id": 64,
+    "pergunta": "Algoritmos de substituição de página são important"
+  },
+  {
+    "id": 65,
+    "pergunta": "Ao processar um arquivo mapeado em memória, a leit"
+  },
+  {
+    "id": 66,
+    "pergunta": "Uma partição de disco rígido é formatada com um si"
+  },
+  {
+    "id": 67,
+    "pergunta": "Arquivos são organizados em dados ou registros, qu"
+  },
+  {
+    "id": 68,
+    "pergunta": "Considerando o conceito de arquivos e registros, a"
+  },
+  {
+    "id": 69,
+    "pergunta": "Um arquivo é organizado logicamente como uma sequê"
+  },
+  {
+    "id": 70,
+    "pergunta": "Um dispositivo de E/S pode acionar o seu software "
+  },
+  {
+    "id": 71,
+    "pergunta": "Em um computador com tamanho de quadro de memória "
+  },
+  {
+    "id": 72,
+    "pergunta": "Uma partição de disco rígido é formatada com um si"
+  },
+  {
+    "id": 73,
+    "pergunta": "No sistema operacional, o gerenciamento de E/S é i"
+  },
+  {
+    "id": 74,
+    "pergunta": "Arquivos são organizados em sequência de dados ou "
+  },
+  {
+    "id": 75,
+    "pergunta": "Arquivos são um mecanismo de abstração que permite"
+  },
+  {
+    "id": 76,
+    "pergunta": "Um sistema operacional utiliza o algoritmo Next-Fi"
+  },
+  {
+    "id": 77,
+    "pergunta": "Apesar de a alocação de memória em blocos implicar"
+  },
+  {
+    "id": 78,
+    "pergunta": "O gerenciamento de memória virtual (MV) pressupõe "
+  },
+  {
+    "id": 79,
+    "pergunta": "Sistemas operacionais que utilizam o método de mem"
+  },
+  {
+    "id": 80,
+    "pergunta": "Considere que o programa abaixo, escrito em Lingua"
+  },
+  {
+    "id": 81,
+    "pergunta": "Os sistemas operacionais mantêm várias informações"
+  },
+  {
+    "id": 82,
+    "pergunta": "Em um computador, o endereço virtual é de 16 bits "
+  },
+  {
+    "id": 83,
+    "pergunta": "Em um computador com suporte à memória virtual e p"
+  },
+  {
+    "id": 84,
+    "pergunta": "RAID é um conjunto de discos físicos vistos pelo S"
+  },
+  {
+    "id": 85,
+    "pergunta": "Considere uma arquitetura de memória com as seguin"
+  },
+  {
+    "id": 86,
+    "pergunta": "Um computador precisa ter seu disco atual, formata"
+  },
+  {
+    "id": 87,
+    "pergunta": "Técnicas eficientes para o uso de memória, como me"
+  },
+  {
+    "id": 88,
+    "pergunta": "O fenômeno de thrashing de um sistema pode ser car"
+  },
+  {
+    "id": 89,
+    "pergunta": "No sistema operacional, existem três métodos funda"
+  },
+  {
+    "id": 90,
+    "pergunta": "Um VSNT (Veículo Submarino Não Tripulado) é usado "
+  }
+]

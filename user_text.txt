@@ -1,0 +1,67 @@
+Algoritmos de substituição de página são importantes em sistemas operacionais que usam a técnica de memória virtual. Em geral, escolhe-se um algoritmo de substituição de página que resulte em menor taxa de falta de página (page fault). Contudo, alguns algoritmos de substituição de página apresentam a anomalia de Belady (Belady’s anomaly). O que caracteriza essa anomalia é o fato de o número de faltas de página aumentar na medida em que o
+
+Ao processar um arquivo mapeado em memória, a leitura de dados do arquivo em disco para a memória principal ocorre como resultado de uma:
+
+Uma partição de disco rígido é formatada com um sistema de arquivos que utiliza alocação encadeada baseada em tabela de alocação de arquivos (FAT). Após a formatação, a partição possui setores de 512 bytes e tamanho de bloco (cluster) de 2048 bytes. Ao criar um arquivo nessa partição, gravar 1 byte e fechá-lo, qual espaço esse arquivo ocupa na área de dados da partição?
+
+Arquivos são organizados em dados ou registros, que são mapeados para o armazenamento em blocos
+no disco. Arquivos podem ser organizados em estruturas de diretórios.
+Sobre diretórios, assinale a alternativa correta.
+
+Considerando o conceito de arquivos e registros, assinale a alternativa correta sobre a estrutura de armazenamento e recuperação de informações em memória secundária.
+
+Um arquivo é organizado logicamente como uma sequência de registros. Esses registros são mapeados em blocos de discos.
+Com base no conhecimento sobre organização de arquivos, considere as afirmativas a seguir.
+
+Considere um cenário de um sistema operacional que implementa um sistema de arquivos com método de alocação de espaço em disco baseado na alocação encadeada, a exemplo do popular sistema de arquivos FAT (file allocation table). Em um disco rígido com tamanho de setor igual a 512 bytes, criou-se uma partição e a formatou com esse sistema de arquivos usando 2048 bytes para o tamanho de blocos (clusters). Durante a escrita de dados em diferentes arquivos nessa partição, foi criado o arquivo ARQ.DAT que, após ter todos os seus dados armazenados, totalizou 1024 bytes de tamanho. Nesse cenário, o arquivo ARQ.DAT
+
+Um dispositivo de E/S pode acionar o seu software controlador (device driver) para realizar uma tarefa enquanto este esteja realizando o tratamento de outra tarefa do dispositivo. Por exemplo, enquanto o device driver da placa de rede processa um pacote que acabou de chegar, ele é interrompido para tratar a chegada de um novo pacote. Essa característica de um device driver é denominada código:
+
+Em um computador com tamanho de quadro de memória de 1024 bytes, o sistema operacional aloca 1 página de memória virtual para armazenar a matriz M do código da Figura 1 (linguagem C). A execução desse código resultará em quantas faltas de páginas (page faults)?
+
+Uma partição de disco rígido é formatada com um sistema de arquivos com base em alocação encadeada, usando tabela de alocação. A formatação da partição considerou um tamanho de bloco (cluster) de 4096 bytes. Um programa executado nesse computador cria um arquivo nessa partição e grava os dados do arquivo de acordo com o trecho de código abaixo. Como resultado, o arquivo criado contém ____ bytes e ocupa ____ bytes na área de dados do sistema de arquivos
+
+No sistema operacional, o gerenciamento de E/S é implementado em várias camadas.
+Um dispositivo de E/S notifica que realizou uma operação se comunicando diretamente com a camada
+de ___________________, usualmente via APIC, a qual informa a camada de ___________________ sobre o resultado da operação. Quando o sistema operacional precisa programar o dispositivo de E/S para realizar uma operação, a camada de ___________________ se comunica diretamente com o dispositivo.
+
+Arquivos são organizados em sequência de dados ou registros que são mapeados para o armazenamento em blocos no disco.
+Sobre os métodos de acesso a arquivos, assinale a alternativa correta.
+
+Arquivos são um mecanismo de abstração que permite a manipulação de dados de maneira persistente, concorrente e em grandes quantidades.
+
+Um sistema operacional utiliza o algoritmo Next-Fit como seu alocador de memória no espaço do usuário. Esse algoritmo é uma variação do First-Fit: ao invés de iniciar a procura pelo espaço livre em um ponto fixo, ele inicia a busca a partir da posição que parou anteriormente.
+Este alocador se inicia com um bloco de memória livre de 1024 bytes e utiliza um mapa de bits para controlar a quantidade e a posição da memória alocada.
+
+Apesar de a alocação de memória em blocos implicar em um mecanismo mais complexo para a conversão entre endereços virtuais e endereços físicos, é a partir do seu conceito que o gerenciamento de memória evoluiu para o que se tem hoje, com o uso de memória cache e memória virtual.
+
+O gerenciamento de memória virtual (MV) pressupõe a existência de tabelas de páginas e mecanismos
+para ranqueamento de páginas, além da existência do princípio da localidade.
+
+Sistemas operacionais que utilizam o método de memória virtual usualmente reservam um espaço em memória secundária (ex. disco) denominado de “área de troca”, espaço este utilizado para realizar:
+
+Considere que o programa abaixo, escrito em Linguagem C, execute em um computador com suporte à memória virtual e segmentação paginada, tal como em sistemas baseados em Intel x86-64.,
+Quando a linha 4 é executada, o valor impresso na tela corresponde ao:
+
+Os sistemas operacionais mantêm várias informações sobre cada arquivo, chamadas de metadados. Assinale o atributo que NÃO é um metadado de arquivo gerenciado pelo sistema operacional.
+
+Em um computador, o endereço virtual é de 16 bits e as páginas têm tamanho de 2Kb de endereços. O WSL (Working Set List) de um processo qualquer é de quatro páginas, sendo que, inicialmente, nenhuma página está na memória principal. Um programa faz referência a endereços virtuais situados nas páginas 0, 7, 2, 5, 8, 9, 2 e 4. Quantos bits do endereçamento virtual destinam-se, respectivamente, ao número da página e ao deslocamento?
+
+Em um computador com suporte à memória virtual e paginação, quando ocorre um page fault, o sistema operacional, às vezes, precisa escolher uma página da memória principal (page frame) para dar lugar à página virtual que será carregada do disco como resultado do page fault. Dependendo do tipo de conteúdo presente na página selecionada para substituição, esse conteúdo precisa ser salvo no disco (page out) antes da substituição. Assinale a alternativa que indica uma região de memória típica de um processo, cujo conteúdo não exige salvamento prévio em casos de troca de páginas (page replacement).
+
+RAID é um conjunto de discos físicos vistos pelo Sistema Operacional como uma única unidade lógica. O RAID tem as seguintes características:
+I. RAID A: Redundante, espelhamento de discos, utiliza o dobro de discos.
+
+Considere uma arquitetura de memória com as seguintes características:
+Memória logicamente particionada em segmentos paginados.
+
+Um computador precisa ter seu disco atual, formatado com uma única partição, substituído por outro disco. Antes de realizar a troca, foi realizada uma análise do tamanho dos arquivos armazenados no disco atual, cujo resultado indicou que 98% dos arquivos possuem tamanho entre 1.000 bytes e 2.030 bytes (mediana de 1.515 bytes). Assinale a alternativa que lista os parâmetros de formação do novo disco e que resulte no menor desperdício de espaço físico e menor probabilidade de fragmentação (externa) do disco.
+
+Técnicas eficientes para o uso de memória, como memória virtual e caching, podem ser utilizadas porque
+
+O fenômeno de thrashing de um sistema pode ser caracterizado por:
+
+No sistema operacional, existem três métodos fundamentais de realizar entrada e saída (E/S). 
+O método mais simples é chamado de E/S _________, em que se tem a CPU realizando todo o trabalho. 
+
+Um VSNT (Veículo Submarino Não Tripulado) é usado para monitoramento de plataformas de petróleo marítimas. O VSNT tira uma foto a cada 1 minuto. O tamanho de cada arquivo de foto é padronizado em 5 kB. As fotos são armazenadas em uma partição do disco rígido do VSNT, a qual é formatada com sistema de arquivos FAT32 e tamanho de bloco (cluster) de 4 kB. O tempo de missão do VSNT é de uma hora. Após o término de cada missão, as fotos são copiadas do VSNT para um computador, que utiliza uma partição FAT32 formatada com clusters de 8 kB. Com base nesse cenário, o espaço necessário no computador para armazenar todos os arquivos do VSNT em uma missão é de:

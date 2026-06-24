@@ -11,7 +11,8 @@
       "e. Pilha (ex.: STACK)"
     ],
     "gabarito": "c",
-    "explicacao": "O segmento de código (TEXT) é apenas de leitura, portanto não é modificado. Durante a substituição de página, não é necessário fazer 'page out' (salvar no disco), pois a cópia do disco já é idêntica à da memória."
+    "explicacao": "O segmento de código (TEXT) é apenas de leitura, portanto não é modificado. Durante a substituição de página, não é necessário fazer 'page out' (salvar no disco), pois a cópia do disco já é idêntica à da memória.",
+    "fixa": true
   },
   {
     "id": 42,
@@ -25,7 +26,8 @@
       "e. 512"
     ],
     "gabarito": "d",
-    "explicacao": "A matriz aloca 512 linhas de 1024 bytes. Em C, matrizes são armazenadas linha por linha. O loop externo itera nas colunas (j) e o interno nas linhas (i). A cada acesso, o algoritmo pula para uma linha diferente, que está em uma página diferente (pois cada linha tem 1024 bytes = exatos 1 página). Como ele varre por coluna, e supondo a limitação na memória citada, toda interação gera um page fault. O total de acessos aos elementos da matriz é 512 * 1024 = 512k page faults."
+    "explicacao": "A matriz aloca 512 linhas de 1024 bytes. Em C, matrizes são armazenadas linha por linha. O loop externo itera nas colunas (j) e o interno nas linhas (i). A cada acesso, o algoritmo pula para uma linha diferente, que está em uma página diferente (pois cada linha tem 1024 bytes = exatos 1 página). Como ele varre por coluna, e supondo a limitação na memória citada, toda interação gera um page fault. O total de acessos aos elementos da matriz é 512 * 1024 = 512k page faults.",
+    "fixa": true
   },
   {
     "id": 43,
@@ -39,7 +41,8 @@
       "e. pode ter seu conteúdo fragmentado no disco, pois seus dados ocupam, no mínimo, dois setores e o sistema de arquivos em uso permite a fragmentação."
     ],
     "gabarito": "b",
-    "explicacao": "O arquivo tem tamanho de 1024 bytes e o cluster (bloco de alocação lógico do sistema de arquivos) é de 2048 bytes. Sendo assim, o arquivo inteiro cabe dentro de um único cluster. Como um arquivo não pode ser dividido em menos de um cluster de alocação, ele jamais sofrerá fragmentação física ao longo do disco, não importando as condições dos demais arquivos."
+    "explicacao": "O arquivo tem tamanho de 1024 bytes e o cluster (bloco de alocação lógico do sistema de arquivos) é de 2048 bytes. Sendo assim, o arquivo inteiro cabe dentro de um único cluster. Como um arquivo não pode ser dividido em menos de um cluster de alocação, ele jamais sofrerá fragmentação física ao longo do disco, não importando as condições dos demais arquivos.",
+    "fixa": true
   },
   {
     "id": 44,
@@ -53,7 +56,8 @@
       "e. send, receive, sleep e wakeup."
     ],
     "gabarito": "c",
-    "explicacao": "As primitivas listadas na alternativa 'c' (open, close, create e delete) são as chamadas de sistema (syscalls) diretamente associadas à manipulação de arquivos e diretórios. As outras opções representam manipulação de processos, sinais, semáforos ou comunicação interprocessos."
+    "explicacao": "As primitivas listadas na alternativa 'c' (open, close, create e delete) são as chamadas de sistema (syscalls) diretamente associadas à manipulação de arquivos e diretórios. As outras opções representam manipulação de processos, sinais, semáforos ou comunicação interprocessos.",
+    "fixa": false
   },
   {
     "id": 45,
@@ -66,7 +70,8 @@
       "d. Em paginação, uma forma de minimizar o problema da fragmentação interna é definir um tamanho de página pequeno."
     ],
     "gabarito": "d",
-    "explicacao": "Na paginação, a memória é dividida em blocos de tamanho fixo. Como o espaço necessário por um processo raramente é múltiplo exato do tamanho da página, a última página pode sobrar com espaço vazio (isso é a fragmentação interna). Se o tamanho da página for menor, esse desperdício na última página também será reduzido."
+    "explicacao": "Na paginação, a memória é dividida em blocos de tamanho fixo. Como o espaço necessário por um processo raramente é múltiplo exato do tamanho da página, a última página pode sobrar com espaço vazio (isso é a fragmentação interna). Se o tamanho da página for menor, esse desperdício na última página também será reduzido.",
+    "fixa": false
   },
   {
     "id": 46,
@@ -80,7 +85,8 @@
       "e. incorrerá em erro no espaço de endereçamento, travando a máquina."
     ],
     "gabarito": "b",
-    "explicacao": "A principal vantagem e motivação da memória virtual é permitir a execução de programas que exigem mais memória do que a memória física (RAM) existente na máquina, criando a ilusão para o processo de que há memória suficiente ao utilizar o disco para swap."
+    "explicacao": "A principal vantagem e motivação da memória virtual é permitir a execução de programas que exigem mais memória do que a memória física (RAM) existente na máquina, criando a ilusão para o processo de que há memória suficiente ao utilizar o disco para swap.",
+    "fixa": false
   },
   {
     "id": 47,
@@ -94,7 +100,8 @@
       "e. II e III"
     ],
     "gabarito": "d",
-    "explicacao": "I é falsa pois o espelhamento do RAID 1 ocorre em discos distintos (e não no mesmo disco). III é falsa porque RAID 0 faz apenas o striping de dados, sem qualquer redundância ou paridade. As afirmações II e IV descrevem corretamente o comportamento do RAID 5 (paridade distribuída) e RAID 4 (paridade dedicada em um único disco)."
+    "explicacao": "I é falsa pois o espelhamento do RAID 1 ocorre em discos distintos (e não no mesmo disco). III é falsa porque RAID 0 faz apenas o striping de dados, sem qualquer redundância ou paridade. As afirmações II e IV descrevem corretamente o comportamento do RAID 5 (paridade distribuída) e RAID 4 (paridade dedicada em um único disco).",
+    "fixa": false
   },
   {
     "id": 48,
@@ -108,7 +115,8 @@
       "e. Endereço virtual associado ao endereço físico onde se localiza a variável w."
     ],
     "gabarito": "e",
-    "explicacao": "Em sistemas operacionais modernos com suporte a memória virtual, como os baseados em arquitetura x86-64, os processos de usuário não têm acesso direto aos endereços físicos. Os ponteiros e endereços de variáveis impressos (como '&w') referem-se sempre a endereços virtuais (ou lógicos), que a MMU traduzirá para endereços físicos em tempo de execução."
+    "explicacao": "Em sistemas operacionais modernos com suporte a memória virtual, como os baseados em arquitetura x86-64, os processos de usuário não têm acesso direto aos endereços físicos. Os ponteiros e endereços de variáveis impressos (como '&w') referem-se sempre a endereços virtuais (ou lógicos), que a MMU traduzirá para endereços físicos em tempo de execução.",
+    "fixa": true
   },
   {
     "id": 49,
@@ -122,7 +130,8 @@
       "e. 9 bits e 7 bits."
     ],
     "gabarito": "d",
-    "explicacao": "O tamanho da página é 2KB, o que equivale a 2048 bytes (2^11). Portanto, são necessários 11 bits para o deslocamento (offset) dentro da página. Como o endereço virtual possui um total de 16 bits, restam 5 bits (16 - 11) para o identificador do número da página virtual."
+    "explicacao": "O tamanho da página é 2KB, o que equivale a 2048 bytes (2^11). Portanto, são necessários 11 bits para o deslocamento (offset) dentro da página. Como o endereço virtual possui um total de 16 bits, restam 5 bits (16 - 11) para o identificador do número da página virtual.",
+    "fixa": true
   },
   {
     "id": 50,
@@ -136,7 +145,8 @@
       "e. 8"
     ],
     "gabarito": "a",
-    "explicacao": "Rastreando o LRU em 3 quadros: \n1. p1 (falta) [p1]\n2. p2 (falta) [p1, p2]\n3. p3 (falta) [p1, p2, p3]\n4. p1 (acerto) [p2, p3, p1] -> p1 se torna a mais recente.\n5. p4 (falta) [p3, p1, p4] -> substitui p2, a menos recente.\n6. p2 (falta) [p1, p4, p2] -> substitui p3.\n7. p5 (falta) [p4, p2, p5] -> substitui p1.\n8. p1 (falta) [p2, p5, p1] -> substitui p4.\n9. p2 (acerto) [p5, p1, p2].\n10. p1 (acerto) [p5, p2, p1]. \nTotal de faltas de página = 7."
+    "explicacao": "Rastreando o LRU em 3 quadros: \n1. p1 (falta) [p1]\n2. p2 (falta) [p1, p2]\n3. p3 (falta) [p1, p2, p3]\n4. p1 (acerto) [p2, p3, p1] -> p1 se torna a mais recente.\n5. p4 (falta) [p3, p1, p4] -> substitui p2, a menos recente.\n6. p2 (falta) [p1, p4, p2] -> substitui p3.\n7. p5 (falta) [p4, p2, p5] -> substitui p1.\n8. p1 (falta) [p2, p5, p1] -> substitui p4.\n9. p2 (acerto) [p5, p1, p2].\n10. p1 (acerto) [p5, p2, p1]. \nTotal de faltas de página = 7.",
+    "fixa": false
   },
   {
     "id": 51,
@@ -150,7 +160,8 @@
       "e. Falhas eventuais no atendimento ao princípio da localidade na memória."
     ],
     "gabarito": "e",
-    "explicacao": "O thrashing ocorre quando o sistema gasta mais tempo resolvendo faltas de página do que executando instruções úteis. Isso deriva fundamentalmente da incapacidade da memória física de manter o 'working set' completo dos processos ativos, ou seja, falha-se em atender adequadamente à localidade de referência em memória."
+    "explicacao": "O thrashing ocorre quando o sistema gasta mais tempo resolvendo faltas de página do que executando instruções úteis. Isso deriva fundamentalmente da incapacidade da memória física de manter o 'working set' completo dos processos ativos, ou seja, falha-se em atender adequadamente à localidade de referência em memória.",
+    "fixa": true
   },
   {
     "id": 52,
@@ -164,7 +175,8 @@
       "e. Chamada de função (library call)."
     ],
     "gabarito": "d",
-    "explicacao": "Quando um arquivo é mapeado em memória, o sistema não carrega os dados inteiros de uma vez. O acesso a um endereço do mapeamento que ainda não está carregado na RAM gera uma 'falta de página' (page fault). O sistema operacional captura essa falha e então traz o bloco correspondente do disco para a memória principal de forma transparente."
+    "explicacao": "Quando um arquivo é mapeado em memória, o sistema não carrega os dados inteiros de uma vez. O acesso a um endereço do mapeamento que ainda não está carregado na RAM gera uma 'falta de página' (page fault). O sistema operacional captura essa falha e então traz o bloco correspondente do disco para a memória principal de forma transparente.",
+    "fixa": true
   },
   {
     "id": 53,
@@ -178,7 +190,8 @@
       "e. Um diretório formado por vários diretórios pode ser organizado em forma de árvore, em que cada diretório possui um subdiretório raiz."
     ],
     "gabarito": "c",
-    "explicacao": "A principal função de um diretório em um sistema de arquivos é atuar como uma tabela ou catálogo que mapeia referências inteligíveis para humanos (nomes de arquivos) aos locais reais de armazenamento e metadados no disco."
+    "explicacao": "A principal função de um diretório em um sistema de arquivos é atuar como uma tabela ou catálogo que mapeia referências inteligíveis para humanos (nomes de arquivos) aos locais reais de armazenamento e metadados no disco.",
+    "fixa": true
   },
   {
     "id": 54,
@@ -192,7 +205,8 @@
       "e. Somente as afirmativas II, III e IV são corretas."
     ],
     "gabarito": "e",
-    "explicacao": "A afirmativa I está incorreta porque a operação 'rewind' é justamente a forma essencial de retroceder ao início em sistemas estritamente sequenciais (que muitas vezes não suportam o 'seek' arbitrário). As afirmativas II (arquivos como stream de bytes), III (metadados do SO) e IV (arquivos indexados em árvore) são representações corretas e factuais de diferentes implementações de arquivos."
+    "explicacao": "A afirmativa I está incorreta porque a operação 'rewind' é justamente a forma essencial de retroceder ao início em sistemas estritamente sequenciais (que muitas vezes não suportam o 'seek' arbitrário). As afirmativas II (arquivos como stream de bytes), III (metadados do SO) e IV (arquivos indexados em árvore) são representações corretas e factuais de diferentes implementações de arquivos.",
+    "fixa": true
   },
   {
     "id": 55,
@@ -206,7 +220,8 @@
       "e. 512 bytes"
     ],
     "gabarito": "d",
-    "explicacao": "No sistema de arquivos FAT (e em muitos outros), o espaço no disco é alocado em blocos inteiros, denominados clusters. Neste caso, o cluster é de 2048 bytes. O SO não consegue alocar um espaço menor do que 1 cluster, de modo que mesmo um arquivo de 1 byte ocupará fisicamente 2048 bytes da área de dados, gerando 2047 bytes de fragmentação interna."
+    "explicacao": "No sistema de arquivos FAT (e em muitos outros), o espaço no disco é alocado em blocos inteiros, denominados clusters. Neste caso, o cluster é de 2048 bytes. O SO não consegue alocar um espaço menor do que 1 cluster, de modo que mesmo um arquivo de 1 byte ocupará fisicamente 2048 bytes da área de dados, gerando 2047 bytes de fragmentação interna.",
+    "fixa": true
   },
   {
     "id": 56,
@@ -220,7 +235,8 @@
       "e. Pinning"
     ],
     "gabarito": "b",
-    "explicacao": "O espaço de memória secundária destinado a abrigar dados da RAM (quando esta enche) é denominado de partição ou arquivo de swap (área de troca). A transferência de conteúdo entre a RAM e este espaço se dá através da técnica denominada Swapping (e sua subdivisão, Paging out/in)."
+    "explicacao": "O espaço de memória secundária destinado a abrigar dados da RAM (quando esta enche) é denominado de partição ou arquivo de swap (área de troca). A transferência de conteúdo entre a RAM e este espaço se dá através da técnica denominada Swapping (e sua subdivisão, Paging out/in).",
+    "fixa": true
   },
   {
     "id": 57,
@@ -234,7 +250,8 @@
       "e. tratadores de interrupção – controladores de dispositivo – chamada de sistemas"
     ],
     "gabarito": "a",
-    "explicacao": "O hardware se comunica com a CPU informando a conclusão de operações de I/O por meio de IRQs (via APIC), o que engatilha os Tratadores de Interrupção. Estes repassam a notificação lógica para os Controladores de Dispositivos (Device Drivers). Para enviar novas ordens, os mesmos Controladores de Dispositivos leem/escrevem nos registradores da controladora de hardware do dispositivo."
+    "explicacao": "O hardware se comunica com a CPU informando a conclusão de operações de I/O por meio de IRQs (via APIC), o que engatilha os Tratadores de Interrupção. Estes repassam a notificação lógica para os Controladores de Dispositivos (Device Drivers). Para enviar novas ordens, os mesmos Controladores de Dispositivos leem/escrevem nos registradores da controladora de hardware do dispositivo.",
+    "fixa": true
   },
   {
     "id": 58,
@@ -247,7 +264,8 @@
       "d. Seleciona o primeiro segmento livre com o tamanho suficiente para alocar o arquivo e a busca é feita sequencialmente, interrompendo ao achar um segmento livre do tamanho adequado."
     ],
     "gabarito": "a",
-    "explicacao": "A técnica de alocação Best-fit (Melhor Ajuste) procura o menor bloco de espaço livre que seja grande o suficiente para acomodar o arquivo, buscando minimizar o espaço desperdiçado (fragmentação externa). Isso exige percorrer toda a lista de blocos livres, a menos que a lista já esteja ordenada por tamanho."
+    "explicacao": "A técnica de alocação Best-fit (Melhor Ajuste) procura o menor bloco de espaço livre que seja grande o suficiente para acomodar o arquivo, buscando minimizar o espaço desperdiçado (fragmentação externa). Isso exige percorrer toda a lista de blocos livres, a menos que a lista já esteja ordenada por tamanho.",
+    "fixa": false
   },
   {
     "id": 59,
@@ -261,7 +279,8 @@
       "e. 1025 - 1025"
     ],
     "gabarito": "c",
-    "explicacao": "O loop for executa 1024 iterações, gravando 1 byte em cada uma. Portanto, o tamanho lógico do arquivo (seu conteúdo real) é de 1024 bytes. O sistema de arquivos usa clusters de 4096 bytes, e a alocação mínima na área de dados é de 1 cluster inteiro, mesmo que o arquivo seja menor. Assim, o arquivo ocupará fisicamente 4096 bytes no disco, gerando fragmentação interna."
+    "explicacao": "O loop for executa 1024 iterações, gravando 1 byte em cada uma. Portanto, o tamanho lógico do arquivo (seu conteúdo real) é de 1024 bytes. O sistema de arquivos usa clusters de 4096 bytes, e a alocação mínima na área de dados é de 1 cluster inteiro, mesmo que o arquivo seja menor. Assim, o arquivo ocupará fisicamente 4096 bytes no disco, gerando fragmentação interna.",
+    "fixa": true
   },
   {
     "id": 60,
@@ -275,7 +294,8 @@
       "e. Somente as afirmativas I e IV são corretas."
     ],
     "gabarito": "b",
-    "explicacao": "A afirmativa I é correta, pois a MMU (Memory Management Unit) é o hardware que facilita essa tradução rápida de endereços. A afirmativa II é correta, pois usar potências de 2 facilita extrair os bits de página e offset com operações binárias simples. A III é falsa porque a cache exige mapeamento e endereçamento para saber de onde a linha veio e para onde vai. A IV é falsa, pois mesmo em sistemas monoprogramados mais modernos, a abstração do endereço virtual é útil."
+    "explicacao": "A afirmativa I é correta, pois a MMU (Memory Management Unit) é o hardware que facilita essa tradução rápida de endereços. A afirmativa II é correta, pois usar potências de 2 facilita extrair os bits de página e offset com operações binárias simples. A III é falsa porque a cache exige mapeamento e endereçamento para saber de onde a linha veio e para onde vai. A IV é falsa, pois mesmo em sistemas monoprogramados mais modernos, a abstração do endereço virtual é útil.",
+    "fixa": true
   },
   {
     "id": 61,
@@ -289,7 +309,8 @@
       "e. usando interrupção - programada - usando DMA"
     ],
     "gabarito": "b",
-    "explicacao": "O primeiro método é a 'E/S programada' (onde a CPU faz polling ativo). O segundo é 'E/S por interrupção' (a CPU delega e aguarda o sinal por byte/bloco pequeno). O terceiro é 'usando DMA' (Acesso Direto à Memória, onde o controlador DMA cuida de grandes blocos sem o auxílio da CPU, economizando ciclos de processamento)."
+    "explicacao": "O primeiro método é a 'E/S programada' (onde a CPU faz polling ativo). O segundo é 'E/S por interrupção' (a CPU delega e aguarda o sinal por byte/bloco pequeno). O terceiro é 'usando DMA' (Acesso Direto à Memória, onde o controlador DMA cuida de grandes blocos sem o auxílio da CPU, economizando ciclos de processamento).",
+    "fixa": true
   },
   {
     "id": 62,
@@ -303,7 +324,8 @@
       "e. 600 kB."
     ],
     "gabarito": "c",
-    "explicacao": "Uma missão dura 1 hora (60 minutos) gerando 1 foto por minuto, totalizando 60 fotos (arquivos). Cada foto tem tamanho lógico de 5 kB. No disco destino (computador), o cluster é de 8 kB. Como o SO não aloca frações de cluster, um arquivo de 5 kB vai ocupar 1 cluster inteiro de 8 kB fisicamente. Como são 60 arquivos ocupando 8 kB cada, 60 x 8 = 480 kB de espaço ocupado no disco."
+    "explicacao": "Uma missão dura 1 hora (60 minutos) gerando 1 foto por minuto, totalizando 60 fotos (arquivos). Cada foto tem tamanho lógico de 5 kB. No disco destino (computador), o cluster é de 8 kB. Como o SO não aloca frações de cluster, um arquivo de 5 kB vai ocupar 1 cluster inteiro de 8 kB fisicamente. Como são 60 arquivos ocupando 8 kB cada, 60 x 8 = 480 kB de espaço ocupado no disco.",
+    "fixa": true
   },
   {
     "id": 63,
@@ -317,7 +339,8 @@
       "e. Assíncrono"
     ],
     "gabarito": "b",
-    "explicacao": "Código reentrante é aquele que pode ser interrompido (preempted) de forma segura durante sua execução e chamado (re-entrado) novamente por outra tarefa ou interrupção. Isso é essencial no design de device drivers e componentes do núcleo do Sistema Operacional para tratar múltiplas interrupções de hardware concorrentes."
+    "explicacao": "Código reentrante é aquele que pode ser interrompido (preempted) de forma segura durante sua execução e chamado (re-entrado) novamente por outra tarefa ou interrupção. Isso é essencial no design de device drivers e componentes do núcleo do Sistema Operacional para tratar múltiplas interrupções de hardware concorrentes.",
+    "fixa": true
   },
   {
     "id": 64,
@@ -331,7 +354,8 @@
       "e. número de páginas não alocadas aumenta."
     ],
     "gabarito": "b",
-    "explicacao": "A anomalia de Belady, observada tipicamente no algoritmo FIFO (First-In, First-Out), é o fenômeno contra-intuitivo onde o aumento do número de quadros de página (page frames) físicos disponíveis na memória principal resulta em um aumento (em vez de diminuição) da quantidade de faltas de página (page faults)."
+    "explicacao": "A anomalia de Belady, observada tipicamente no algoritmo FIFO (First-In, First-Out), é o fenômeno contra-intuitivo onde o aumento do número de quadros de página (page frames) físicos disponíveis na memória principal resulta em um aumento (em vez de diminuição) da quantidade de faltas de página (page faults).",
+    "fixa": true
   },
   {
     "id": 65,
@@ -345,7 +369,8 @@
       "e. Chamada de sistema (system call)."
     ],
     "gabarito": "c",
-    "explicacao": "Quando um arquivo é mapeado em memória, os blocos de dados não são carregados na RAM imediatamente. O acesso a um endereço virtual que ainda não está presente na memória física dispara uma falta de página (page fault), fazendo com que o SO busque o bloco no disco."
+    "explicacao": "Quando um arquivo é mapeado em memória, os blocos de dados não são carregados na RAM imediatamente. O acesso a um endereço virtual que ainda não está presente na memória física dispara uma falta de página (page fault), fazendo com que o SO busque o bloco no disco.",
+    "fixa": false
   },
   {
     "id": 66,
@@ -359,7 +384,8 @@
       "e. 1 byte"
     ],
     "gabarito": "b",
-    "explicacao": "O sistema de arquivos FAT (e similares) aloca espaço em unidades inteiras chamadas clusters ou blocos. Neste caso, o tamanho do bloco é de 2048 bytes. Sendo assim, o menor espaço físico que um arquivo pode ocupar, mesmo contendo apenas 1 byte lógico, é de 2048 bytes."
+    "explicacao": "O sistema de arquivos FAT (e similares) aloca espaço em unidades inteiras chamadas clusters ou blocos. Neste caso, o tamanho do bloco é de 2048 bytes. Sendo assim, o menor espaço físico que um arquivo pode ocupar, mesmo contendo apenas 1 byte lógico, é de 2048 bytes.",
+    "fixa": false
   },
   {
     "id": 67,
@@ -373,7 +399,8 @@
       "e. Um diretório contém ponteiros para seus arquivos. A forma mais simples e eficiente de organizar os arquivos de um sistema é colocá-los em um único diretório."
     ],
     "gabarito": "b",
-    "explicacao": "Logicamente, um diretório atua como um catálogo que fornece o mapeamento (referências) entre os nomes inteligíveis dos arquivos e as estruturas de controle que apontam para os blocos de dados físicos no disco."
+    "explicacao": "Logicamente, um diretório atua como um catálogo que fornece o mapeamento (referências) entre os nomes inteligíveis dos arquivos e as estruturas de controle que apontam para os blocos de dados físicos no disco.",
+    "fixa": false
   },
   {
     "id": 68,
@@ -387,7 +414,8 @@
       "e. Um arquivo é um conjunto de dados de diferentes tipos, e cada item individual de informação dentro de um arquivo é chamado de byte."
     ],
     "gabarito": "b",
-    "explicacao": "A transferência de dados entre a memória secundária (disco) e a memória principal (RAM) é feita em blocos de tamanho fixo (geralmente múltiplos de setores). Isso é feito para otimizar o tempo de busca e a vazão dos dispositivos de hardware, aumentando consideravelmente a eficiência comparado ao acesso byte a byte."
+    "explicacao": "A transferência de dados entre a memória secundária (disco) e a memória principal (RAM) é feita em blocos de tamanho fixo (geralmente múltiplos de setores). Isso é feito para otimizar o tempo de busca e a vazão dos dispositivos de hardware, aumentando consideravelmente a eficiência comparado ao acesso byte a byte.",
+    "fixa": true
   },
   {
     "id": 69,
@@ -401,7 +429,8 @@
       "e. Somente as afirmativas III e IV são corretas."
     ],
     "gabarito": "a",
-    "explicacao": "A afirmativa III é incorreta porque registros de tamanho fixo não suportam dinamicamente campos de tamanhos variáveis sem desperdício e estruturas complexas que fogem à sua definição básica. As afirmações I, II e IV trazem definições válidas na literatura de Sistemas de Arquivos e Bancos de Dados para hashing, operações e heap files (arquivos pilha)."
+    "explicacao": "A afirmativa III é incorreta porque registros de tamanho fixo não suportam dinamicamente campos de tamanhos variáveis sem desperdício e estruturas complexas que fogem à sua definição básica. As afirmações I, II e IV trazem definições válidas na literatura de Sistemas de Arquivos e Bancos de Dados para hashing, operações e heap files (arquivos pilha).",
+    "fixa": true
   },
   {
     "id": 70,
@@ -415,7 +444,8 @@
       "e. Recursivo"
     ],
     "gabarito": "b",
-    "explicacao": "Código reentrante é aquele que pode ser interrompido com segurança e chamado novamente ('re-entrado') por uma nova interrupção ou processo sem perder o contexto de execução anterior. É essencial para o desenvolvimento de drivers de dispositivos."
+    "explicacao": "Código reentrante é aquele que pode ser interrompido com segurança e chamado novamente ('re-entrado') por uma nova interrupção ou processo sem perder o contexto de execução anterior. É essencial para o desenvolvimento de drivers de dispositivos.",
+    "fixa": false
   },
   {
     "id": 71,
@@ -429,7 +459,8 @@
       "e. Zero"
     ],
     "gabarito": "d",
-    "explicacao": "Na linguagem C, as matrizes são dispostas na memória de forma contígua, linha após linha. Cada linha da matriz possui 1024 bytes (o tamanho exato de uma página). Como o laço interno (iteração 'i') muda a linha a cada passo para acessar os elementos em coluna, o acesso ocorre em uma página diferente a cada iteração. Logo, haverá um page fault a cada um dos 512 * 1024 acessos totais."
+    "explicacao": "Na linguagem C, as matrizes são dispostas na memória de forma contígua, linha após linha. Cada linha da matriz possui 1024 bytes (o tamanho exato de uma página). Como o laço interno (iteração 'i') muda a linha a cada passo para acessar os elementos em coluna, o acesso ocorre em uma página diferente a cada iteração. Logo, haverá um page fault a cada um dos 512 * 1024 acessos totais.",
+    "fixa": false
   },
   {
     "id": 72,
@@ -443,7 +474,8 @@
       "e. 1025 – 4096"
     ],
     "gabarito": "b",
-    "explicacao": "A função write é chamada 1024 vezes, gravando sempre 1 byte, totalizando 1024 bytes úteis no arquivo. No entanto, o sistema de arquivos aloca blocos inteiros de 4096 bytes por arquivo. Sendo assim, o arquivo ocupará os 4096 bytes inteiros fisicamente na unidade, resultando no desperdício conhecido como fragmentação interna."
+    "explicacao": "A função write é chamada 1024 vezes, gravando sempre 1 byte, totalizando 1024 bytes úteis no arquivo. No entanto, o sistema de arquivos aloca blocos inteiros de 4096 bytes por arquivo. Sendo assim, o arquivo ocupará os 4096 bytes inteiros fisicamente na unidade, resultando no desperdício conhecido como fragmentação interna.",
+    "fixa": false
   },
   {
     "id": 73,
@@ -457,7 +489,8 @@
       "e. controladores de dispositivo – software independente de dispositivo – chamada de sistemas"
     ],
     "gabarito": "b",
-    "explicacao": "O hardware se comunica com a CPU informando a conclusão de operações de I/O por meio de IRQs (via APIC), o que engatilha os Tratadores de Interrupção. Estes repassam a notificação lógica para os Controladores de Dispositivos (Device Drivers). Para enviar novas ordens, os mesmos Controladores de Dispositivos leem/escrevem nos registradores da controladora de hardware do dispositivo."
+    "explicacao": "O hardware se comunica com a CPU informando a conclusão de operações de I/O por meio de IRQs (via APIC), o que engatilha os Tratadores de Interrupção. Estes repassam a notificação lógica para os Controladores de Dispositivos (Device Drivers). Para enviar novas ordens, os mesmos Controladores de Dispositivos leem/escrevem nos registradores da controladora de hardware do dispositivo.",
+    "fixa": false
   },
   {
     "id": 74,
@@ -471,7 +504,8 @@
       "e. O método de acesso direto é simples, pois consiste em acessar todos os dados do arquivo do início ao fim, na sequência em que foram armazenados."
     ],
     "gabarito": "c",
-    "explicacao": "O método de acesso sequencial processa as informações ordenadamente do início ao fim (como uma fita). Ele é simples de implementar e eficiente para leituras completas, mas não é o método mais rápido para acessar fragmentos aleatórios de dados no meio de um grande arquivo, papel que cabe ao acesso direto/aleatório."
+    "explicacao": "O método de acesso sequencial processa as informações ordenadamente do início ao fim (como uma fita). Ele é simples de implementar e eficiente para leituras completas, mas não é o método mais rápido para acessar fragmentos aleatórios de dados no meio de um grande arquivo, papel que cabe ao acesso direto/aleatório.",
+    "fixa": true
   },
   {
     "id": 75,
@@ -485,7 +519,8 @@
       "e. Somente as afirmativas I e IV são corretas."
     ],
     "gabarito": "b",
-    "explicacao": "A afirmativa I está incorreta porque a operação 'rewind' é a forma essencial de retroceder ao início em sistemas estritamente sequenciais, que muitas vezes não suportam o 'seek' livre. As afirmativas II (arquivos como stream de bytes), III (metadados do SO) e IV (arquivos indexados em árvore) são definições corretas."
+    "explicacao": "A afirmativa I está incorreta porque a operação 'rewind' é a forma essencial de retroceder ao início em sistemas estritamente sequenciais, que muitas vezes não suportam o 'seek' livre. As afirmativas II (arquivos como stream de bytes), III (metadados do SO) e IV (arquivos indexados em árvore) são definições corretas.",
+    "fixa": false
   },
   {
     "id": 76,
@@ -500,7 +535,8 @@
       "f. 1111100000000000"
     ],
     "gabarito": "d",
-    "explicacao": "1024 bytes totalizam 16 unidades de 64 bytes (16 bits, todos 0 inicialmente). \n- ptr1=malloc(64) usa 1 unidade no índice 0 (ponteiro para Next-Fit avança para 1). Mapa: 1 seguido de 15 zeros.\n- ptr2=malloc(192) usa 3 unidades (índices 1,2,3). Next-Fit em 4. Mapa: 1111 seguido de 12 zeros.\n- ptr4=malloc(64) usa 1 unidade (índice 4). Next-Fit em 5. Mapa: 11111 seguido de 11 zeros.\n- free(ptr2) libera os índices 1,2,3. Mapa: 1000100... Next-Fit não volta e continua em 5.\n- free(ptr4) libera índice 4. Mapa: 1000000...\n- ptr2=malloc(193) requer 4 unidades. O Next-Fit procura a partir do índice 5. Achando blocos livres nos índices 5,6,7,8, aloca ali. Mapa final: 1 no índice 0, 0 nos índices 1..4, 1 nos índices 5..8, e 0 no restante: 1000011110000000."
+    "explicacao": "1024 bytes totalizam 16 unidades de 64 bytes (16 bits, todos 0 inicialmente). \n- ptr1=malloc(64) usa 1 unidade no índice 0 (ponteiro para Next-Fit avança para 1). Mapa: 1 seguido de 15 zeros.\n- ptr2=malloc(192) usa 3 unidades (índices 1,2,3). Next-Fit em 4. Mapa: 1111 seguido de 12 zeros.\n- ptr4=malloc(64) usa 1 unidade (índice 4). Next-Fit em 5. Mapa: 11111 seguido de 11 zeros.\n- free(ptr2) libera os índices 1,2,3. Mapa: 1000100... Next-Fit não volta e continua em 5.\n- free(ptr4) libera índice 4. Mapa: 1000000...\n- ptr2=malloc(193) requer 4 unidades. O Next-Fit procura a partir do índice 5. Achando blocos livres nos índices 5,6,7,8, aloca ali. Mapa final: 1 no índice 0, 0 nos índices 1..4, 1 nos índices 5..8, e 0 no restante: 1000011110000000.",
+    "fixa": true
   },
   {
     "id": 77,
@@ -514,7 +550,8 @@
       "e. Somente as afirmativas I e II são corretas."
     ],
     "gabarito": "e",
-    "explicacao": "A afirmativa I é correta, pois a MMU (Memory Management Unit) facilita essa tradução de endereços. A afirmativa II é correta, pois usar potências de 2 facilita extrair bits de página e offset com eficiência. A III é falsa porque a cache também exige mapeamento e endereçamento (tags). A IV é falsa, pois sistemas monoprogramados modernos podem e devem usar a abstração do endereçamento virtual para proteção e padronização."
+    "explicacao": "A afirmativa I é correta, pois a MMU (Memory Management Unit) facilita essa tradução de endereços. A afirmativa II é correta, pois usar potências de 2 facilita extrair bits de página e offset com eficiência. A III é falsa porque a cache também exige mapeamento e endereçamento (tags). A IV é falsa, pois sistemas monoprogramados modernos podem e devem usar a abstração do endereçamento virtual para proteção e padronização.",
+    "fixa": false
   },
   {
     "id": 78,
@@ -528,7 +565,8 @@
       "e. Deve melhorar a taxa de faltas de páginas por ajustar o tamanho dos vários conjuntos residentes."
     ],
     "gabarito": "e",
-    "explicacao": "Uma política de alocação global (que permite que a falta de página de um processo roube quadros de outros processos) permite que os conjuntos residentes aumentem e diminuam dinamicamente. Isso se ajusta naturalmente às mudanças de localidade de referência dos processos ao longo do tempo, tendendo a melhorar a taxa global de faltas de páginas do sistema e otimizando o uso da memória."
+    "explicacao": "Uma política de alocação global (que permite que a falta de página de um processo roube quadros de outros processos) permite que os conjuntos residentes aumentem e diminuam dinamicamente. Isso se ajusta naturalmente às mudanças de localidade de referência dos processos ao longo do tempo, tendendo a melhorar a taxa global de faltas de páginas do sistema e otimizando o uso da memória.",
+    "fixa": true
   },
   {
     "id": 79,
@@ -542,7 +580,8 @@
       "e. Pinning"
     ],
     "gabarito": "c",
-    "explicacao": "A 'área de troca' (swap space) no disco é reservada especificamente para o processo de swapping (ou paginação em disco), que consiste em transferir páginas ou processos inteiros entre a memória principal (RAM) e o disco, liberando espaço físico para outros processos em execução."
+    "explicacao": "A 'área de troca' (swap space) no disco é reservada especificamente para o processo de swapping (ou paginação em disco), que consiste em transferir páginas ou processos inteiros entre a memória principal (RAM) e o disco, liberando espaço físico para outros processos em execução.",
+    "fixa": false
   },
   {
     "id": 80,
@@ -556,7 +595,8 @@
       "e. Resultado do processamento realizado pela MMU (Memory Management Unit)."
     ],
     "gabarito": "a",
-    "explicacao": "Programas em nível de usuário sempre lidam com Endereços Virtuais (ou Lógicos). Quando um programa em C imprime o ponteiro de uma variável usando '%p', o que vemos é o endereço virtual no qual a variável está alocada dentro do espaço de endereçamento virtual do processo. A MMU, de forma invisível ao programa, traduzirá esse endereço para um endereço físico quando houver acesso real à memória."
+    "explicacao": "Programas em nível de usuário sempre lidam com Endereços Virtuais (ou Lógicos). Quando um programa em C imprime o ponteiro de uma variável usando '%p', o que vemos é o endereço virtual no qual a variável está alocada dentro do espaço de endereçamento virtual do processo. A MMU, de forma invisível ao programa, traduzirá esse endereço para um endereço físico quando houver acesso real à memória.",
+    "fixa": false
   },
   {
     "id": 81,
@@ -570,7 +610,8 @@
       "e. Flag (indicador) de tipo de arquivo (ex.: sistema/normal)"
     ],
     "gabarito": "c",
-    "explicacao": "Para a maioria dos sistemas operacionais modernos, os arquivos são abstraídos como um simples fluxo (stream) não estruturado de bytes. O sistema operacional gerencia metadados gerais (como permissões, datas, tamanhos e ponteiros de blocos físicos), mas NÃO se importa nem gerencia o esquema dos dados internos contidos no arquivo (como os nomes dos campos lógicos de um registro, id, CPF, etc). Isso é responsabilidade dos programas aplicativos ou SGBDs."
+    "explicacao": "Para a maioria dos sistemas operacionais modernos, os arquivos são abstraídos como um simples fluxo (stream) não estruturado de bytes. O sistema operacional gerencia metadados gerais (como permissões, datas, tamanhos e ponteiros de blocos físicos), mas NÃO se importa nem gerencia o esquema dos dados internos contidos no arquivo (como os nomes dos campos lógicos de um registro, id, CPF, etc). Isso é responsabilidade dos programas aplicativos ou SGBDs.",
+    "fixa": true
   },
   {
     "id": 82,
@@ -584,7 +625,8 @@
       "e. 7 bits e 9 bits."
     ],
     "gabarito": "c",
-    "explicacao": "O tamanho de uma página é 2 KB (2 * 1024 bytes = 2048 bytes). Como 2048 é 2 elevado a 11, o deslocamento (offset) na página requer exatamente 11 bits. O endereço virtual total tem 16 bits, então os bits restantes para identificar o número da página são 16 - 11 = 5 bits. Resposta: 5 bits para a página e 11 bits para o deslocamento."
+    "explicacao": "O tamanho de uma página é 2 KB (2 * 1024 bytes = 2048 bytes). Como 2048 é 2 elevado a 11, o deslocamento (offset) na página requer exatamente 11 bits. O endereço virtual total tem 16 bits, então os bits restantes para identificar o número da página são 16 - 11 = 5 bits. Resposta: 5 bits para a página e 11 bits para o deslocamento.",
+    "fixa": false
   },
   {
     "id": 83,
@@ -598,7 +640,8 @@
       "e. Dados alocados dinamicamente (ex.: HEAP)"
     ],
     "gabarito": "c",
-    "explicacao": "A seção de Código (TEXT) contém as instruções executáveis do programa e é tipicamente de 'somente leitura' (read-only). Como ela não é modificada durante a execução, o SO não precisa gravá-la de volta no disco (swap/pagefile) ao substituí-la na RAM; ele pode simplesmente descartá-la e recarregá-la diretamente do arquivo executável original se for necessária novamente."
+    "explicacao": "A seção de Código (TEXT) contém as instruções executáveis do programa e é tipicamente de 'somente leitura' (read-only). Como ela não é modificada durante a execução, o SO não precisa gravá-la de volta no disco (swap/pagefile) ao substituí-la na RAM; ele pode simplesmente descartá-la e recarregá-la diretamente do arquivo executável original se for necessária novamente.",
+    "fixa": false
   },
   {
     "id": 84,
@@ -612,7 +655,8 @@
       "e. RAID 0, RAID 4 e RAID 5."
     ],
     "gabarito": "c",
-    "explicacao": "O Item I descreve o espelhamento (mirroring), característica clássica do RAID 1. O Item II descreve striping em nível de bit/byte com um disco dedicado para paridade, o que corresponde ao RAID 3. O Item III descreve striping de blocos com a paridade distribuída entre todos os discos para evitar o gargalo de um único disco de paridade, que é a definição do RAID 5."
+    "explicacao": "O Item I descreve o espelhamento (mirroring), característica clássica do RAID 1. O Item II descreve striping em nível de bit/byte com um disco dedicado para paridade, o que corresponde ao RAID 3. O Item III descreve striping de blocos com a paridade distribuída entre todos os discos para evitar o gargalo de um único disco de paridade, que é a definição do RAID 5.",
+    "fixa": true
   },
   {
     "id": 85,
@@ -626,7 +670,8 @@
       "e. 1024"
     ],
     "gabarito": "a",
-    "explicacao": "Com páginas de 8KB (2^13 bytes), o offset usa 13 bits. Em paginação pura, os 32 bits do endereço virtual seriam divididos em 19 bits para página e 13 para offset (total de 2^19 páginas virtuais). O endereço físico de 20 bits seria dividido em 7 bits para frame e 13 para offset (total de 2^7 frames físicos). A relação (razão) é (2^19) / (2^7) = 2^12 = 4096."
+    "explicacao": "Com páginas de 8KB (2^13 bytes), o offset usa 13 bits. Em paginação pura, os 32 bits do endereço virtual seriam divididos em 19 bits para página e 13 para offset (total de 2^19 páginas virtuais). O endereço físico de 20 bits seria dividido em 7 bits para frame e 13 para offset (total de 2^7 frames físicos). A relação (razão) é (2^19) / (2^7) = 2^12 = 4096.",
+    "fixa": true
   },
   {
     "id": 86,
@@ -640,7 +685,8 @@
       "e. Tamanho de bloco = 2.048 bytes e sistema de arquivos baseado em alocação encadeada"
     ],
     "gabarito": "a",
-    "explicacao": "Como 98% dos arquivos têm até 2030 bytes, um bloco de 2048 bytes garante que quase todos ocuparão exatamente 1 bloco. Se arquivos ocupam apenas 1 bloco, a alocação contígua se comporta perfeitamente: não há fragmentação externa (pois qualquer buraco de 1 bloco serve para um novo arquivo de 1 bloco) e o desperdício físico é menor, pois não há o 'overhead' (custo extra) de ponteiros como na alocação encadeada."
+    "explicacao": "Como 98% dos arquivos têm até 2030 bytes, um bloco de 2048 bytes garante que quase todos ocuparão exatamente 1 bloco. Se arquivos ocupam apenas 1 bloco, a alocação contígua se comporta perfeitamente: não há fragmentação externa (pois qualquer buraco de 1 bloco serve para um novo arquivo de 1 bloco) e o desperdício físico é menor, pois não há o 'overhead' (custo extra) de ponteiros como na alocação encadeada.",
+    "fixa": true
   },
   {
     "id": 87,
@@ -654,7 +700,8 @@
       "e. aumentou o espaço de armazenamento em RAM."
     ],
     "gabarito": "d",
-    "explicacao": "As técnicas de hierarquia de memória, como Cache e Memória Virtual, só trazem ganhos de desempenho graças ao Princípio da Localidade. Esse princípio diz que os programas tendem a acessar um conjunto relativamente pequeno de dados e instruções (localidade espacial e temporal) em uma determinada janela de tempo, permitindo que o sistema mantenha apenas essas porções nas memórias mais rápidas e caras."
+    "explicacao": "As técnicas de hierarquia de memória, como Cache e Memória Virtual, só trazem ganhos de desempenho graças ao Princípio da Localidade. Esse princípio diz que os programas tendem a acessar um conjunto relativamente pequeno de dados e instruções (localidade espacial e temporal) em uma determinada janela de tempo, permitindo que o sistema mantenha apenas essas porções nas memórias mais rápidas e caras.",
+    "fixa": true
   },
   {
     "id": 88,
@@ -668,7 +715,8 @@
       "e. Impossibilidade de uso de memória virtual."
     ],
     "gabarito": "a",
-    "explicacao": "Thrashing ocorre quando o grau de multiprogramação é tão alto (excesso de processos) que a memória física fica escassa. Consequentemente, os processos não conseguem manter seus 'working sets' na memória, gerando uma taxa altíssima de page faults. O sistema passa mais tempo fazendo swapping (lendo e gravando páginas no disco) do que executando processos úteis."
+    "explicacao": "Thrashing ocorre quando o grau de multiprogramação é tão alto (excesso de processos) que a memória física fica escassa. Consequentemente, os processos não conseguem manter seus 'working sets' na memória, gerando uma taxa altíssima de page faults. O sistema passa mais tempo fazendo swapping (lendo e gravando páginas no disco) do que executando processos úteis.",
+    "fixa": false
   },
   {
     "id": 89,
@@ -682,7 +730,8 @@
       "e. programada – usando interrupção – usando DMA"
     ],
     "gabarito": "e",
-    "explicacao": "Na E/S Programada (Polling), a CPU gasta tempo testando continuamente o status do dispositivo (espera ocupada). Na E/S por Interrupção, a CPU inicia a operação e vai fazer outras coisas até ser avisada (via interrupção) de que os dados estão prontos. Na E/S por DMA (Direct Memory Access), um controlador especial cuida da transferência direta entre o dispositivo e a memória RAM, poupando a CPU de fazer as cópias de dados e resultando na melhor performance."
+    "explicacao": "Na E/S Programada (Polling), a CPU gasta tempo testando continuamente o status do dispositivo (espera ocupada). Na E/S por Interrupção, a CPU inicia a operação e vai fazer outras coisas até ser avisada (via interrupção) de que os dados estão prontos. Na E/S por DMA (Direct Memory Access), um controlador especial cuida da transferência direta entre o dispositivo e a memória RAM, poupando a CPU de fazer as cópias de dados e resultando na melhor performance.",
+    "fixa": false
   },
   {
     "id": 90,
@@ -696,6 +745,7 @@
       "e. 300 kB."
     ],
     "gabarito": "a",
-    "explicacao": "O tempo de missão é 1 hora (60 minutos), logo são geradas 60 fotos. Cada foto possui 5 kB. No disco de destino (computador), o tamanho do cluster é de 8 kB. Como o sistema de arquivos aloca espaço em múltiplos inteiros de cluster, um arquivo de 5 kB vai ocupar 1 cluster inteiro, ou seja, 8 kB (haverá 3 kB de fragmentação interna). Portanto, 60 arquivos x 8 kB = 480 kB de espaço total ocupado no disco."
+    "explicacao": "O tempo de missão é 1 hora (60 minutos), logo são geradas 60 fotos. Cada foto possui 5 kB. No disco de destino (computador), o tamanho do cluster é de 8 kB. Como o sistema de arquivos aloca espaço em múltiplos inteiros de cluster, um arquivo de 5 kB vai ocupar 1 cluster inteiro, ou seja, 8 kB (haverá 3 kB de fragmentação interna). Portanto, 60 arquivos x 8 kB = 480 kB de espaço total ocupado no disco.",
+    "fixa": false
   }
 ]
