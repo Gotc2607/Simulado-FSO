@@ -204,8 +204,16 @@ function renderReview() {
       if (typeof rawAnswer === "string" && rawAnswer.length === 1 && /[a-z]/i.test(rawAnswer) && Array.isArray(question.opcoes)) {
         const idx = rawAnswer.toLowerCase().charCodeAt(0) - 97;
         if (question.opcoes[idx] !== undefined) {
-          displayAnswer = question.opcoes[idx];
+          displayAnswer = `${rawAnswer} — ${question.opcoes[idx]}`;
         }
+      }
+    }
+
+    let displayGabarito = question.gabarito;
+    if (typeof question.gabarito === "string" && question.gabarito.length === 1 && Array.isArray(question.opcoes)) {
+      const idx = question.gabarito.toLowerCase().charCodeAt(0) - 97;
+      if (question.opcoes[idx] !== undefined) {
+        displayGabarito = `${question.gabarito} — ${question.opcoes[idx]}`;
       }
     }
 
@@ -218,7 +226,7 @@ function renderReview() {
       <h3>${question.id}. ${escapeHtml(question.tema)}</h3>
       <p><strong>Pergunta:</strong> ${escapeHtml(question.pergunta)}</p>
       <p><strong>Sua resposta:</strong> ${escapeHtml(String(displayAnswer))}</p>
-      <p><strong>Gabarito:</strong> ${escapeHtml(question.gabarito)}</p>
+      <p><strong>Gabarito:</strong> ${escapeHtml(displayGabarito)}</p>
       <p class="status ${reviewState}">${
       reviewState === "correct" ? "Correta" : reviewState === "wrong" ? "Incorreta" : "Não respondida"
     }</p>
