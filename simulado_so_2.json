@@ -234,7 +234,7 @@
       "d. Paging",
       "e. Pinning"
     ],
-    "gabarito": "b",
+    "gabarito": "d",
     "explicacao": "O espaço de memória secundária destinado a abrigar dados da RAM (quando esta enche) é denominado de partição ou arquivo de swap (área de troca). A transferência de conteúdo entre a RAM e este espaço se dá através da técnica denominada Swapping (e sua subdivisão, Paging out/in).",
     "fixa": true
   },
