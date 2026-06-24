@@ -57,7 +57,11 @@ async function loadQuestions(file) {
   const others = data.filter(q => q.fixa !== true);
 
   if (fixed.length > 0) {
-    const selectedOthers = shuffleArray(others).slice(0, 12);
+    // Filtra as outras questões para remover duplicatas que já estão nas fixas
+    const fixedTexts = fixed.map(q => q.pergunta.trim().toLowerCase());
+    const uniqueOthers = others.filter(q => !fixedTexts.includes(q.pergunta.trim().toLowerCase()));
+
+    const selectedOthers = shuffleArray(uniqueOthers).slice(0, 12);
     state.questions = shuffleArray([...fixed, ...selectedOthers]);
   } else {
     // embaralha a ordem das questões
