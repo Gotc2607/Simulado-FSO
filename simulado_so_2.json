@@ -25,7 +25,7 @@
       "d. 512 x 1024 (512k)",
       "e. 512"
     ],
-    "gabarito": "d",
+    "gabarito": "e",
     "explicacao": "A matriz aloca 512 linhas de 1024 bytes. Em C, matrizes são armazenadas linha por linha. O loop externo itera nas colunas (j) e o interno nas linhas (i). A cada acesso, o algoritmo pula para uma linha diferente, que está em uma página diferente (pois cada linha tem 1024 bytes = exatos 1 página). Como ele varre por coluna, e supondo a limitação na memória citada, toda interação gera um page fault. O total de acessos aos elementos da matriz é 512 * 1024 = 512k page faults.",
     "fixa": true
   },
@@ -159,7 +159,7 @@
       "d. Impossibilidade de uso de memória virtual.",
       "e. Falhas eventuais no atendimento ao princípio da localidade na memória."
     ],
-    "gabarito": "e",
+    "gabarito": "b",
     "explicacao": "O thrashing ocorre quando o sistema gasta mais tempo resolvendo faltas de página do que executando instruções úteis. Isso deriva fundamentalmente da incapacidade da memória física de manter o 'working set' completo dos processos ativos, ou seja, falha-se em atender adequadamente à localidade de referência em memória.",
     "fixa": true
   },
@@ -650,7 +650,7 @@
     "opcoes": [
       "a. RAID 0, RAID 2 e RAID 4.",
       "b. RAID 2, RAID 4 e RAID 6.",
-      "c. RAID 1, RAID 3 e RAID 5.",
+      "c. RAID 1, RAID 4 e RAID 5.",
       "d. RAID 1, RAID 4 e RAID 6.",
       "e. RAID 0, RAID 4 e RAID 5."
     ],
@@ -684,7 +684,7 @@
       "d. Tamanho de bloco = 1.024 bytes e sistema de arquivos baseado em alocação encadeada",
       "e. Tamanho de bloco = 2.048 bytes e sistema de arquivos baseado em alocação encadeada"
     ],
-    "gabarito": "a",
+    "gabarito": "e",
     "explicacao": "Como 98% dos arquivos têm até 2030 bytes, um bloco de 2048 bytes garante que quase todos ocuparão exatamente 1 bloco. Se arquivos ocupam apenas 1 bloco, a alocação contígua se comporta perfeitamente: não há fragmentação externa (pois qualquer buraco de 1 bloco serve para um novo arquivo de 1 bloco) e o desperdício físico é menor, pois não há o 'overhead' (custo extra) de ponteiros como na alocação encadeada.",
     "fixa": true
   },

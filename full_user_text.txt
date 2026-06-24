@@ -1,0 +1,857 @@
+Algoritmos de substituição de página são importantes em sistemas operacionais que usam a técnica de memória virtual. Em geral, escolhe-se um algoritmo de substituição de página que resulte em menor taxa de falta de página (page fault). Contudo, alguns algoritmos de substituição de página apresentam a anomalia de Belady (Belady’s anomaly). O que caracteriza essa anomalia é o fato de o número de faltas de página aumentar na medida em que o
+Questão 1 Escolha uma opção:
+a.
+
+número de vezes que as páginas alocadas são acessadas.
+b.
+
+número de páginas alocadas aumenta.
+c.
+
+tempo de execução aumenta.
+d.
+
+tempo de retenção de páginas alocadas aumenta.
+e.
+
+número de páginas não alocadas aumenta.
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+número de páginas alocadas aumenta.
+Questão 2
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+Ao processar um arquivo mapeado em memória, a leitura de dados do arquivo em disco para a memória principal ocorre como resultado de uma:
+Questão 2 Resposta
+a.
+
+Interrupção do disco (IRQ).
+b.
+
+Ligação simbólica (symbolic liking).
+c.
+
+Falta de página (page fault).
+d.
+
+Chamada de função (library call).
+e.
+
+Chamada de sistema (system call).
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Falta de página (page fault).
+Questão 3
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Uma partição de disco rígido é formatada com um sistema de arquivos que utiliza alocação encadeada baseada em tabela de alocação de arquivos (FAT). Após a formatação, a partição possui setores de 512 bytes e tamanho de bloco (cluster) de 2048 bytes. Ao criar um arquivo nessa partição, gravar 1 byte e fechá-lo, qual espaço esse arquivo ocupa na área de dados da partição?
+Questão 3 Resposta
+a.
+
+2 bytes
+b.
+
+2048 bytes
+c.
+
+1 setor
+d.
+
+512 bytes
+e.
+
+1 byte
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+2048 bytes
+Questão 4
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Arquivos são organizados em dados ou registros, que são mapeados para o armazenamento em blocos
+no disco. Arquivos podem ser organizados em estruturas de diretórios.
+Sobre diretórios, assinale a alternativa correta.
+Questão 4 Escolha uma opção:
+a.
+
+Um diretório formado por vários diretórios pode ser organizado em forma de árvore, em que cada diretório possui um subdiretório raiz.
+b.
+
+Um diretório informa quais arquivos estão no disco (ou unidade de armazenamento) e pode ser entendido como um conjunto de referências a arquivos.
+c.
+
+Um diretório organizado em forma de árvore contém vários arquivos, os quais possuem caminhos absolutos, ou seja, caminhos relativos à raiz do sistema.
+d.
+
+Um diretório linear é aquele que contém todos os arquivos de um sistema e é ideal para sistemas de grande capacidade de armazenamento e multiusuários.
+e.
+
+Um diretório contém ponteiros para seus arquivos. A forma mais simples e eficiente de organizar os arquivos de um sistema é colocá-los em um único diretório.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Um diretório informa quais arquivos estão no disco (ou unidade de armazenamento) e pode ser entendido como um conjunto de referências a arquivos.
+Questão 5
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Considerando o conceito de arquivos e registros, assinale a alternativa correta sobre a estrutura de armazenamento e recuperação de informações em memória secundária.
+Questão 5 Escolha uma opção:
+a.
+
+A estrutura de armazenamento em memória secundária não utiliza o conceito de arquivos e registros, mas sim páginas e segmentos.
+b.
+
+Na memória secundária, o sistema operacional armazena informações em grupos, chamados blocos, para aumentar a eficiência na transferência de dados entre a memória secundária e a memória  principal.
+c.
+
+Na memória secundária, os dados são armazenados exclusivamente em formato não hierárquico, o que impede a organização dos arquivos em pastas ou diretórios.
+d.
+
+Um programa não pode ser considerado um arquivo, pois ele é executável e não segue a mesma
+estrutura de arquivos de dados.
+e.
+
+Um arquivo é um conjunto de dados de diferentes tipos, e cada item individual de informação dentro de um arquivo é chamado de byte.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Na memória secundária, o sistema operacional armazena informações em grupos, chamados blocos, para aumentar a eficiência na transferência de dados entre a memória secundária e a memória  principal.
+Questão 6
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Um arquivo é organizado logicamente como uma sequência de registros. Esses registros são mapeados em blocos de discos.
+Com base no conhecimento sobre organização de arquivos, considere as afirmativas a seguir.
+
+
+I. As organizações de arquivos sequenciais exigem uma estrutura de índice para localizar os dados. De outra forma, organizações de arquivos baseadas em hashing permitem-nos encontrar o endereço de um item de dado diretamente por meio do cálculo de uma função sobre o valor da chave de procura do registro desejado.
+II. As operações em arquivos são geralmente divididas em operações de recuperação e operações de atualização: as primeiras não alteram nenhum valor no arquivo, apenas localizam certos registros, de forma que seus valores de campo possam ser examinados e processados; as últimas mudam o arquivo por meio da inclusão ou da exclusão de registros ou pela modificação de valores dos campos.
+III. Registros de tamanho fixo permitem campos repetidos, tamanhos variáveis para um ou mais campos e ainda o armazenamento de múltiplos tipos de registro.
+IV. Nos arquivos desordenados (também conhecidos como arquivos pilha), os registros são posicionados no arquivo segundo a ordem pela qual foram incluídos, ou seja, novos registros são acrescentados no final do arquivo. Incluir um novo registro é muito eficiente, entretanto a pesquisa por um registro, usando qualquer condição, envolve uma pesquisa sequencial bloco a bloco do arquivo, procedimento dispendioso.
+
+Assinale a alternativa correta.
+Questão 6 Escolha uma opção:
+a.
+
+Somente as afirmativas I, II e IV são corretas.
+b.
+
+Somente as afirmativas I e III são corretas.
+c.
+
+Somente as afirmativas II, III e IV são corretas.
+d.
+
+Somente as afirmativas I e II são corretas.
+e.
+
+Somente as afirmativas III e IV são corretas.
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+Somente as afirmativas I, II e IV são corretas.
+Questão 7
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Considere um cenário de um sistema operacional que implementa um sistema de arquivos com método de alocação de espaço em disco baseado na alocação encadeada, a exemplo do popular sistema de arquivos FAT (file allocation table). Em um disco rígido com tamanho de setor igual a 512 bytes, criou-se uma partição e a formatou com esse sistema de arquivos usando 2048 bytes para o tamanho de blocos (clusters). Durante a escrita de dados em diferentes arquivos nessa partição, foi criado o arquivo ARQ.DAT que, após ter todos os seus dados armazenados, totalizou 1024 bytes de tamanho. Nesse cenário, o arquivo ARQ.DAT
+Questão 7 Escolha uma opção:
+a.
+
+pode ter seu conteúdo fragmentado no disco, pois já existiam outros arquivos no disco durante a sua criação e gravação, e o sistema de arquivos em uso permite a fragmentação.
+b.
+
+pode ter seu conteúdo fragmentado no disco, pois seus dados foram armazenados concomitantemente com o armazenamento de dados de outros arquivos, e o sistema de arquivos em uso permite a fragmentação.
+c.
+
+pode ter seu conteúdo fragmentado no disco, pois seus dados ocupam, no mínimo, dois setores e o sistema de arquivos em uso permite a fragmentação.
+d.
+
+não possui seu conteúdo fragmentado no disco, pois o sistema de arquivos em uso não permite a fragmentação.
+e.
+
+possui tamanho que não permite que seu conteúdo esteja fragmentado no disco.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+possui tamanho que não permite que seu conteúdo esteja fragmentado no disco.
+Questão 8
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Um dispositivo de E/S pode acionar o seu software controlador (device driver) para realizar uma tarefa enquanto este esteja realizando o tratamento de outra tarefa do dispositivo. Por exemplo, enquanto o device driver da placa de rede processa um pacote que acabou de chegar, ele é interrompido para tratar a chegada de um novo pacote. Essa característica de um device driver é denominada código:
+Questão 8 Resposta
+a.
+
+Elástico
+b.
+
+Reentrante
+c.
+
+Assíncrono
+d.
+
+Assimétrico
+e.
+
+Recursivo
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+Reentrante
+Questão 9
+Correto
+Atingiu 2,00 de 2,00
+Marcar questão
+Texto da questão
+
+Em um computador com tamanho de quadro de memória de 1024 bytes, o sistema operacional aloca 1 página de memória virtual para armazenar a matriz M do código da Figura 1 (linguagem C). A execução desse código resultará em quantas faltas de páginas (page faults)?
+
+Suponha que nenhuma página está alocada inicialmente e que func é uma função que sempre retorna um int positivo.
+Questão 9 Resposta
+a.
+
+1024
+b.
+
+512 x 512 (256K)
+c.
+
+512
+d.
+
+512 x 1024 (512k)
+e.
+
+Zero
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+512
+Questão 10
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Uma partição de disco rígido é formatada com um sistema de arquivos com base em alocação encadeada, usando tabela de alocação. A formatação da partição considerou um tamanho de bloco (cluster) de 4096 bytes. Um programa executado nesse computador cria um arquivo nessa partição e grava os dados do arquivo de acordo com o trecho de código abaixo. Como resultado, o arquivo criado contém ____ bytes e ocupa ____ bytes na área de dados do sistema de arquivos
+
+
+Questão 10 Resposta
+a.
+
+1025 – 1025
+b.
+
+1024 – 4096
+c.
+
+4096 – 4096
+d.
+
+1024 – 1024
+e.
+
+1025 – 4096
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+1024 – 4096
+Questão 11
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+No sistema operacional, o gerenciamento de E/S é implementado em várias camadas.
+
+Um dispositivo de E/S notifica que realizou uma operação se comunicando diretamente com a camada
+de ___________________, usualmente via APIC, a qual informa a camada de ___________________ sobre o resultado da operação. Quando o sistema operacional precisa programar o dispositivo de E/S para realizar uma operação, a camada de ___________________ se comunica diretamente com o dispositivo.
+Questão 11 Escolha uma opção:
+a.
+
+tratadores de interrupção – controladores de dispositivo – chamada de sistemas
+b.
+
+tratadores de interrupção – controladores de dispositivo – controladores de dispositivo
+c.
+
+controladores de dispositivo – chamada de sistemas – tratadores de interrupção
+d.
+
+software independente de dispositivo – tratadores de interrupção – controladores de dispositivo
+e.
+
+controladores de dispositivo – software independente de dispositivo – chamada de sistemas
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+tratadores de interrupção – controladores de dispositivo – controladores de dispositivo
+Questão 12
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Arquivos são organizados em sequência de dados ou registros que são mapeados para o armazenamento em blocos no disco.
+Sobre os métodos de acesso a arquivos, assinale a alternativa correta.
+Questão 12 Escolha uma opção:
+a.
+
+O método de acesso sequencial é simples, pois consiste em acessar os dados através de uma estrutura de índice, o que faz com que seja rápido e eficiente.
+b.
+
+O método de acesso sequencial é simples, pois consiste em acessar os dados de maneira aleatória, o que faz com que seja rápido e eficiente.
+c.
+
+O método de acesso sequencial é simples, pois consiste em acessar os dados na ordem em que estão armazenados, porém não é o método mais rápido.
+d.
+
+O método de acesso direto é simples, pois consiste em acessar todos os dados do arquivo diretamente, o que faz com que seja lento e pouco eficiente.
+e.
+
+O método de acesso direto é simples, pois consiste em acessar todos os dados do arquivo do início ao fim, na sequência em que foram armazenados.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+O método de acesso sequencial é simples, pois consiste em acessar os dados na ordem em que estão armazenados, porém não é o método mais rápido.
+Questão 13
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Arquivos são um mecanismo de abstração que permite a manipulação de dados de maneira persistente, concorrente e em grandes quantidades.
+
+Sobre o assunto, considere as afirmativas a seguir.
+
+I. Em arquivos restritos a acesso sequencial, a operação rewind é irrelevante e, quando presente, apenas equivale a uma operação seek apontando para o início do arquivo.
+II. Uma maneira comum de estruturar arquivos é a sequência de bytes não estruturada. Nesse modelo, um arquivo não é organizado em registros e campos, e quaisquer significados aos seus dados devem ser feitos pelos programas de usuário. Sua vantagem é permitir a máxima flexibilidade.
+III. Todo sistema operacional armazena um certo conjunto de informações junto a cada arquivo, conhecidas como atributos ou metadados. Dentre as informações armazenadas pelos metadados de um arquivo em um sistema, podem estar: identificador do arquivo; hora da criação; último acesso; última mudança; visibilidade; tipo de arquivo.
+IV. Alguns sistemas suportam arquivos estruturados em árvores. Nesse tipo de arquivo, cada registro possui uma chave. A árvore é organizada no campo de chaves do arquivo para possibilitar uma busca rápida pelos registros.
+
+Assinale a alternativa correta.
+Questão 13 Escolha uma opção:
+a.
+
+Somente as afirmativas I e II são corretas.
+b.
+
+Somente as afirmativas II, III e IV são corretas.
+c.
+
+Somente as afirmativas I, II e III são corretas.
+d.
+
+Somente as afirmativas III e IV são corretas.
+e.
+
+Somente as afirmativas I e IV são corretas.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Somente as afirmativas II, III e IV são corretas.
+Questão 14
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Um sistema operacional utiliza o algoritmo Next-Fit como seu alocador de memória no espaço do usuário. Esse algoritmo é uma variação do First-Fit: ao invés de iniciar a procura pelo espaço livre em um ponto fixo, ele inicia a busca a partir da posição que parou anteriormente.
+
+Este alocador se inicia com um bloco de memória livre de 1024 bytes e utiliza um mapa de bits para controlar a quantidade e a posição da memória alocada. Cada bit no mapa representa uma unidade de alocação de 64 bytes. Neste cenário, considere que um processo, logo após ser criado, execute a seguinte sequência de operações:
+ptr1=malloc(64);
+ptr2=malloc(192);
+ptr4=malloc(64);
+free(ptr2);
+free(ptr4);
+ptr2=malloc(193); 
+
+Após a execução com sucesso da sequência de operações listadas, a configuração do mapa de bits é:
+Questão 14 Escolha uma opção:
+a.
+
+1000011100000000
+b.
+
+0000000011100001
+c.
+
+1111000000000000
+d.
+
+1000011110000000
+e.
+
+0000111100000000
+f.
+
+1111100000000000
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+1000011110000000
+Questão 15
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Apesar de a alocação de memória em blocos implicar em um mecanismo mais complexo para a conversão entre endereços virtuais e endereços físicos, é a partir do seu conceito que o gerenciamento de memória evoluiu para o que se tem hoje, com o uso de memória cache e memória virtual.
+
+Com base nessas informações, considere as afirmativas a seguir.
+
+I. O endereçamento é facilitado por hardware especializado.
+II. O uso de páginas de tamanho igual a potência de 2 permite um melhor gerenciamento.
+III. O uso de memória cache elimina a necessidade de endereçamento, pois trata as informações como
+linhas de cache.
+IV. Endereços virtuais não são necessários em sistemas monoprogramados.
+Questão 15 Escolha uma opção:
+a.
+
+Somente as afirmativas I, II e III são corretas.
+b.
+
+Somente as afirmativas II, III e IV são corretas.
+c.
+
+Somente as afirmativas I e IV são corretas.
+d.
+
+Somente as afirmativas III e IV são corretas.
+e.
+
+Somente as afirmativas I e II são corretas.
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+Somente as afirmativas I e II são corretas.
+Questão 16
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+O gerenciamento de memória virtual (MV) pressupõe a existência de tabelas de páginas e mecanismos
+para ranqueamento de páginas, além da existência do princípio da localidade.
+Considerando que o algoritmo de MV, utilizado em um dado sistema, permite que as páginas envolvidas
+na operação de swapping sejam de conjuntos residentes diferentes, assinale a alternativa que apresenta, corretamente, o impacto disso sobre os processos em execução
+Questão 16 Escolha uma opção:
+a.
+
+Força o bloqueio desnecessário de um processo que não teve falta de página enquanto o swapping estava sendo realizado.
+b.
+
+Não altera a taxa de faltas de páginas pois essas não dependem dos conjuntos residentes.
+c.
+
+Deve piorar a taxa de faltas de páginas por não respeitar o princípio da localidade.
+d.
+
+Pode criar a ocorrência de deadlocks entre os processos que usam os conjuntos residentes envolvidos.
+e.
+
+Deve melhorar a taxa de faltas de páginas por ajustar o tamanho dos vários conjuntos residentes.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Deve melhorar a taxa de faltas de páginas por ajustar o tamanho dos vários conjuntos residentes.
+Questão 17
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Sistemas operacionais que utilizam o método de memória virtual usualmente reservam um espaço em memória secundária (ex. disco) denominado de “área de troca”, espaço este utilizado para realizar:
+Questão 17 Resposta
+a.
+
+Caching
+b.
+
+Paging.
+c.
+
+Swapping
+d.
+
+Framing
+e.
+
+Pinning
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+Paging.
+Questão 18
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Considere que o programa abaixo, escrito em Linguagem C, execute em um computador com suporte à memória virtual e segmentação paginada, tal como em sistemas baseados em Intel x86-64.,
+
+Quando a linha 4 é executada, o valor impresso na tela corresponde ao:
+Questão 18 Escolha uma opção:
+a.
+
+Endereço virtual associado ao endereço físico onde se localiza a variável w.
+b.
+
+Endereço da variável w no working set do processo.
+c.
+
+Endereço físico representando o segmento, a página e o offset onde se localiza a variável w.
+d.
+
+Endereço da variável w no espaço de endereçamento físico do processo.
+e.
+
+Resultado do processamento realizado pela MMU (Memory Management Unit).
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Endereço virtual associado ao endereço físico onde se localiza a variável w.
+Questão 19
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Os sistemas operacionais mantêm várias informações sobre cada arquivo, chamadas de metadados. Assinale o atributo que NÃO é um metadado de arquivo gerenciado pelo sistema operacional.
+Questão 19 Escolha uma opção:
+a.
+
+Tamanho atual do arquivo (ex.: número máximo em bytes do arquivo)
+b.
+
+Tamanho do registro (ex.: número em bytes do registro)
+c.
+
+Nome dos diferentes campos lógicos representados nos registros dos arquivos (ex.: id, nome, data de nascimento, nome da mãe, RG, etc.).
+d.
+
+Data da criação do arquivo
+e.
+
+Flag (indicador) de tipo de arquivo (ex.: sistema/normal)
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Nome dos diferentes campos lógicos representados nos registros dos arquivos (ex.: id, nome, data de nascimento, nome da mãe, RG, etc.).
+Questão 20
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Em um computador, o endereço virtual é de 16 bits e as páginas têm tamanho de 2Kb de endereços. O WSL (Working Set List) de um processo qualquer é de quatro páginas, sendo que, inicialmente, nenhuma página está na memória principal. Um programa faz referência a endereços virtuais situados nas páginas 0, 7, 2, 5, 8, 9, 2 e 4. Quantos bits do endereçamento virtual destinam-se, respectivamente, ao número da página e ao deslocamento?
+Questão 20 Escolha uma opção:
+a.
+
+9 bits e 7 bits.
+b.
+
+8 bits e 8 bits.
+c.
+
+5 bits e 11 bits.
+d.
+
+6 bits e 10 bits.
+e.
+
+7 bits e 9 bits.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+5 bits e 11 bits.
+Questão 21
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Em um computador com suporte à memória virtual e paginação, quando ocorre um page fault, o sistema operacional, às vezes, precisa escolher uma página da memória principal (page frame) para dar lugar à página virtual que será carregada do disco como resultado do page fault. Dependendo do tipo de conteúdo presente na página selecionada para substituição, esse conteúdo precisa ser salvo no disco (page out) antes da substituição. Assinale a alternativa que indica uma região de memória típica de um processo, cujo conteúdo não exige salvamento prévio em casos de troca de páginas (page replacement).
+Questão 21 Resposta
+a.
+
+Pilha (ex.: STACK)
+b.
+
+Dados inicializados (ex.: DATA)
+c.
+
+Código (ex.: TEXT)
+d.
+
+Dados não inicializados (ex.: BSS)
+e.
+
+Dados alocados dinamicamente (ex.: HEAP)
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+Código (ex.: TEXT)
+Questão 22
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+RAID é um conjunto de discos físicos vistos pelo Sistema Operacional como uma única unidade lógica. O RAID tem as seguintes características:
+
+I. RAID A: Redundante, espelhamento de discos, utiliza o dobro de discos.
+II. RAID B: Acesso paralelo, paridade de bit utiliza apenas um disco.
+III. RAID C: Acesso independente, paridade de bloco intercalada e distribuída.
+
+De acordo com as configurações dos itens I, II e III, os RAID A, B e C são, respectivamente:
+Questão 22 Escolha uma opção:
+a.
+
+RAID 0, RAID 2 e RAID 4.
+b.
+
+RAID 2, RAID 4 e RAID 6.
+c.
+
+RAID 1, RAID 4 e RAID 5.
+d.
+
+RAID 1, RAID 4 e RAID 6.
+e.
+
+RAID 0, RAID 4 e RAID 5.
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+RAID 1, RAID 4 e RAID 5.
+Questão 23
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Considere uma arquitetura de memória com as seguintes características:
+
+    Memória logicamente particionada em segmentos paginados.
+
+    Endereços virtuais de 32 bits:
+
+        8 para segmentos
+        11 para páginas
+        O restante para o endereçamento na página
+
+    Endereços físicos de 20 bits e páginas de 8KB;
+
+Caso o particionamento lógico fosse o de paginação pura, a relação entre o número de
+páginas virtuais e o número de frames seria equivalente a:
+Questão 23 Escolha uma opção:
+a.
+
+4096
+b.
+
+32
+c.
+
+128
+d.
+
+8192
+e.
+
+1024
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+4096
+Questão 24
+Incorreto
+Atingiu 0,00 de 2,00
+Marcar questão
+Texto da questão
+
+Um computador precisa ter seu disco atual, formatado com uma única partição, substituído por outro disco. Antes de realizar a troca, foi realizada uma análise do tamanho dos arquivos armazenados no disco atual, cujo resultado indicou que 98% dos arquivos possuem tamanho entre 1.000 bytes e 2.030 bytes (mediana de 1.515 bytes). Assinale a alternativa que lista os parâmetros de formação do novo disco e que resulte no menor desperdício de espaço físico e menor probabilidade de fragmentação (externa) do disco.
+Questão 24 Resposta
+a.
+
+Tamanho de bloco = 2.048 bytes e sistema de arquivos baseado em alocação contígua
+b.
+
+Tamanho de bloco = 1.024 bytes e sistema de arquivos baseado em alocação contígua
+c.
+
+Tamanho de bloco = 1.024 bytes e sistema de arquivos baseado em alocação indexada
+d.
+
+Tamanho de bloco = 1.024 bytes e sistema de arquivos baseado em alocação encadeada
+e.
+
+Tamanho de bloco = 2.048 bytes e sistema de arquivos baseado em alocação encadeada
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Tamanho de bloco = 2.048 bytes e sistema de arquivos baseado em alocação encadeada
+Questão 25
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+Técnicas eficientes para o uso de memória, como memória virtual e caching, podem ser utilizadas porque
+Questão 25 Escolha uma opção:
+a.
+
+o thrashing não pode ocorrer em memórias modernas.
+b.
+
+memórias dinâmicas são mais rápidas que memórias estáticas.
+c.
+
+aumentou a velocidade de acesso para a memória RAM.
+d.
+
+o princípio da localidade pode ser aplicado
+e.
+
+aumentou o espaço de armazenamento em RAM.
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+o princípio da localidade pode ser aplicado
+Questão 26
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+O fenômeno de thrashing de um sistema pode ser caracterizado por:
+Questão 26 Escolha uma opção:
+a.
+
+Excesso de processos executando no sistema.
+b.
+
+Uso de algoritmos de paginação que causem a anomalia de Belady.
+c.
+
+Falhas eventuais no atendimento ao princípio da localidade na memória.
+d.
+
+Execução excessiva de coleta de lixo (garbage collection) na memória.
+e.
+
+Impossibilidade de uso de memória virtual.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+Excesso de processos executando no sistema.
+Questão 27
+Correto
+Atingiu 1,00 de 1,00
+Marcar questão
+Texto da questão
+
+No sistema operacional, existem três métodos fundamentais de realizar entrada e saída (E/S). 
+
+O método mais simples é chamado de E/S _________, em que se tem a CPU realizando todo o trabalho. 
+
+Na E/S _________, a CPU não fica tão dedicada à rotina de E/S como no método anterior, podendo realizar  outras atividades enquanto a operação de E/S está em andamento. 
+
+Já a E/S _________ tem o menor consumo de CPU dentre os três métodos, porém, em geral, tem o melhor de performance geral e menor desempenho de velocidade de cópia de dados.
+Questão 27 Resposta
+a.
+
+programada – usando DMA – usando interrupção
+b.
+
+usando interrupção – programada – usando DMA
+c.
+
+usando DMA – programada – usando interrupção
+d.
+
+usando interrupção – usando DMA – programada
+e.
+
+programada – usando interrupção – usando DMA
+Feedback
+Sua resposta está correta.
+A resposta correta é:
+
+programada – usando interrupção – usando DMA
+Questão 28
+Incorreto
+Atingiu 0,00 de 1,00
+Marcar questão
+Texto da questão
+
+Um VSNT (Veículo Submarino Não Tripulado) é usado para monitoramento de plataformas de petróleo marítimas. O VSNT tira uma foto a cada 1 minuto. O tamanho de cada arquivo de foto é padronizado em 5 kB. As fotos são armazenadas em uma partição do disco rígido do VSNT, a qual é formatada com sistema de arquivos FAT32 e tamanho de bloco (cluster) de 4 kB. O tempo de missão do VSNT é de uma hora. Após o término de cada missão, as fotos são copiadas do VSNT para um computador, que utiliza uma partição FAT32 formatada com clusters de 8 kB. Com base nesse cenário, o espaço necessário no computador para armazenar todos os arquivos do VSNT em uma missão é de:
+Questão 28 Escolha uma opção:
+a.
+
+480 kB.
+b.
+
+600 kB.
+c.
+
+240 kB.
+d.
+
+360 kB.
+e.
+
+300 kB.
+Feedback
+Sua resposta está incorreta.
+A resposta correta é:
+
+480 kB.
