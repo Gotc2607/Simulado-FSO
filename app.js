@@ -28,6 +28,10 @@ const els = {
   homePanel: document.getElementById("home-panel"),
   startSim1Btn: document.getElementById("start-sim1-btn"),
   startSim2Btn: document.getElementById("start-sim2-btn"),
+  learnSim2Btn: document.getElementById("learn-sim2-btn"),
+  learnPanel: document.getElementById("learn-panel"),
+  closeLearnBtn: document.getElementById("close-learn-btn"),
+  startSim2FromLearnBtn: document.getElementById("start-sim2-from-learn-btn"),
   homeBtn: document.getElementById("home-btn"),
   quizFooter: document.getElementById("quiz-footer")
 };
@@ -311,6 +315,7 @@ function startSimulado(file) {
   state.answers = {};
   state.finished = false;
   els.homePanel.hidden = true;
+  if (els.learnPanel) els.learnPanel.hidden = true;
   els.resultPanel.hidden = true;
   els.reviewPanel.hidden = true;
   els.quizPanel.hidden = false;
@@ -333,9 +338,40 @@ function goHome() {
   els.reviewPanel.hidden = true;
   els.quizPanel.hidden = true;
   if (els.quizFooter) els.quizFooter.hidden = true;
+  if (els.learnPanel) els.learnPanel.hidden = true;
   els.homePanel.hidden = false;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function openLearnMode() {
+  els.homePanel.hidden = true;
+  els.resultPanel.hidden = true;
+  els.reviewPanel.hidden = true;
+  els.quizPanel.hidden = true;
+  if (els.quizFooter) els.quizFooter.hidden = true;
+  if (els.learnPanel) els.learnPanel.hidden = false;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function setupLearnTabs() {
+  const tabs = document.querySelectorAll(".learn-tab");
+  const modules = document.querySelectorAll(".learn-module");
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      const target = tab.dataset.target;
+      modules.forEach(m => {
+        m.hidden = m.id !== target;
+      });
+    });
+  });
 }
 
 if (els.startSim1Btn) els.startSim1Btn.addEventListener("click", () => startSimulado("simulado_so.json"));
 if (els.startSim2Btn) els.startSim2Btn.addEventListener("click", () => startSimulado("simulado_so_2.json"));
+if (els.learnSim2Btn) els.learnSim2Btn.addEventListener("click", openLearnMode);
+if (els.closeLearnBtn) els.closeLearnBtn.addEventListener("click", goHome);
+if (els.startSim2FromLearnBtn) els.startSim2FromLearnBtn.addEventListener("click", () => startSimulado("simulado_so_2.json"));
 if (els.homeBtn) els.homeBtn.addEventListener("click", goHome);
+setupLearnTabs();

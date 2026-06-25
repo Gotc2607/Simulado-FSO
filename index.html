@@ -23,11 +23,227 @@
         </p>
       </header>
 
-      <section class="panel" id="home-panel">
-        <h2 style="text-align: center; margin-bottom: 2rem;">Escolha qual simulado deseja iniciar:</h2>
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <button id="start-sim1-btn" class="btn primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Simulado 1 (Principal)</button>
-          <button id="start-sim2-btn" class="btn primary" style="font-size: 1.1rem; padding: 1rem 2rem; background: var(--accent);">Simulado 2 (Novas Questões)</button>
+      <section class="panel home-panel" id="home-panel">
+        <div class="home-hero-text">
+          <h2>Selecione uma área de estudo</h2>
+          <p class="subtitle" style="margin: 0 auto;">Escolha entre o simulado geral introdutório ou a revisão e teste dos conteúdos específicos da Prova 2.</p>
+        </div>
+        
+        <div class="cards-grid">
+          <div class="module-card">
+            <div class="card-badge pill-blue">Módulos 1 a 6</div>
+            <h3>Simulado Geral</h3>
+            <p class="card-desc">Conceitos introdutórios de Sistemas Operacionais, processos, threads, escalonamento de CPU e sincronização.</p>
+            <div class="card-footer">
+              <button id="start-sim1-btn" class="btn primary full-btn">▶ Iniciar Simulado 1</button>
+            </div>
+          </div>
+
+          <div class="module-card featured-card">
+            <div class="card-badge pill-orange">Módulos 7 a 10 • Prova 2</div>
+            <h3>Simulado Avançado</h3>
+            <p class="card-desc">Gerência de Memória, Memória Virtual por Paginação/Segmentação, Sistemas de Arquivos, RAID e Entrada/Saída.</p>
+            <div class="card-footer">
+              <button id="start-sim2-btn" class="btn primary accent-btn full-btn">🚀 Começar Simulado 2</button>
+              <button id="learn-sim2-btn" class="btn learn-btn full-btn">📖 Modo Aprendizado</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO DE APRENDIZADO -->
+      <section class="panel learn-panel" id="learn-panel" hidden>
+        <div class="learn-header">
+          <div>
+            <p class="kicker">Conteúdos da Prova • Módulos 7, 8, 9 e 10</p>
+            <h2 style="margin: 0.3rem 0;">📖 Central de Aprendizado (Simulado 2)</h2>
+            <p class="subtitle">Material completo de revisão baseado nos slides do Prof. Daniel Sundfeld para dominar a prova.</p>
+          </div>
+          <button id="close-learn-btn" class="btn ghost" style="align-self: center;">⬅ Voltar ao Início</button>
+        </div>
+
+        <div class="learn-nav">
+          <button class="learn-tab active" data-target="mod7">🧠 Gerência de Memória</button>
+          <button class="learn-tab" data-target="mod8">🌐 Memória Virtual</button>
+          <button class="learn-tab" data-target="mod9">📂 Sistema de Arquivos</button>
+          <button class="learn-tab" data-target="mod10">⚡ Entrada e Saída (E/S)</button>
+        </div>
+
+        <div class="learn-content">
+          <!-- MÓDULO 7 -->
+          <div class="learn-module active" id="mod7">
+            <h3>Módulo 7: Gerência de Memória</h3>
+            
+            <div class="topic-card">
+              <h4>1. Hierarquia e Abstração de Memória</h4>
+              <p>A memória RAM é um recurso finito e volátil que requer gerenciamento cuidadoso. A hierarquia organiza-se por custo e velocidade: <strong>Registradores</strong> (acesso imediato por prog./hardware) ➔ <strong>Cache</strong> (100% gerenciada pelo hardware) ➔ <strong>Memória Principal / RAM</strong> (foco do SO) ➔ <strong>Secundária / Discos</strong>.</p>
+              <div class="highlight-box">
+                <strong>Objetivos do SO:</strong> Manter o maior número de processos residentes (multiprogramação), maximizar compartilhamento, permitir criação de processos mesmo sem espaço livre contíguo e garantir proteção entre espaços de endereçamento.
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <h4>2. Esquemas sem Abstração vs Partições Fixas (MFT)</h4>
+              <p>Nos primórdios (alocação contígua absoluta), cada programa enxergava a memória física real (ex.: <code>LOAD R1, 1000</code>). Isso proibia rodar duas instâncias do mesmo programa simultaneamente.</p>
+              <ul>
+                <li><strong>MFT (Partições Fixas):</strong> Memória dividida em blocos de tamanho estático. Gera grave <strong>Fragmentação Interna</strong> (espaço desperdiçado dentro da partição quando o processo é menor que ela).</li>
+                <li><strong>Realocação Dinâmica:</strong> Uso de registradores de <strong>Base e Limite</strong> na CPU. O hardware soma a Base ao endereço lógico a cada instrução e compara com o Limite.</li>
+              </ul>
+            </div>
+
+            <div class="topic-card">
+              <h4>3. Partições Variáveis (MVT) e Algoritmos de Encaixe</h4>
+              <p>No MVT, partições nascem sob demanda com o tamanho exato do processo, eliminando fragmentação interna. Porém, com o tempo, surgem buracos vazios dispersos: a <strong>Fragmentação Externa</strong>.</p>
+              <p style="margin-top: 0.6rem;"><strong>Estratégias de Alocação (Como escolher onde colocar um novo processo?):</strong></p>
+              <table class="compare-table">
+                <thead>
+                  <tr><th>Algoritmo</th><th>Funcionamento</th><th>Pró / Contras</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>First-Fit</strong> (1º Encaixe)</td><td>Aloca no 1º espaço livre que seja suficiente.</td><td><strong>Mais rápido</strong> (não varre toda lista) e deixa buracos maiores na média. <em>O mais usado!</em></td></tr>
+                  <tr><td><strong>Best-Fit</strong> (Melhor)</td><td>Percorre toda a lista buscando o menor espaço suficiente.</td><td>Lento e gera inúmeros fragmentos minúsculos inúteis.</td></tr>
+                  <tr><td><strong>Worst-Fit</strong> (Pior)</td><td>Aloca no maior espaço livre disponível.</td><td>Simulações provaram ser ruim na prática.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="topic-card">
+              <h4>4. Rastreamento de Memória e Compactação</h4>
+              <ul>
+                <li><strong>Mapa de Bits:</strong> Memória dividida em unidades (ex.: 1 byte = 1 bit). Compacto, mas extremamente lento para buscar sequências de zeros (áreas vazias).</li>
+                <li><strong>Lista Encadeada:</strong> Registra segmentos (Livre/Ocupado, Início, Tamanho). Muito superior para liberar memória, pois funde nós vizinhos instantaneamente.</li>
+                <li><strong>Swapping:</strong> Move processos inteiros entre RAM e Disco (swap out/in) para liberar espaço. <strong>Overlay:</strong> Divisão manual do programa em módulos carregados na mesma partição pelo programador.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MÓDULO 8 -->
+          <div class="learn-module" id="mod8" hidden>
+            <h3>Módulo 8: Memória Virtual</h3>
+            
+            <div class="topic-card">
+              <h4>1. Conceito, MMU e TLB</h4>
+              <p>A Memória Virtual (MV) desacopla endereços lógicos dos físicos, combinando RAM e Disco para criar um espaço de endereçamento contíguo fictício (em 32 bits = 4 GB por processo).</p>
+              <ul>
+                <li><strong>MMU (Memory Management Unit):</strong> Hardware na CPU que traduz endereços virtuais em físicos em tempo de execução.</li>
+                <li><strong>TLB (Translation Lookaside Buffer):</strong> Memória associativa (cache ultrarápida) dentro da MMU que guarda as últimas traduções de páginas. Se der TLB Hit, tradução é instantânea!</li>
+              </ul>
+            </div>
+
+            <div class="topic-card">
+              <h4>2. Paginação e Page Faults</h4>
+              <p>O espaço virtual é fatiado em <strong>Páginas Virtuais</strong> e a RAM em <strong>Quadros de Página (Page Frames)</strong> de tamanho fixo idêntico (tipicamente 4 KB).</p>
+              <div class="highlight-box">
+                <strong>Page Fault (Falta de Página):</strong> Quando a CPU tenta acessar uma página cujo bit de validade na tabela indica que está no disco. O processo é bloqueado, o SO faz <strong>page-in</strong> (traz do disco), aloca em um frame, atualiza a tabela e reexecuta a instrução.
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <h4>3. Algoritmos de Substituição de Páginas (Qual página remover?)</h4>
+              <table class="compare-table">
+                <thead>
+                  <tr><th>Algoritmo</th><th>Lógica de Seleção</th><th>Características</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Ótimo</strong></td><td>Substitui a página que demorará mais tempo para ser usada.</td><td>Impossível na prática; serve como referência ideal em simulações.</td></tr>
+                  <tr><td><strong>FIFO</strong></td><td>Retira a página que entrou há mais tempo na RAM.</td><td>Pode causar a <em>Anomalia de Belady</em> (aumentar frames e piorar faltas).</td></tr>
+                  <tr><td><strong>LRU</strong> (Menos Recente)</td><td>Substitui a que está há mais tempo sem ser acessada.</td><td>Excelente (honra localidade), mas caro para implementar em hardware.</td></tr>
+                  <tr><td><strong>NRU</strong> (Não Usada)</td><td>Classifica por bits de Referência (R) e Modificação (M).</td><td>Prioriza retirar páginas com R=0 e M=0 (evita page-out no disco).</td></tr>
+                  <tr><td><strong>Clock</strong> (FIFO Circular)</td><td>Ponteiro circular. Se R=1, vira R=0 e avança. Se R=0, retira.</td><td>Eficiente e amplamente adotado em sistemas Unix/Linux.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="topic-card">
+              <h4>4. Working Set, Thrashing e Segmentação</h4>
+              <p>O <strong>Working Set</strong> (Denning) é o conjunto de páginas ativas de um processo em uma janela $\Delta t$ (baseado na localidade espacial/temporal). Se a RAM não comporta os working sets dos processos ativos, ocorre <strong>Thrashing</strong>: a CPU passa todo o tempo fazendo swapping e a produtividade desaba.</p>
+              <p style="margin-top: 0.5rem;"><strong>Paginação vs Segmentação:</strong> Paginação tem blocos de tamanho fixo (elimina frag. externa, gera interna). Segmentação divide por blocos lógicos de tamanho variável (sub-rotinas, pilhas; facilita compartilhamento e proteção, mas gera frag. externa).</p>
+            </div>
+          </div>
+
+          <!-- MÓDULO 9 -->
+          <div class="learn-module" id="mod9" hidden>
+            <h3>Módulo 9: Sistema de Arquivos</h3>
+            
+            <div class="topic-card">
+              <h4>1. Abstração de Arquivos e Diretórios</h4>
+              <p>O arquivo é a abstração do SO para armazenamento secundário persistente. Possui atributos/metadados (Dono, Tamanho, Permissões RWX, Datas). Chamadas principais: <code>open</code>, <code>close</code>, <code>read</code>, <code>write</code>, <code>seek</code>.</p>
+              <ul>
+                <li><strong>Tipos de Arquivos:</strong> Regulares (dados ASCII/binários), Diretórios (catálogos de mapeamento), Especiais de Caractere (terminais <code>c</code>) e de Bloco (discos <code>b</code>).</li>
+                <li><strong>Padrão FHS (Linux):</strong> Padrão de hierarquia. <code>/bin</code> (binários de usuário), <code>/sbin</code> (admin), <code>/etc</code> (configs), <code>/dev</code> (dispositivos), <code>/home</code>, <code>/tmp</code>.</li>
+              </ul>
+            </div>
+
+            <div class="topic-card">
+              <h4>2. Métodos de Alocação de Espaço em Disco</h4>
+              <table class="compare-table">
+                <thead>
+                  <tr><th>Método</th><th>Como organiza os blocos no disco</th><th>Vantagens e Limitações</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>Contígua</strong></td><td>Blocos sequenciais contínuos.</td><td>Fácil e excelente leitura sequencial. <em>Péssimo para arquivos que crescem; sofre fragmentação externa.</em></td></tr>
+                  <tr><td><strong>Encadeada</strong></td><td>Lista dispersa onde cada bloco aponta para o próximo (ex.: FAT).</td><td>Sem fragmentação externa. <em>Acesso direto (seek) é inviável, obriga ler sequencialmente.</em></td></tr>
+                  <tr><td><strong>Indexada (I-Nodos)</strong></td><td>Um bloco de índices guarda ponteiros para todos os blocos de dados.</td><td>Permite acesso direto ultrarrápido a qualquer posição do arquivo.</td></tr>
+                </tbody>
+              </table>
+              <div class="highlight-box">
+                <strong>Tamanho do Bloco (Cluster):</strong> Em sistemas como FAT32, um cluster de 4 KB ou 8 KB é a menor unidade alocada. Um arquivo de 1 byte ocupará um cluster inteiro fisicamente (gerando fragmentação interna).
+              </div>
+            </div>
+
+            <div class="topic-card">
+              <h4>3. Confiabilidade (Journaling), RAID e Relógios</h4>
+              <ul>
+                <li><strong>Journaling:</strong> Registro prévio de operações em diário (ext3, ext4, BTRFS) para evitar corrupção em quedas de energia.</li>
+                <li><strong>RAID:</strong> <strong>RAID 0</strong> (Striping / faixas paralelas - rápido, zero redundância) ➔ <strong>RAID 1</strong> (Espelhamento completo) ➔ <strong>RAID 5</strong> (Paridade XOR distribuída entre os discos) ➔ <strong>RAID 6</strong> (Paridade dupla).</li>
+                <li><strong>Problema de 2038:</strong> O relógio Unix conta segundos desde 1/1/1970 em um inteiro assinado de 32 bits, que estourará em 19/01/2038. Solução definitiva: migrar para 64 bits.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- MÓDULO 10 -->
+          <div class="learn-module" id="mod10" hidden>
+            <h3>Módulo 10: Entrada e Saída (E/S)</h3>
+            
+            <div class="topic-card">
+              <h4>1. Camadas de Gerenciamento de E/S</h4>
+              <p>O SO estrutura a E/S em camadas isoladas para abstrair a complexidade do hardware físico:</p>
+              <ol style="padding-left: 1.4rem; color: var(--muted); line-height: 1.6;">
+                <li><strong>Subsistema de E/S:</strong> Camada genérica do kernel. Resolve buffering, cache de blocos, locks e spooling.</li>
+                <li><strong>Device Drivers (Controladores):</strong> Software específico de cada fabricante em modo protegido. Deven ser <strong>Reentrantes</strong> (seguros para serem acionados por nova interrupção enquanto ainda tratam evento anterior).</li>
+                <li><strong>Tratadores de Interrupção:</strong> Acionados por IRQ (APIC). Salva registradores, identifica evento, aciona driver e chama escalonador.</li>
+                <li><strong>Hardware (Controladora e Dispositivo):</strong> Placa eletrônica que executa comandos mecânicos/físicos.</li>
+              </ol>
+            </div>
+
+            <div class="topic-card">
+              <h4>2. Técnicas de Transferência de Dados</h4>
+              <table class="compare-table">
+                <thead>
+                  <tr><th>Técnica</th><th>Papel da CPU</th><th>Desempenho</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>E/S Programada</strong> (Polling)</td><td>Testa continuamente o registrador de status do periférico em laço.</td><td>Desperdiça ciclos de processamento (espera ocupada).</td></tr>
+                  <tr><td><strong>Por Interrupção</strong></td><td>Emite comando e vai fazer outras tarefas até receber sinal de IRQ.</td><td>Bom para pequenos fluxos de dados, mas exige intervenção a cada byte/bloco.</td></tr>
+                  <tr><td><strong>DMA</strong> (Acesso Direto)</td><td>O controlador DMA assume o barramento (<em>roubo de ciclo</em>) e copia blocos direto para RAM.</td><td><strong>Máxima performance!</strong> A CPU só interfere no início e no término da transferência.</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="topic-card">
+              <h4>3. Discos Magnéticos (HDs) e Tempo de Acesso</h4>
+              <p>HDs possuem pratos girando em velocidade constante (5400 a 15000 RPM), braço mecânico com cabeçote, Cilindros, Trilhas e Setores (512 bytes).</p>
+              <div class="highlight-box">
+                <strong>Fases do Tempo de Acesso ao Disco:</strong><br>
+                1. Interpretação do comando (SO) ➔ 2. <strong>Tempo de Busca (Seek):</strong> mover o braço mecânico até o cilindro/trilha correta ➔ 3. <strong>Latência de Rotação:</strong> esperar o setor girar até passar sob a cabeça ➔ 4. Tempo de transferência dos sinais elétricos.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="learn-footer" style="margin-top: 2.5rem; text-align: center; border-top: 1px solid var(--border); padding-top: 1.8rem;">
+          <p style="margin-bottom: 1rem; color: var(--muted);">Revise os cards acima e teste seus conhecimentos com as questões oficiais:</p>
+          <button id="start-sim2-from-learn-btn" class="btn primary accent-btn" style="font-size: 1.15rem; padding: 1.1rem 2.5rem; box-shadow: 0 8px 24px rgba(255, 107, 44, 0.28);">🚀 Estou Pronto! Iniciar Simulado 2</button>
         </div>
       </section>
 

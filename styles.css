@@ -314,6 +314,214 @@ h1 {
   }
 }
 
+/* CARDS GRID HOME */
+.home-hero-text {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.home-hero-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+.module-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.module-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(17, 39, 63, 0.12);
+}
+.featured-card {
+  background: linear-gradient(145deg, rgba(255, 248, 243, 0.9) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 1.5px solid rgba(255, 107, 44, 0.35);
+  box-shadow: 0 12px 36px rgba(255, 107, 44, 0.1);
+}
+.card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+.pill-blue {
+  background: rgba(6, 102, 208, 0.12);
+  color: var(--primary-strong);
+}
+.pill-orange {
+  background: rgba(255, 107, 44, 0.15);
+  color: #d84a0d;
+}
+.module-card h3 {
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem 0;
+}
+.card-desc {
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 1.8rem;
+  flex-grow: 1;
+}
+.card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.full-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.accent-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+}
+.accent-btn:hover {
+  background: #e65c20;
+  box-shadow: 0 6px 16px rgba(255, 107, 44, 0.3);
+}
+.learn-btn {
+  background: rgba(255, 107, 44, 0.08);
+  color: #d84a0d;
+  border: 1px solid rgba(255, 107, 44, 0.3);
+}
+.learn-btn:hover {
+  background: rgba(255, 107, 44, 0.16);
+}
+
+/* LEARN PANEL */
+.learn-panel {
+  max-width: 960px;
+}
+.learn-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.learn-nav {
+  display: flex;
+  gap: 0.6rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+}
+.learn-tab {
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--muted);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.learn-tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.learn-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(6, 102, 208, 0.25);
+}
+.learn-content h3 {
+  font-size: 1.5rem;
+  color: var(--primary-strong);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+.topic-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(21, 45, 73, 0.12);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.02);
+}
+.topic-card h4 {
+  margin: 0 0 0.6rem 0;
+  font-size: 1.15rem;
+  color: var(--text);
+}
+.topic-card p, .topic-card ul, .topic-card ol {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.topic-card ul, .topic-card ol {
+  padding-left: 1.4rem;
+  margin-top: 0.5rem;
+}
+.topic-card li {
+  margin-bottom: 0.4rem;
+}
+.topic-card code {
+  background: rgba(0,0,0,0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.9em;
+}
+.highlight-box {
+  background: rgba(255, 107, 44, 0.08);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.2rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1rem 0 0.5rem;
+  color: #a03507;
+  line-height: 1.5;
+}
+.highlight-box strong {
+  color: #d84a0d;
+}
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.92rem;
+}
+.compare-table th, .compare-table td {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+.compare-table th {
+  background: var(--bg-2);
+  color: var(--primary-strong);
+  font-weight: 700;
+}
+.compare-table tr:nth-child(even) {
+  background: rgba(246, 247, 251, 0.6);
+}
+
 @media (max-width: 720px) {
   .panel {
     padding: 16px;
